@@ -1,0 +1,55 @@
+0. MANDATORY :
+a) Install the latest version of JDK 1.8
+ http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+b) Install Intellij Idea (community version would be enough) https://www.jetbrains.com/idea/#chooseYourEdition
+c) Install Git and create an account on GitHub.
+d) Install Maven. ( tutorial for windows users --> https://www.mkyong.com/maven/how-to-install-maven-in-windows/ )
+
+
+1. Create a simple contact list application.
+ A user should be able to :
+
+        - addContact
+        - removeLast
+        - findContact
+        - removeContact
+
+        - updateContactInfo
+        - showAllContacts
+
+        - showFirstFiveContacts
+        - showLastFiveContacts
+
+        - showLifeContacts
+        - showKiyvstarContacts
+
+        - add a phone number validation
+ - Create a ContactListRun class with the main method containing examples of working code or create JUnit  tests ( for those who are familiar with JUnit)
+
+2. Create a simple parking application:
+Implement the following classes and more if needed
+     	class Parking
+           methods
+           - addMotoOnLastFreePlace
+           - takeLastMoto
+           - addMotoByPlaceNumber
+           - takeMotoByPlaceNumber
+           - clearGaragePlaces
+           - open
+           - close
+           - changeAddress
+           - showAllInGarage
+
+        class MotorCycle - simple class-holder with fields such as "model" , "plateNumber" etc
+         - Create a ParkingRun class with the main method containing examples of working code or create JUnit  tests ( for those who are familiar with JUnit)
+
+
+  *** Think about how to make your parking more universal so that you can park any kind of vehicle
+       abstract class Vehicle , concrete classes : Motorcycle, Car
+
+(abstract class) Vehicle
+          /      \
+    Motorcycle      Car
+
+3. Watch the series of Git tutorials : https://www.youtube.com/playlist?list=PLIU76b8Cjem5B3sufBJ_KFTpKkMEvaTQR
+4. Complete OOP Entry test.

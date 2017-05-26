@@ -1,0 +1,52 @@
+package com.courses.ooptest.utils;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Objects;
+
+public class TextUtils {
+    /**
+     * Method contains inside of its body three another methods.
+     * Each of this method defined below.
+     *
+     * @param text
+     * @return sorted by natural order array of unique words
+     */
+    public static String[] getUniqueSortedWords(String text) {
+//        TODO find mistake and correct it, so the method works correctly
+        String[] words = getWords(text);
+        String[] uniqueWords = getUniqueWords(words);
+        return sortWords(uniqueWords);
+    }
+
+    /**
+     * @param text
+     * @return array with words, get from receive text
+     * if received argument is null
+     * or text length is zero
+     */
+    public static String[] getWords(String text) {
+        return (text == null || text.isEmpty()) ? new String[0] : text.split("; ");
+    }
+
+
+    /**
+     * @param words array with words
+     * @return array with unique words
+     */
+    public static String[] getUniqueWords(String[] words) {
+        Objects.requireNonNull(words);
+        return new LinkedHashSet<>(Arrays.asList(words)).toArray(new String[0]);
+    }
+
+    /**
+     * @param uniqueWords array with unique words
+     * @return sorted by natural order array of unique words
+     */
+    public static String[] sortWords(String[] uniqueWords) {
+        Objects.requireNonNull(uniqueWords);
+        Collections.sort(Arrays.asList(uniqueWords));
+        return uniqueWords;
+    }
+}
