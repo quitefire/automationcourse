@@ -1,12 +1,13 @@
 package com.courses;
 
+import com.courses.parking.exceptions.InvalidPlaceNumberException;
+import com.courses.parking.exceptions.ParkingClosedException;
+import com.courses.parking.exceptions.ParkingPlaceReservedException;
 import com.courses.parking.models.Car;
 import com.courses.parking.models.Motorcycle;
 import com.courses.parking.models.Parking;
 import org.junit.*;
-import org.junit.runners.MethodSorters;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ParkingTest {
 
     private static Parking parking;
@@ -30,22 +31,30 @@ public class ParkingTest {
 
     @Test
     public void testAddVehicleByPlaceNumber() {
-        int actual = parking.addVehicleByPlaceNumber(new Car("Mercedes", "AV 2335 TD"), 3);
-        Assert.assertEquals(3, actual);
+        Assert.assertTrue(parking.addVehicleByPlaceNumber(new Car("Mercedes", "AV 2335 TD"), 3));
     }
 
 
-    @Test
+    @Test(expected = ParkingPlaceReservedException.class)
     public void testAddVehicleByPlaceNumberWhenPlaceIsReserved() {
-        int actual = parking.addVehicleByPlaceNumber(new Car("Mercedes", "AV 2335 TD"), 2);
-        Assert.assertEquals(-1, actual);
+        parking.addVehicleByPlaceNumber(new Car("Mercedes", "AV 2335 TD"), 2);
+    }
+
+    @Test(expected = ParkingClosedException.class)
+    public void testAddVehicleWhenParkingIsClosed() {
+        parking.closeParking();
+        parking.addVehicleToFreeParkingSpace(new Car("TEST", "TEST"));
+    }
+
+    @Test(expected = InvalidPlaceNumberException.class)
+    public void testAddVehicleWhenParkingPlaceNumberDoesNotExist() {
+        parking.addVehicleByPlaceNumber(new Car("Mercedes", "AV 2335 TD"), 100);
     }
 
     @Test
     public void testAddVehicleByPlaceNumberWhenVehicleIsNull() {
         Car car = null;
-        int actual = parking.addVehicleByPlaceNumber(car, 4);
-        Assert.assertEquals(-1, actual);
+        Assert.assertFalse(parking.addVehicleByPlaceNumber(car, 4));
     }
 
     @Test
@@ -60,8 +69,7 @@ public class ParkingTest {
 
     @Test
     public void testAddVehicleToFreeParkingSpace() {
-        int actual = parking.addVehicleToFreeParkingSpace(new Car("Mercedes", "AV 2335 TD"));
-        Assert.assertEquals(1, actual);
+        Assert.assertTrue(parking.addVehicleToFreeParkingSpace(new Car("Mercedes", "AV 2335 TD")));
     }
 
 
@@ -82,12 +90,6 @@ public class ParkingTest {
 
     @Test
     public void testClearParkingSpaceByPlaceNumber() {
-        Assert.assertEquals(2, parking.clearParkingSpaceByPlaceNumber(2));
+        Assert.assertTrue(parking.clearParkingSpaceByPlaceNumber(2));
     }
-
-    @Test
-    public void show10() {
-        parking.showAllVehiclesInParking();
-    }
-
 }

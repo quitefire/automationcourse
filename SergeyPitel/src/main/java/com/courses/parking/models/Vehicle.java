@@ -1,8 +1,6 @@
 package com.courses.parking.models;
 
-/**
- * Created by sergoneeight on 5/25/17.
- */
+
 public abstract class Vehicle {
 
     private String model;

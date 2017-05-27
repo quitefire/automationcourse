@@ -1,5 +1,9 @@
 package com.courses.parking.models;
 
+import com.courses.parking.exceptions.InvalidPlaceNumberException;
+import com.courses.parking.exceptions.ParkingClosedException;
+import com.courses.parking.exceptions.ParkingPlaceReservedException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,23 +24,17 @@ public class Parking {
      * Puts vehicle into free parking space
      *
      * @param vehicle is a vehicle to add
-     * @return parking space number if successful else -1
+     * @return true if vehicle successfully added
      */
-    public int addVehicleToFreeParkingSpace(Vehicle vehicle) {
-
-        if (vehicle == null) return -1;
+    public boolean addVehicleToFreeParkingSpace(Vehicle vehicle) {
+        if (vehicle == null) return false;
 
         if (!isOpened) {
-            System.out.println("Sorry parking is closed. Come back later");
-            return -1;
+            throw new ParkingClosedException("Sorry parking is closed. Come back later");
         }
 
         ParkingSpace parkingSpace = findFreeParkingSpace();
-        if (parkingSpace != null) {
-            return parkingSpace.putVehicle(vehicle);
-        }
-
-        return -1;
+        return parkingSpace != null && parkingSpace.putVehicle(vehicle);
     }
 
     /**
@@ -44,37 +42,32 @@ public class Parking {
      *
      * @param vehicle     is a vehicle to add
      * @param placeNumber is number of parking place
-     * @return parking space number if successful else -1
+     * @return true if vehicle successfully added
      */
-    public int addVehicleByPlaceNumber(Vehicle vehicle, int placeNumber) {
+    public boolean addVehicleByPlaceNumber(Vehicle vehicle, int placeNumber) {
         if (!isOpened) {
-            System.out.println("Sorry parking is closed. Come back later");
-            return -1;
+            throw new ParkingClosedException("Sorry parking is closed. Come back later");
         }
 
         if (!checkIfPlaceNumberValid(placeNumber)) {
-            System.out.println("Sorry there is no parking lot with such number. Try another");
-            return -1;
+            throw new InvalidPlaceNumberException("Parking place number: " + placeNumber + "does not exist");
         }
 
         if (parkingSpaces.get(placeNumber).checkIfFree()) {
             return parkingSpaces.get(placeNumber).putVehicle(vehicle);
         } else {
-            System.out.println("Sorry parking lot with number: " + placeNumber + " reserved");
-            return -1;
+            throw new ParkingPlaceReservedException("Parking place with number: " + placeNumber + " is reserved");
         }
     }
 
 
     public Vehicle takeVehicleByPlaceNumber(int placeNumber) {
         if (!isOpened) {
-            System.out.println("Sorry parking is closed. Come back later");
-            return null;
+            throw new ParkingClosedException("Sorry parking is closed. Come back later");
         }
 
         if (!checkIfPlaceNumberValid(placeNumber)) {
-            System.out.println("Sorry there is no parking lot with such number. Try another");
-            return null;
+            throw new InvalidPlaceNumberException("Parking place number: " + placeNumber + "does not exist");
         }
 
         return parkingSpaces.get(placeNumber).getVehicle();
@@ -94,15 +87,15 @@ public class Parking {
      * Removes vehicle from chosen parking place
      *
      * @param placeNumber is number of parking place
-     * @return parking space number if successful else -1
+     * @return true if vehicle successfully removed
      */
-    public int clearParkingSpaceByPlaceNumber(int placeNumber) {
+    public boolean clearParkingSpaceByPlaceNumber(int placeNumber) {
         return parkingSpaces.get(placeNumber).removeVehicle();
     }
 
 
     /**
-     * @return free Parking lot if available
+     * @return free Parking space if available
      */
     public ParkingSpace findFreeParkingSpace() {
         ParkingSpace freeParkingSpace = null;

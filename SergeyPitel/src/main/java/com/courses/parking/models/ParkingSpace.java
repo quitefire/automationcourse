@@ -18,27 +18,27 @@ public class ParkingSpace {
 
     /**
      * @param vehicle is a vehicle to add
-     * @return parking space number if successful else -1
+     * @return true if vehicle successfully added
      */
-    public int putVehicle(Vehicle vehicle) {
+    public boolean putVehicle(Vehicle vehicle) {
         if (isFree && vehicle != null) {
             this.vehicle = vehicle;
             isFree = false;
-            return this.number;
+            return true;
         }
-        return -1;
+        return false;
     }
 
     /**
-     * @return parking space number of removed vehicle if successful else -1
+     * @return true if vehicle successfully removed
      */
-    public int removeVehicle() {
+    public boolean removeVehicle() {
         if (vehicle != null) {
             vehicle = null;
             isFree = true;
-            return this.number;
+            return true;
         }
-        return -1;
+        return false;
     }
 
     public Vehicle getVehicle() {
