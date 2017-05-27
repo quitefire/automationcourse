@@ -2,9 +2,9 @@ package com.courses.homeworkTask1;
 
 public class Contact {
     private String name;
-    private int number;
+    private String number;
 
-    public Contact(int number,String name) {
+    public Contact(String number,String name) {
         this.name = name;
         this.number = number;
     }
@@ -13,7 +13,7 @@ public class Contact {
         return name;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -23,7 +23,7 @@ public class Contact {
      * @param name
      * @return
      */
-    public static Contact createContact(int number, String name){
+    public static Contact createContact(String number, String name){
         return new Contact(number,name);
     }
 }
