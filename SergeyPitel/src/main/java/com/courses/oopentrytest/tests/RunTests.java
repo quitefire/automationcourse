@@ -1,7 +1,7 @@
-package com.courses.oop_entry_test.tests;
+package com.courses.oopentrytest.tests;
 
 
-import com.courses.oop_entry_test.task.TextUtils;
+import com.courses.oopentrytest.task.TextUtils;
 import org.junit.Assert;
 import org.junit.Test;
 

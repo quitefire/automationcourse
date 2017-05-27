@@ -1,4 +1,4 @@
-package com.courses.oop_entry_test.utils;
+package com.courses.oopentrytest.utils;
 
 import java.io.BufferedReader;
 import java.io.File;

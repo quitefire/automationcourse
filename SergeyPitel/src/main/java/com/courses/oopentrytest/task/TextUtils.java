@@ -1,4 +1,4 @@
-package com.courses.oop_entry_test.task;
+package com.courses.oopentrytest.task;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;

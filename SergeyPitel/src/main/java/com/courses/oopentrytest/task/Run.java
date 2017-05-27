@@ -1,7 +1,7 @@
-package com.courses.oop_entry_test.task;
+package com.courses.oopentrytest.task;
 
 
-import com.courses.oop_entry_test.utils.FileUtils;
+import com.courses.oopentrytest.utils.FileUtils;
 
 import java.io.IOException;
 import java.util.Arrays;
