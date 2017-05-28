@@ -38,7 +38,7 @@ class ContactList {
      * @return
      */
     public Boolean isValidPhone(String number) {
-        if (!(number.contains("0") || number.contains("1") | number.contains("2") | number.contains("3") | number.contains("4") | number.contains("5") | number.contains("6") | number.contains("7") | number.contains("8") | number.contains("9")) || number.length() != 10) {
+        if (!(number.contains("0") || number.contains("1") || number.contains("2") || number.contains("3") || number.contains("4") || number.contains("5") || number.contains("6") || number.contains("7") || number.contains("8") || number.contains("9")) || number.length() != 10) {
             System.out.println("Contact is not added!\n" +
                     "Phone number should contain 10 numbers. Try again..");
             return false;
