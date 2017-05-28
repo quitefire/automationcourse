@@ -59,8 +59,7 @@ public class TextUtils {
      * @return sorted by natural order array of unique words
      */
     public static String[] sortWords(String[] uniqueWords) {
-        String[] sortedWords = Arrays.copyOf(uniqueWords, uniqueWords.length);
-        Arrays.sort(sortedWords);
-        return sortedWords;
+        Arrays.sort(uniqueWords);
+        return uniqueWords;
     }
 }
