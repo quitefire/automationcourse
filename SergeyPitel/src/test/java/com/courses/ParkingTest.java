@@ -2,7 +2,6 @@ package com.courses;
 
 import com.courses.parking.exceptions.InvalidPlaceNumberException;
 import com.courses.parking.exceptions.ParkingClosedException;
-import com.courses.parking.exceptions.ParkingPlaceReservedException;
 import com.courses.parking.models.Car;
 import com.courses.parking.models.Motorcycle;
 import com.courses.parking.models.Parking;
@@ -35,9 +34,9 @@ public class ParkingTest {
     }
 
 
-    @Test(expected = ParkingPlaceReservedException.class)
+    @Test
     public void testAddVehicleByPlaceNumberWhenPlaceIsReserved() {
-        parking.addVehicleByPlaceNumber(new Car("Mercedes", "AV 2335 TD"), 2);
+        Assert.assertFalse(parking.addVehicleByPlaceNumber(new Car("Mercedes", "AV 2335 TD"), 2));
     }
 
     @Test(expected = ParkingClosedException.class)
@@ -51,10 +50,9 @@ public class ParkingTest {
         parking.addVehicleByPlaceNumber(new Car("Mercedes", "AV 2335 TD"), 100);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testAddVehicleByPlaceNumberWhenVehicleIsNull() {
-        Car car = null;
-        Assert.assertFalse(parking.addVehicleByPlaceNumber(car, 4));
+        parking.addVehicleByPlaceNumber(null, 4);
     }
 
     @Test

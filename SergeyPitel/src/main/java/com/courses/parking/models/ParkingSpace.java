@@ -21,12 +21,10 @@ public class ParkingSpace {
      * @return true if vehicle successfully added
      */
     public boolean putVehicle(Vehicle vehicle) {
-        if (isFree && vehicle != null) {
-            this.vehicle = vehicle;
-            isFree = false;
-            return true;
-        }
-        return false;
+        if (vehicle == null) throw new NullPointerException();
+        this.vehicle = vehicle;
+        isFree = false;
+        return true;
     }
 
     /**

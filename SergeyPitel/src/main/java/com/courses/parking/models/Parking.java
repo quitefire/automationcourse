@@ -2,7 +2,6 @@ package com.courses.parking.models;
 
 import com.courses.parking.exceptions.InvalidPlaceNumberException;
 import com.courses.parking.exceptions.ParkingClosedException;
-import com.courses.parking.exceptions.ParkingPlaceReservedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +54,8 @@ public class Parking {
 
         if (parkingSpaces.get(placeNumber).checkIfFree()) {
             return parkingSpaces.get(placeNumber).putVehicle(vehicle);
-        } else {
-            throw new ParkingPlaceReservedException("Parking place with number: " + placeNumber + " is reserved");
         }
+        return false;
     }
 
 
