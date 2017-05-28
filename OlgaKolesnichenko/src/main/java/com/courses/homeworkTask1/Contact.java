@@ -4,7 +4,7 @@ public class Contact {
     private String name;
     private String number;
 
-    public Contact(String number,String name) {
+    public Contact(String name, String number) {
         this.name = name;
         this.number = number;
     }
@@ -18,12 +18,12 @@ public class Contact {
     }
 
     /**
-     *
      * @param number
      * @param name
      * @return
      */
-    public static Contact createContact(String number, String name){
-        return new Contact(number,name);
+    public static Contact createContact(String name, String number) {
+        return new Contact(name, number);
     }
 }
+

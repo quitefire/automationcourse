@@ -8,48 +8,48 @@ public class ContactListRun {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         ContactList myList = new ContactList(100);
 
-        myList.contacts.add(0, Contact.createContact("0999589255", "Olga"));
-        myList.contacts.add(1, Contact.createContact("0939589256", "Tanya"));
-        myList.contacts.add(2, Contact.createContact("0969589257", "Anton"));
-        myList.contacts.add(3, Contact.createContact("0979589258", "Lena"));
-        myList.contacts.add(4, Contact.createContact("0999589259", "Igor"));
-        myList.contacts.add(5, Contact.createContact("0999589250", "Vasya"));
-        myList.contacts.add(6, Contact.createContact("0999589234", "Petya"));
-        myList.contacts.add(7, Contact.createContact("0999589245", "Gena"));
+        //List of contacts
+        myList.contacts.add(0, Contact.createContact("Olga", "0979589255"));
+        myList.contacts.add(1, Contact.createContact("Tanya", "0939589256"));
+        myList.contacts.add(2, Contact.createContact("Anton", "0969589257"));
+        myList.contacts.add(3, Contact.createContact("Lena", "0979589258"));
+        myList.contacts.add(4, Contact.createContact("Igor", "0979589259"));
+        myList.contacts.add(5, Contact.createContact("Vasya", "0999589250"));
+        myList.contacts.add(6, Contact.createContact("Petya", "0999589234"));
+        myList.contacts.add(7, Contact.createContact("Gena", "0939589245"));
 
         while (!exit) {
-            System.out.println("Enter your choice \n");
+            System.out.println("\nEnter your choice \n");
             printMenu();
             choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 0:
-                    System.out.println("Enter number of contacts to add to the Contact List");
-                    int count = scanner.nextInt();
-                    for (int i = 0; i < count; i++) {
-                        System.out.println("Enter phone number:");
-                        String phoneNumber = scanner.nextLine();
-                        System.out.println("Enter Name:");
-                        String name = scanner.nextLine();
-                        Contact newcontact = Contact.createContact(phoneNumber, name);
+                    //Add new contact
+                    System.out.println("Enter Name:");
+                    String name = scanner.nextLine();
+                    System.out.println("Enter phone number:");
+                    String phoneNumber = scanner.nextLine();
+                    if (myList.isValidPhone(phoneNumber)) {
+                        Contact newcontact = Contact.createContact(name, phoneNumber);
                         myList.addContact(newcontact);
                     }
                     break;
                 case 1:
-                    //remove contact
+                    //Remove contact
                     System.out.println("Enter the Contact name you want to remove");
                     String nameToRemove = scanner.nextLine();
                     found = false;
                     for (int i = 0; i < myList.getContacts().size(); i++) {
-                        if (myList.getContacts().get(i).getName().contains(nameToRemove)) {
+                        if (myList.getContacts().get(i).getName().equals(nameToRemove)) {
                             myList.removeContact(myList.getContacts().get(i));
                             System.out.println("Contact is removed");
                             found = true;
                         }
                     }
                     if (!found) {
-                        System.out.println("Contact " + nameToRemove + " is not found! Try again!");
+                        System.out.println("Contact " + nameToRemove + " is not found!");
                     }
                     break;
 
@@ -59,31 +59,35 @@ public class ContactListRun {
                     String searchName = scanner.nextLine();
                     found = false;
                     for (int i = 0; i < myList.getContacts().size(); i++) {
-                        if (myList.getContacts().get(i).getName().equals(searchName)) {
+                        if (myList.getContacts().get(i).getName().contains(searchName)) {
                             System.out.println("Contact is found: " + myList.getContacts().get(i).getName() + " " + myList.getContacts().get(i).getNumber());
                             found = true;
                         }
                     }
                     if (!found) {
-                        System.out.println("Contact " + searchName + " is not found! Try again!");
+                        System.out.println("Contact " + searchName + " is not found!");
                     }
                     break;
                 case 3:
                     //Update contact name
                     System.out.println("Enter the Contact name you want to update");
                     String oldContactName = scanner.nextLine();
-
+                    found = false;
                     for (int j = 0; j < myList.getContacts().size(); j++) {
                         if (myList.getContacts().get(j).getName().equals(oldContactName)) {
                             System.out.println("Enter the new Contact Name");
                             String newName = scanner.nextLine();
                             System.out.println("Enter the new Contact Phone Number");
                             String newNumber = scanner.nextLine();
-                            myList.updateContact(myList.getContacts().get(j), Contact.createContact(newNumber, newName));
-                        } else {
-                            System.out.println("No contact " + oldContactName + " found! Try again!");
+                            if (myList.isValidPhone(newNumber)) {
+                                myList.updateContact(myList.getContacts().get(j), Contact.createContact(newName, newNumber));
+                                found = true;
+                            }
                         }
                     }
+                    if (!found) {
+                            System.out.println("Contact " + oldContactName + " is not found!");
+                        }
                     break;
                 case 4:
                     //Show all contacts
@@ -99,7 +103,7 @@ public class ContactListRun {
                     }
                     break;
                 case 5:
-                    //remove last contact
+                    //Remove last contact
                     myList.removeLastContact(myList.getContacts().get(myList.getContacts().size()-1));
                     System.out.println("Last contact is removed!");
                     break;
@@ -132,19 +136,15 @@ public class ContactListRun {
                 case 8:
                     //Show Life contacts
                     System.out.println("Life contacts:");
-                    for (int i = 0; i < myList.getContacts().size(); i++) {
-                       if (myList.getContacts().get(i).getNumber().startsWith("093")){
-                           System.out.println("Name: " + myList.getContacts().get(i).getName() + ", Phone Number: " + myList.getContacts().get(i).getNumber());
-                       }
+                    for (int i = 0; i < myList.getLifeContacts().size(); i++) {
+                           System.out.println("Name: " + myList.getLifeContacts().get(i).getName() + ", Phone Number: " + myList.getLifeContacts().get(i).getNumber());
                     }
                     break;
                 case 9:
-                    //Show KievStar contacts
+                    ///Show KievStar contacts
                     System.out.println("KievStar contacts:");
-                    for (int i = 0; i < myList.getContacts().size(); i++) {
-                        if (myList.getContacts().get(i).getNumber().startsWith("097")){
-                            System.out.println("Name: " + myList.getContacts().get(i).getName() + ", Phone Number: " + myList.getContacts().get(i).getNumber());
-                        }
+                    for (int i = 0; i < myList.getKievStarContacts().size(); i++) {
+                        System.out.println("Name: " + myList.getKievStarContacts().get(i).getName() + ", Phone Number: " + myList.getKievStarContacts().get(i).getNumber());
                     }
                     break;
                 case 10:
