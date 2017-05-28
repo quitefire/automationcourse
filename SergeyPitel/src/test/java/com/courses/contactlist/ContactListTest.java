@@ -2,7 +2,6 @@ package com.courses.contactlist;
 
 
 import com.courses.contactlist.exceptions.InvalidPhoneNumberException;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,11 +23,6 @@ public class ContactListTest {
         contactList.addNewContact(new Contact("Jack Richer", "0936325333"));
         contactList.addNewContact(new Contact("Jenny Clark", "0736325333"));
         contactList.addNewContact(new Contact("Sam Ray", "0986325339"));
-    }
-
-    @After
-    public void tearDown() {
-        contactList = null;
     }
 
     @Test
@@ -94,14 +88,14 @@ public class ContactListTest {
 
     @Test
     public void testUpdateContactName() {
-        Contact test = new Contact("Test", "063455546734");
+        Contact test = new Contact("Test", "0634555467");
         test.setName("New name");
         Assert.assertEquals("New name", test.getName());
     }
 
     @Test
     public void testUpdateContactNumber() {
-        Contact test = new Contact("Test", "063455546734");
+        Contact test = new Contact("Test", "0634555467");
         test.setPhoneNumber("096 3456 891");
         Assert.assertEquals("0963456891", test.getPhoneNumber());
     }

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.courses.contactlist.exceptions.InvalidPhoneNumberException;
+import com.courses.contactlist.utils.Carrier;
 
-import static com.courses.contactlist.utils.PhoneNumberValidator.*;
 
 public class ContactList {
 
@@ -102,7 +102,7 @@ public class ContactList {
     public List<Contact> getLifeContacts() {
         List<Contact> lifeList = new ArrayList<>();
         for (Contact c : contacts) {
-            for (String prefix : LIFE_PREFIXES) {
+            for (String prefix : Carrier.LIFE.getPrefixes()) {
                 if (c.getPhoneNumber().startsWith(prefix)) {
                     lifeList.add(c);
                 }
@@ -114,7 +114,7 @@ public class ContactList {
     public List<Contact> getKiyvstarContacts() {
         List<Contact> kiyvstarList = new ArrayList<>();
         for (Contact c : contacts) {
-            for (String prefix : KIYVSTAR_PREFIXES) {
+            for (String prefix : Carrier.KIYVSTAR.getPrefixes()) {
                 if (c.getPhoneNumber().startsWith(prefix)) {
                     kiyvstarList.add(c);
                 }

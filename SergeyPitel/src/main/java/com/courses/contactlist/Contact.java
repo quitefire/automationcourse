@@ -21,31 +21,24 @@ public class Contact {
      */
     public Contact(String name, String phone) {
         this.name = name;
-        // Check if valid number transferred
-        checkIfValidPhoneNumber(phone);
-        this.phoneNumber = formatNumber(phone);
+        setPhoneNumber(phone);
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean setName(String name) {
-        if (name != null && !name.isEmpty()) {
-            this.name = name;
-            return true;
-        }
-        return false;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public boolean setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         checkIfValidPhoneNumber(phoneNumber);
         this.phoneNumber = formatNumber(phoneNumber);
-        return true;
     }
 
     @Override
