@@ -36,8 +36,7 @@ public class TextUtils {
      * @return array with unique words
      */
     public static String[] getUniqueWords(String[] words) {
-        Set<String> unique = new LinkedHashSet<>(Arrays.asList(words));
-        return unique.toArray(new String[unique.size()]);
+        return new LinkedHashSet<>(Arrays.asList(words)).toArray(new String[0]);
     }
 
     /**
@@ -45,7 +44,7 @@ public class TextUtils {
      * @return sorted by natural order array of unique words
      */
     public static String[] sortWords(String[] uniqueWords) {
-        Set<String> sorted = new TreeSet<>(Arrays.asList(uniqueWords));
-        return sorted.toArray(new String[sorted.size()]);
+        Arrays.sort(uniqueWords);
+        return uniqueWords;
     }
 }
