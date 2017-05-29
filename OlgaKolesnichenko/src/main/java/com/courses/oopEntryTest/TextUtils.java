@@ -28,15 +28,7 @@ public class TextUtils {
      * return array with zero length
      */
     public static String[] getWords(String text) {
-        String[] words = new String[0];
-        if (text == null) {
-            System.out.println("argument is null");
-        }
-        else if (text.length() > 0)
-            words = text.split("; ");
-        else
-            System.out.println("text length is zero");
-        return words;
+        return (text == null || text.isEmpty()) ? new String[0] : text.split("; ");
     }
 
     /**
@@ -50,8 +42,7 @@ public class TextUtils {
                 uniqueWordsList.add(words[i]);
             }
         }
-        String[] uniqueWords = uniqueWordsList.toArray(new String[uniqueWordsList.size()]);
-        return uniqueWords;
+        return uniqueWordsList.toArray(new String[uniqueWordsList.size()]);
     }
 
     /**
