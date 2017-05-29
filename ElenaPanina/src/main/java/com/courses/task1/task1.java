@@ -59,7 +59,7 @@ public class task1 {
                         System.out.println(contact.getName() +" "+contact.getSurname()+" "+contact.getNumber());
 
                 }
-                System.out.println("Press Enter to open menu");
+                System.out.println("Press Enter to open menu.");
                 String exit = reader.readLine();
                 if(exit.equals("0"))
                     n = true;
