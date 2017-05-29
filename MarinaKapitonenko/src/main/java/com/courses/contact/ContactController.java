@@ -4,40 +4,30 @@ import java.util.*;
 
 class ContactController {
 
-	private List<Person> mContacts;
+	public static final int FILTER_LIFE = 1;
+	public static final int FILTER_KIEVSTAR = 2;
+
+	public static final int SORT_FIRST_NEW = 1;
+	public static final int SORT_FIRST_OLD = 2;
+
+	private List<Contact> mContacts;
 
 	public ContactController() {
 		mContacts = new ArrayList<>();
 	}
 
-	public ContactController(List<Person> personList) {
-		mContacts = personList;
+	public ContactController(List<Contact> contactList) {
+		mContacts = contactList;
 	}
 
-	public List<Person> getContacts() {
+	public List<Contact> getContacts() {
 		return mContacts;
 	}
 
-	public List<Person> getContacts(int length, int start){
-		List<Person> contacts = new ArrayList<>();
-		if (start < 0){
-			for (int i = (mContacts.size() + start); i > (length + start); i--){
-				contacts.add(mContacts.get(i));
-			}
-		} else {
-			for (int i = start; i < length; i++){
-				contacts.add(mContacts.get(i));
-			}
-		}
+	public boolean addContact(Contact contact) {
+		return contact != null && mContacts.add(contact);
 
-		return contacts;
 	}
-
-	public int addContact(Person person) {
-		mContacts.add(person);
-		return mContacts.size() - 1;
-	}
-
 
 	public boolean removeLast() {
 		if (mContacts != null && !mContacts.isEmpty()) {
@@ -47,14 +37,13 @@ class ContactController {
 		return false;
 	}
 
-	public boolean removeContact(Person contact) {
+	public boolean removeContact(Contact contact) {
 		return mContacts.remove(contact);
 	}
 
-
-	public List<Person> findContact(String name) {
-		List<Person> wanted = new ArrayList<>();
-		for (Person c : mContacts) {
+	public List<Contact> findContact(String name) {
+		List<Contact> wanted = new ArrayList<>();
+		for (Contact c : mContacts) {
 			if (c.getFullName() != null && c.getFullName().contains(name)){
 				wanted.add(c);
 			}
@@ -62,43 +51,59 @@ class ContactController {
 		return wanted;
 	}
 
+	public void updateContactInfo(int index, Contact info) {
+		Contact contact = mContacts.get(index);
 
-	public void updateContactInfo(Person contact, Map<String, String> personInfo) {
-		contact.setFirstName(personInfo.get("firstName"));
-		contact.setLastName(personInfo.get("lastName"));
-		contact.setPhoneNumber(personInfo.get("phoneNumber"));
+		contact.setFirstName(info.getFirstName());
+		contact.setLastName(info.getLastName());
+		contact.setPhoneNumber(info.getPhoneNumber());
 	}
 
-	public String showAllContacts() {
-		return Person.getInfo(mContacts);
+	public String showList(){
+		return showList(0,0,0);
+	}
+
+	public String showList(int sortOrder, int listSize, int filter){
+		List<Contact> list = sortContacts(sortOrder);
+		return ContactView.listView(filterContacts(filter, list, listSize));
 	}
 
 
-	public String showContacts(int length, int start) {
-		return Person.getInfo(getContacts(length, start));
+	private List<Contact> sortContacts(int sortOrder) {
+		List<Contact> list = mContacts;
+		if (sortOrder == SORT_FIRST_NEW){
+			list = mContacts.subList(0, mContacts.size());
+			Collections.reverse(mContacts);
+		}
+
+		return list;
 	}
 
-
-	public String showLifeContacts() {
-		return Person.getInfo(getContactsByOperator(Operator.LIFE));
+	private List<Contact> filterContacts(int filter, List<Contact> list, int listSize) {
+		List<Contact> filtered;
+		switch (filter){
+			case FILTER_LIFE:
+				filtered = getContactsByOperator(Operator.LIFE, list);
+				break;
+			case FILTER_KIEVSTAR:
+				filtered = getContactsByOperator(Operator.KIEVSTAR, list);
+				break;
+			default:
+				filtered = mContacts;
+		}
+		if (listSize > filtered.size() || listSize == 0){
+			listSize = filtered.size();
+		}
+		return filtered.subList(0, listSize);
 	}
 
-	public String showKiyvstarContacts() {
-		return Person.getInfo(getContactsByOperator(Operator.KIEVSTAR));
-	}
-
-	public List<Person> getContactsByOperator(Operator operator){
-		List<Person> contacts = new ArrayList<>();
-		for (Person c : mContacts) {
-			String[] codes = operator.getCodes();
-			for (String code : codes){
-				if (c.getPhoneNumber() != null && c.getPhoneNumber().contains(code)){
-					contacts.add(c);
-				}
+	private List<Contact> getContactsByOperator(Operator operator, List<Contact> list){
+		List<Contact> contacts = new ArrayList<>();
+		for (Contact c : list) {
+			if (c.hasOperatorNumber(operator)){
+				contacts.add(c);
 			}
 		}
 		return contacts;
 	}
-
-
 }

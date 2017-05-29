@@ -1,7 +1,6 @@
 package com.courses.contact;
 
 import com.github.javafaker.Faker;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,19 +26,19 @@ public class ContactControllerTest {
 		String lastName = mFaker.name().lastName();
 		String phoneNumber = mFaker.phoneNumber().cellPhone();
 
-		Person contact = new Person(firstName, lastName, phoneNumber);
+		Contact contact = new Contact(firstName, lastName, phoneNumber);
 		mController.addContact(contact);
 
 		List contacts = mController.getContacts();
 
 		Assert.assertTrue(contacts.contains(contact));
-
+		Assert.assertEquals(1, contacts.size());
 	}
 
 	@Test
 	public void removeLastContact(){
-		Person contact1 = getPersonFixture();
-		Person contact2 = getPersonFixture();
+		Contact contact1 = getFixture();
+		Contact contact2 = getFixture();
 
 		mController.addContact(contact1);
 		mController.addContact(contact2);
@@ -55,20 +54,20 @@ public class ContactControllerTest {
 	@Test
 	public void findByFirstName(){
 
-		Person contact = getPersonFixture();
+		Contact contact = getFixture();
 		mController.addContact(contact);
 
-		List<Person> wanted =  mController.findContact(contact.getFirstName());
+		List<Contact> wanted =  mController.findContact(contact.getFirstName());
 		Assert.assertEquals(1, wanted.size());
 	}
 
 	@Test
 	public void findByLastName(){
 
-		Person contact = getPersonFixture();
+		Contact contact = getFixture();
 		mController.addContact(contact);
 
-		List<Person> wanted =  mController.findContact(contact.getLastName());
+		List<Contact> wanted =  mController.findContact(contact.getLastName());
 		Assert.assertFalse(wanted.isEmpty());
 		Assert.assertEquals(1, wanted.size());
 	}
@@ -76,26 +75,26 @@ public class ContactControllerTest {
 	@Test
 	public void findByFullName(){
 
-		Person contact = getPersonFixture();
+		Contact contact = getFixture();
 		mController.addContact(contact);
 
-		List<Person> wanted =  mController.findContact(contact.getFullName());
+		List<Contact> wanted =  mController.findContact(contact.getFullName());
 		Assert.assertFalse(wanted.isEmpty());
 		Assert.assertEquals(1, wanted.size());
 	}
 
 	@Test
 	public void findByNotExistingName(){
-		Person contact = getPersonFixture();
+		Contact contact = getFixture();
 		mController.addContact(contact);
 
-		List<Person> wanted =  mController.findContact(mFaker.name().firstName());
+		List<Contact> wanted =  mController.findContact(mFaker.name().firstName());
 		Assert.assertTrue(wanted.isEmpty());
 	}
 
 	@Test
 	public void removeContact(){
-		Person contact = getPersonFixture();
+		Contact contact = getFixture();
 		mController.addContact(contact);
 
 		List contacts = mController.getContacts();
@@ -107,176 +106,145 @@ public class ContactControllerTest {
 
 	@Test
 	public void updateContact(){
-		Person contact = getPersonFixture();
+		Contact contact = getFixture();
 		mController.addContact(contact);
 
-		Map<String,String> info = getPersonInfo();
+		int index = mController.getContacts().indexOf(contact);
 
-		mController.updateContactInfo(contact, info);
-		Assert.assertEquals(info.get("firstName"), contact.getFirstName());
-		Assert.assertEquals(info.get("lastName"), contact.getLastName());
-		Assert.assertEquals(info.get("phoneNumber"), contact.getPhoneNumber());
+		String firstName = contact.getFirstName();
+		String lastName = mFaker.name().lastName();
+		String phoneNumber = mFaker.phoneNumber().cellPhone();
+
+		Contact updated = new Contact(firstName, lastName, phoneNumber);
+
+		mController.updateContactInfo(index, updated);
+		Assert.assertEquals(firstName, contact.getFirstName());
+		Assert.assertEquals(lastName, contact.getLastName());
+		Assert.assertEquals(phoneNumber, contact.getPhoneNumber());
 	}
 
 	@Test
 	public void showAllContacts(){
-		List<Person> personList = getPersonFixtures(3);
-		ContactController controller = new ContactController(personList);
+		List<Contact> contactList = getFixtures(3);
+		ContactController controller = new ContactController(contactList);
 
 		List contacts = controller.getContacts();
 		Assert.assertEquals(3, contacts.size());
 
-		String personsInfo = Person.getInfo(personList);
-		Assert.assertEquals(personsInfo, controller.showAllContacts());
-
-
+		String personsInfo = ContactView.listView(contactList);
+		Assert.assertEquals(personsInfo, controller.showList());
 	}
+
 	@Test
 	public void showFirstFiveContacts(){
 		int size = 10;
-		List<Person> personList = getPersonFixtures(size);
-		ContactController controller = new ContactController(personList);
+		List<Contact> contactList = getFixtures(size);
+		ContactController controller = new ContactController(contactList);
 
 		List contacts = controller.getContacts();
 		Assert.assertEquals(10, contacts.size());
 
 		int length = 5;
-		List<Person> five = new ArrayList<>();
+		List<Contact> five = new ArrayList<>();
 		for (int i = 0; i < length; i++){
-			five.add(personList.get(i));
+			five.add(contactList.get(i));
 		}
-		String personsInfo = Person.getInfo(five);
-		Assert.assertEquals(personsInfo, controller.showContacts(length, 0));
+		String personsInfo = ContactView.listView(five);
+		Assert.assertEquals(personsInfo, controller.showList(ContactController.SORT_FIRST_OLD, 5,0));
 	}
 
 	@Test
 	public void showLastFiveContacts(){
 		int size = 10;
-		List<Person> personList = getPersonFixtures(size);
-		ContactController controller = new ContactController(personList);
+		List<Contact> contactList = getFixtures(size);
+		ContactController controller = new ContactController(contactList);
 
 		List contacts = controller.getContacts();
 		Assert.assertEquals(10, contacts.size());
 
 		int length = 5;
-		List<Person> five = new ArrayList<>();
+		List<Contact> five = new ArrayList<>();
 		for (int i = size - 1; i > length - 1; i--){
-			five.add(personList.get(i));
+			five.add(contactList.get(i));
 		}
-		String personsInfo = Person.getInfo(five);
-		Assert.assertEquals(personsInfo, controller.showContacts(length, -1));
+		String personsInfo = ContactView.listView(five);
+		Assert.assertEquals(personsInfo, controller.showList(ContactController.SORT_FIRST_NEW, 5,0));
 	}
 
 	@Test
 	public void showLifeContacts(){
-		Person lifeContact1 = getPersonFixture();
+		Contact lifeContact1 = getFixture();
 		lifeContact1.setPhoneNumber("(063) 555-55-55");
 
-		Person lifeContact2 = getPersonFixture();
+		Contact lifeContact2 = getFixture();
 		lifeContact2.setPhoneNumber("(073) 555-55-55");
 
-		Person kievstarContact = getPersonFixture();
-		kievstarContact.setPhoneNumber("(067) 555-55-55");
+		Contact kievstarContact = getFixture();
+		kievstarContact.setPhoneNumber("(067) 063-55-55");
 
 		mController.addContact(lifeContact1);
 		mController.addContact(lifeContact2);
 		mController.addContact(kievstarContact);
 
-		Assert.assertEquals(2, mController.getContactsByOperator(Operator.LIFE).size());
 
-		List<Person> personList = new ArrayList<>();
-		personList.add(lifeContact1);
-		personList.add(lifeContact2);
+		List<Contact> contactList = new ArrayList<>();
+		contactList.add(lifeContact1);
+		contactList.add(lifeContact2);
 
-		String personsInfo = Person.getInfo(personList);
-		Assert.assertEquals(personsInfo, mController.showLifeContacts());
+		String personsInfo = ContactView.listView(contactList);
+		Assert.assertEquals(personsInfo, mController.showList(0,0, ContactController.FILTER_LIFE));
 	}
 
 	@Test
 	public void showKiyvstarContacts(){
-		Person lifeContact1 = getPersonFixture();
+		Contact lifeContact1 = getFixture();
 		lifeContact1.setPhoneNumber("(063) 555-55-55");
 
-		Person lifeContact2 = getPersonFixture();
+		Contact lifeContact2 = getFixture();
 		lifeContact2.setPhoneNumber("(073) 555-55-55");
 
-		Person kievstarContact = getPersonFixture();
+		Contact kievstarContact = getFixture();
 		kievstarContact.setPhoneNumber("(067) 555-55-55");
 
 		mController.addContact(lifeContact1);
 		mController.addContact(lifeContact2);
 		mController.addContact(kievstarContact);
 
-		List<Person> personList = new ArrayList<>();
-		personList.add(kievstarContact);
+		List<Contact> contactList = new ArrayList<>();
+		contactList.add(kievstarContact);
 
-		String personsInfo = Person.getInfo(personList);
-		Assert.assertEquals(personsInfo, mController.showKiyvstarContacts());
+		String personsInfo = ContactView.listView(contactList);
+		Assert.assertEquals(personsInfo, mController.showList(0,0, ContactController.FILTER_KIEVSTAR));
 	}
 
 	@Test
-	public void phoneNumberValidationValidNumber(){
+	public void phoneNumberValidationValidNumber() throws ValidatorException {
 		String number = "(055) 555-55-55";
-		Throwable e = null;
-
-		try {
-			Person.isPhoneNumberValid(number);
-		} catch (Throwable ex) {
-			e = ex;
-		}
-
-		Assert.assertNull(e);
+		Validator.isPhoneNumberValid(number);
 	}
 
-	@Test
-	public void phoneNumberValidationInvalidNumber(){
+	@Test(expected = ValidatorException.class)
+	public void phoneNumberValidationInvalidNumber() throws ValidatorException {
+
 		String number = "555-555-55-55";
-		Throwable e = null;
-
-		try {
-			Person.isPhoneNumberValid(number);
-		} catch (Throwable ex) {
-			e = ex;
-		}
-
-		Assert.assertTrue(e instanceof ValidatorException);
+		Validator.isPhoneNumberValid(number);
 	}
 
-
-
-
-	private Person getPersonFixture(){
+	private Contact getFixture(){
 		String firstName = mFaker.name().firstName();
 		String lastName = mFaker.name().lastName();
 		String phoneNumber = mFaker.phoneNumber().cellPhone();
 
-		return new Person(firstName, lastName, phoneNumber);
+		return new Contact(firstName, lastName, phoneNumber);
 	}
 
-	private Map<String,String> getPersonInfo(){
-		String firstName = mFaker.name().firstName();
-		String lastName = mFaker.name().lastName();
-		String phoneNumber = mFaker.phoneNumber().cellPhone();
 
-		Map<String,String> info = new HashMap<>();
-		info.put("firstName", firstName);
-		info.put("lastName", lastName);
-		info.put("phoneNumber", phoneNumber);
-
-		return info;
-	}
-
-	private List<Person> getPersonFixtures(int size){
-		List<Person> fixtures = new ArrayList<>();
+	private List<Contact> getFixtures(int size){
+		List<Contact> fixtures = new ArrayList<>();
 		for (int i = 0; i < size; i++){
-			fixtures.add(new Person(mFaker.name().firstName(), mFaker.name().lastName(), mFaker.phoneNumber().cellPhone()));
+			fixtures.add(new Contact(mFaker.name().firstName(), mFaker.name().lastName(), mFaker.phoneNumber().cellPhone()));
 		}
 		return fixtures;
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		mController = null;
 	}
 
 }

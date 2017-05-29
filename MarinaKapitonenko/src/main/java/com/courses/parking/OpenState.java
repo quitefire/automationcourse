@@ -26,7 +26,8 @@ public class OpenState implements State {
 			position++;
 		}
 		mParking.getVehicles()[position] = vehicle;
-		mParking.setCount(position + 1);
+		mParking.countVehicles();
+		//mParking.setCount(position + 1);
 		int place = position + 1;
 		System.out.println(vehicle + " is parked on the parking lot number " + place + ".");
 
@@ -48,7 +49,8 @@ public class OpenState implements State {
 		}
 
 		mParking.getVehicles()[place - 1] = vehicle;
-		mParking.setCount(mParking.getCount() + 1);
+		mParking.countVehicles();
+		//mParking.setCount(mParking.getCount() + 1);
 		System.out.println(vehicle + " is parked on the parking lot number " + place + ".");
 
 		if (mParking.isFull()) {
@@ -66,7 +68,8 @@ public class OpenState implements State {
 		if (vehicleList.length > 0) {
 			Vehicle vehicle = vehicleList[place - 1];
 			vehicleList[place - 1] = null;
-			mParking.setCount(mParking.getCount() - 1);
+			mParking.countVehicles();
+			//mParking.setCount(mParking.getCount() - 1);
 
 			System.out.println(vehicle + " was taken from the parking lot number " + (place) + ".");
 

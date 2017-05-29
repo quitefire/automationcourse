@@ -37,7 +37,8 @@ public class ClosedState implements State {
 		if (vehicleList.length > 0) {
 			Vehicle vehicle = vehicleList[place - 1];
 			vehicleList[place - 1] = null;
-			mParking.setCount(mParking.getCount() - 1);
+			mParking.countVehicles();
+			//mParking.setCount(mParking.getCount() - 1);
 
 			System.out.println(vehicle + " was taken from the parking lot number " + (place) + ".");
 
@@ -50,23 +51,4 @@ public class ClosedState implements State {
 
 	}
 
-/*
-
-	@Override
-	public int remove() {
-		List<Vehicle> vehicleList = mParking.getVehicles();
-
-		if (!vehicleList.isEmpty()){
-			int place = vehicleList.size() - 1;
-			Vehicle vehicle = vehicleList.remove(place);
-
-			System.out.println(vehicle + " was taken from the parking lot number " + (place + 1) + ".");
-
-			if (!mParking.isFull()){
-				mParking.open();
-			}
-			return  place + 1;
-		}
-		return 0;
-	}*/
 }

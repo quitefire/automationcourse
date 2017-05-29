@@ -1,6 +1,6 @@
 package com.courses.parking;
 
-public class Vehicle {
+abstract class Vehicle {
 	protected String mMake;
 	protected String mModel;
 	protected String mPlateNumber;
@@ -14,6 +14,6 @@ public class Vehicle {
 
 	@Override
 	public String toString() {
-		return "The " + mType + " " + mMake + " " + mModel + " number " + mPlateNumber;
+		return "The " + mType + " made by " + mMake + " model " + mModel + " number " + mPlateNumber;
 	}
 }

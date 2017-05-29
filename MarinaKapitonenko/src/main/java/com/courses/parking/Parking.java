@@ -17,6 +17,21 @@ public class Parking {
 		mCapacity = capacity;
 		mVehicles = new Vehicle[mCapacity];
 
+		setDefaultStates();
+		printInfo();
+	}
+
+	public Parking(Vehicle[] vehicles) {
+		mVehicles = vehicles;
+		mCapacity = vehicles.length;
+		countVehicles();
+
+		setDefaultStates();
+		printInfo();
+	}
+
+
+	private void setDefaultStates(){
 		mOpenState = new OpenState(this);
 		mClosedState = new ClosedState(this);
 
@@ -26,6 +41,7 @@ public class Parking {
 		}
 	}
 
+
 	public void setAddress(String address) {
 		mAddress = address;
 	}
@@ -34,7 +50,13 @@ public class Parking {
 		return mCount;
 	}
 
-	public void setCount(int count) {
+	public void countVehicles() {
+		int count = 0;
+		for (Vehicle v: mVehicles) {
+			if (v != null) {
+				count++;
+			}
+		}
 		mCount = count;
 	}
 
@@ -91,7 +113,7 @@ public class Parking {
 		return mCount == mCapacity;
 	}
 
-	public void clear() {
+	public void clearAll() {
 		for (int i = 0; i < mVehicles.length; i++) {
 			mVehicles[i] = null;
 		}
@@ -104,7 +126,7 @@ public class Parking {
 	}
 
 	public void printAvailable() {
-		System.out.println("Number of available parking lots: " + getAvailable());
+		System.out.println("Number of available parking lots: " + getAvailable() + ".");
 		System.out.println();
 	}
 
@@ -114,5 +136,10 @@ public class Parking {
 			System.out.println("Parking lot " + (i + 1) + ": " + mVehicles[i] + ";");
 		}
 		System.out.println();
+	}
+
+	public void printInfo(){
+		System.out.println(this + ". Capacity: " + mCapacity + ".");
+		printAvailable();
 	}
 }

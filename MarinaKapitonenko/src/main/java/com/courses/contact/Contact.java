@@ -1,15 +1,11 @@
 package com.courses.contact;
 
-import sun.security.validator.ValidatorException;
-
-import java.util.List;
-
-public class Person {
+public class Contact implements Comparable<Contact>{
 	private String mFirstName;
 	private String mLastName;
 	private String mPhoneNumber;
 
-	public Person(String firstName, String lastName, String phoneNumber) {
+	public Contact(String firstName, String lastName, String phoneNumber) {
 		mFirstName = firstName;
 		mLastName = lastName;
 		mPhoneNumber = phoneNumber;
@@ -48,23 +44,21 @@ public class Person {
 		return  getFullName() + ": " + mPhoneNumber;
 	}
 
-	public static String getInfo(List<Person> list){
-		StringBuilder sb = new StringBuilder();
-		for (Person person : list) {
-			sb.append(person);
-			sb.append(System.getProperty("line.separator"));
+	public boolean hasOperatorNumber(Operator operator){
+		if (mPhoneNumber == null) return false;
+
+		String[] codes = operator.getCodes();
+		for (String code : codes){
+			if (mPhoneNumber.startsWith("(" + code)){
+				return true;
+			}
 		}
-		return sb.toString();
+		return false;
 	}
 
 
-	public static boolean isPhoneNumberValid(String phoneNumber) throws ValidatorException {
-		String regex = "\\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}";
-		if (!phoneNumber.matches(regex)) {
-			throw new ValidatorException("Phone Number must be in format (###) ###-##-##");
-		}
-		return true;
+	@Override
+	public int compareTo(Contact o) {
+		return getFullName().compareTo(o.getFullName());
 	}
-
-
 }
