@@ -20,15 +20,9 @@ public class ContactList {
         return contacts;
     }
 
-
-//    public boolean isContactNameFound(String searchName) {
-//        boolean f = false;
-//       for (int i = 0; i < contacts.size(); i++) {
-//            if (contacts.get(i).getName().equals(searchName))
-//                f = true;
-//        }
-//        return f;
-//    }
+    public void updateContact(Contact oldContact, Contact newContact) {
+                    contacts.set(findPosition(oldContact), newContact);
+            }
 
     public Contact searchByName(String searchName) {
         Contact result = new Contact("","0000000000");
@@ -92,6 +86,10 @@ public class ContactList {
             }
         }
         return kievStarContacts;
+    }
+
+    private int findPosition(Contact contact) {
+        return this.contacts.indexOf(contact);
     }
 
     private int findLastPosition(Contact contact) {

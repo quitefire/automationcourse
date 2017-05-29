@@ -52,7 +52,7 @@ public class ContactListRun {
                     String newName = scanner.nextLine();
                     System.out.println("Enter the new Contact Phone Number");
                     String newNumber = scanner.nextLine();
-                    myList.searchByName(oldContactName).updateContact(newName, newNumber); //TODO fix update method
+                    myList.updateContact(myList.searchByName(oldContactName), new Contact(newName, newNumber));
                     break;
                 case 4:
                     //Show all contacts

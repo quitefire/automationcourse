@@ -17,13 +17,6 @@ public class Contact {
         } else throw new InvalidPhoneNumberException("Invalid number format " + number);
     }
 
-    public void updateContact(String name, String number) {
-        if (number.startsWith("0") && number.matches("[0-9]+") && number.length() == 10) {
-            this.name = name;
-            this.number = number;
-        } else throw new InvalidPhoneNumberException("Invalid number format " + number);
-    }
-
     public String getName() {
         return name;
     }
