@@ -1,104 +1,101 @@
 package com.courses.homeworkTask1;
 
 import java.util.ArrayList;
+import java.util.List;
 
-class ContactList {
-    public int contactList;
-    public ArrayList < Contact > contacts;
+public class ContactList {
 
-    public ContactList(int contactList) {
-        this.contactList = contactList;
-        this.contacts = new ArrayList < Contact > ();
+    private List<Contact> contacts = new ArrayList<>();
+
+    /**
+     * @param contact
+     * @return
+     */
+    public boolean addContact(Contact contact) {
+        if (contact == null) throw new NullPointerException();
+        return contacts.add(contact);
     }
 
-    public Boolean addContact(Contact contact) {
-            contacts.add(contact);
-        return true;
-    }
-
-    public ArrayList < Contact > getContacts() {
+    public List<Contact> getContacts() {
         return contacts;
     }
 
-    public void updateContact(Contact oldContact, Contact newContact) {
-            contacts.set(findPosition(oldContact), newContact);
+
+//    public boolean isContactNameFound(String searchName) {
+//        boolean f = false;
+//       for (int i = 0; i < contacts.size(); i++) {
+//            if (contacts.get(i).getName().equals(searchName))
+//                f = true;
+//        }
+//        return f;
+//    }
+
+    public Contact searchByName(String searchName) {
+        Contact result = new Contact("","0000000000");
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contacts.get(i).getName().equals(searchName))
+                result = new Contact(contacts.get(i).getName(), contacts.get(i).getNumber());
+        }
+        return result;
     }
 
-    public void removeContact(Contact contact) {
-            contacts.remove(findPosition(contact));
+    public boolean removeContact(Contact contact) {
+        return contacts.remove(contact);
     }
 
     public void removeLastContact(Contact contact) {
-            contacts.remove(findLastPosition(contact));
+        contacts.remove(findLastPosition(contact));
     }
 
     /**
-     *
-     * @param number
-     * @return
-     */
-    public Boolean isValidPhone(String number) {
-        if (!(number.contains("0") || number.contains("1") || number.contains("2") || number.contains("3") || number.contains("4") || number.contains("5") || number.contains("6") || number.contains("7") || number.contains("8") || number.contains("9")) || number.length() != 10) {
-            System.out.println("Contact is not added!\n" +
-                    "Phone number should contain 10 numbers. Try again..");
-            return false;
-        } else return true;
-    }
-
-    /**
-     *
      * @return first five contacts
      */
-    public ArrayList <Contact> getFirstFiveContacts(){
-        ArrayList <Contact> firstFiveContacts = new ArrayList<>();
-        for (int i = 0; i <= 4 ; i++ ){
+    public List<Contact> getFirstFiveContacts() {
+        List<Contact> firstFiveContacts = new ArrayList<>();
+        for (int i = 0; i <= 4; i++) {
             firstFiveContacts.add(contacts.get(i));
         }
         return firstFiveContacts;
     }
 
     /**
-     *
      * @return last five contacts
      */
-    public ArrayList <Contact> getLastFiveContacts(){
-        ArrayList <Contact> lastFiveContacts = new ArrayList<>();
-        for (int i = contacts.size()-5; i <= contacts.size()-1 ; i++ ){
+    public List<Contact> getLastFiveContacts() {
+        List<Contact> lastFiveContacts = new ArrayList<>();
+        for (int i = contacts.size() - 5; i <= contacts.size() - 1; i++) {
             lastFiveContacts.add(contacts.get(i));
         }
         return lastFiveContacts;
     }
 
     /**
-     *
      * @return Life contacts
      */
-    public ArrayList <Contact> getLifeContacts(){
-        ArrayList <Contact> lifeContacts = new ArrayList<>();
-        for (int i = 0; i < contacts.size(); i++ ){
-            if(contacts.get(i).getNumber().startsWith("093"))
+    public List<Contact> getLifeContacts() {
+        List<Contact> lifeContacts = new ArrayList<>();
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contacts.get(i).getNumber().startsWith("093"))
                 lifeContacts.add(contacts.get(i));
         }
         return lifeContacts;
     }
 
     /**
-     *
      * @return KievStar contacts
      */
-    public ArrayList <Contact> getKievStarContacts(){
-        ArrayList <Contact> kievStarContacts = new ArrayList<>();
-        for (int i = 0; i < contacts.size(); i++ ){
-            if(contacts.get(i).getNumber().startsWith("097"))
+    public List<Contact> getKievStarContacts() {
+        List<Contact> kievStarContacts = new ArrayList<>();
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contacts.get(i).getNumber().startsWith("097")) {
                 kievStarContacts.add(contacts.get(i));
+            }
         }
         return kievStarContacts;
     }
 
-    private int findPosition(Contact contact) {
-        return this.contacts.indexOf(contact);
-    }
     private int findLastPosition(Contact contact) {
         return this.contacts.lastIndexOf(contact);
     }
+
 }
