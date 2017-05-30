@@ -172,6 +172,26 @@ public class ContactControllerTest {
 	}
 
 	@Test
+	public void testOriginalOrderRemainsAfterSorting(){
+		int size = 10;
+		List<Contact> contactList = getFixtures(size);
+		ContactController controller = new ContactController(contactList);
+
+		List contacts = controller.getContacts();
+		Assert.assertEquals(10, contacts.size());
+
+		int length = 5;
+		List<Contact> five = new ArrayList<>();
+		for (int i = size - 1; i > length - 1; i--){
+			five.add(contactList.get(i));
+		}
+		String personsInfo = ContactView.listView(five);
+		String originalList = controller.showList();
+		Assert.assertEquals(personsInfo, controller.showList(ContactController.SORT_FIRST_NEW, 5,0));
+		Assert.assertEquals(originalList, controller.showList());
+	}
+
+	@Test
 	public void showLifeContacts(){
 		Contact lifeContact1 = getFixture();
 		lifeContact1.setPhoneNumber("(063) 555-55-55");
@@ -228,6 +248,11 @@ public class ContactControllerTest {
 
 		String number = "555-555-55-55";
 		Validator.isPhoneNumberValid(number);
+	}
+
+	@Test
+	public void checkListOrderAfterSort() {
+		List<Contact> contactList = getFixtures(5);
 	}
 
 	private Contact getFixture(){
