@@ -30,7 +30,7 @@ public class TextUtils {
      * */
     public static String[] getWords(String text) {
 
-        if(text == null  || text.length()==0){
+        if(text == null  || text.isEmpty()){
             return new String[]{};
         }
         return text.split("; ");
@@ -45,9 +45,7 @@ public class TextUtils {
         for(int i =0; i < words.length; i++){
             uniqueList.add(words[i]);
         }
-        String[] result = uniqueList.toArray(new String[0]);
-
-        return result;
+        return new LinkedHashSet<>(Arrays.asList(words)).toArray(new String[0]);
     }
 
      /**
