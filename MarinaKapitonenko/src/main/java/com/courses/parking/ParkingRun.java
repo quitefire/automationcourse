@@ -32,7 +32,7 @@ public class ParkingRun {
 		parking.printAvailable();
 
 		// test clearGaragePlaces
-		System.out.println("--- test test clearGaragePlaces ---");
+		System.out.println("--- test clearGaragePlaces ---");
 
 		parking.clearAll();
 		parking.printAvailable();

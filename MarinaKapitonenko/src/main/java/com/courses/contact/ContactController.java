@@ -68,15 +68,16 @@ class ContactController {
 		return ContactView.listView(filterContacts(filter, list, listSize));
 	}
 
-
 	private List<Contact> sortContacts(int sortOrder) {
-		List<Contact> list = mContacts;
-		if (sortOrder == SORT_FIRST_NEW){
-			list = mContacts.subList(0, mContacts.size());
-			Collections.reverse(mContacts);
-		}
+		if (sortOrder == SORT_FIRST_NEW) Collections.reverse(mContacts);
+		return mContacts;
 
-		return list;
+/*		List<Contact> list = mContacts;
+		if (sortOrder == SORT_FIRST_NEW) {
+			list = new ArrayList<>(mContacts);
+			Collections.reverse(list);
+		}
+		return list;*/
 	}
 
 	private List<Contact> filterContacts(int filter, List<Contact> list, int listSize) {

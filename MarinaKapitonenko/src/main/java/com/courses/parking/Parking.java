@@ -1,5 +1,7 @@
 package com.courses.parking;
 
+import java.util.Arrays;
+
 public class Parking {
 	private String mAddress;
 	private State mOpenState;
@@ -114,9 +116,7 @@ public class Parking {
 	}
 
 	public void clearAll() {
-		for (int i = 0; i < mVehicles.length; i++) {
-			mVehicles[i] = null;
-		}
+		Arrays.fill(mVehicles, null);
 		mCount = 0;
 		System.out.println(this + " is free of vehicles.");
 	}

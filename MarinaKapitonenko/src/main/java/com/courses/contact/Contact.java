@@ -1,5 +1,7 @@
 package com.courses.contact;
 
+import java.util.Objects;
+
 public class Contact implements Comparable<Contact>{
 	private String mFirstName;
 	private String mLastName;
@@ -56,6 +58,23 @@ public class Contact implements Comparable<Contact>{
 		return false;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+
+		if (o == this) return true;
+		if (!(o instanceof Contact)) {
+			return false;
+		}
+		Contact contact = (Contact) o;
+		return  this.mPhoneNumber.equals(contact.mPhoneNumber) &&
+				this.mFirstName.equals(contact.mFirstName) &&
+				this.mLastName.equals(contact.mLastName);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(mFirstName, mLastName, mPhoneNumber);
+	}
 
 	@Override
 	public int compareTo(Contact o) {
