@@ -8,8 +8,8 @@ public class Contact {
 
     /**
      * @param firstName   - contact first name;
-     * @param lastName    - contact first name;
-     * @param phoneNumber - contact first name;
+     * @param lastName    - contact last name;
+     * @param phoneNumber - contact phone number;
      */
     public Contact(String firstName, String lastName, String phoneNumber) {
         setFirstName(firstName);
@@ -30,35 +30,28 @@ public class Contact {
     }
 
     public void setFirstName(String firstName) {
-        if (firstName.equals(null)) {
-            throw new NullPointerException("First name is null");
-        } else this.firstName = firstName;
+        if (firstName == null && firstName.isEmpty()) throw new NullPointerException("First name is null");
+        // or throw IllegalArgumentException() ;
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
-        if (lastName.equals(null)) {
-            throw new NullPointerException("First name is null");
-        } else this.lastName = lastName;
+        if (lastName == null) throw new NullPointerException("Last name is null");
+        // or throw IllegalArgumentException() ;
+        this.lastName = lastName;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        if (!isPhoneValid(phoneNumber)) {
-            new Exception("Phone number is not valid");
-        } else {
-            if (phoneNumber.equals(null)) {
-                throw new NullPointerException("First name is null");
-            } else this.phoneNumber = phoneNumber;
-        }
+        this.phoneNumber = validatePhoneFormat(phoneNumber);
     }
 
     /**
      * @param phone
      * @return true if phone number is correct another return false;
      */
-    public boolean isPhoneValid(String phone) {
-        // TO DO validation for +38
-        return phone.matches("\\d+");
-
+    public String validatePhoneFormat(String phone) {
+        if (phone == null || phone.matches("\\d") || phone.length()<10) throw new IllegalArgumentException("Phone number is not valid"); // "\\d{10}" does not check if phone numbers contains <10 characters
+        return phone;
     }
 
     @Override

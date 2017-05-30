@@ -6,7 +6,7 @@ package homework1;
 public class ContactListRun {
     public static void main(String[] args) {
         ContactList m = new ContactList();
-        Contact one = new Contact("Serhii", "babenko0", "0636345678");
+        Contact one = new Contact("asdf", "babenko0", "06364576783");
         Contact two = new Contact("Serhii", "babenko1", "0636345678");
         Contact three = new Contact("Serhii", "babenko2", "0676345678");
         Contact one1 = new Contact("Serhii", "babenko3", "0676345678");
