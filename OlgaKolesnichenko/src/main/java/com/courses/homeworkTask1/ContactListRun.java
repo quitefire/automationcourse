@@ -61,7 +61,7 @@ public class ContactListRun {
                     break;
                 case 5:
                     //Remove last contact
-                    myList.removeLastContact(myList.getContacts().get(myList.getContacts().size() - 1));
+                    myList.removeLastContact();
                     System.out.println("Last contact is removed!");
                     break;
                 case 6:

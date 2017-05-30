@@ -21,24 +21,27 @@ public class ContactList {
     }
 
     public void updateContact(Contact oldContact, Contact newContact) {
-                    contacts.set(findPosition(oldContact), newContact);
-            }
+        contacts.set(findPosition(oldContact), newContact);
+    }
 
+    /**
+     * @param searchName
+     * @return contact matched by name or null if no result found
+     */
     public Contact searchByName(String searchName) {
-        Contact result = new Contact("","0000000000");
-        for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i).getName().equals(searchName))
-                result = new Contact(contacts.get(i).getName(), contacts.get(i).getNumber());
+        for (Contact contact : contacts) {
+            if (contact.getName().equals(searchName))
+                return contact;
         }
-        return result;
+        return null;
     }
 
     public boolean removeContact(Contact contact) {
         return contacts.remove(contact);
     }
 
-    public void removeLastContact(Contact contact) {
-        contacts.remove(findLastPosition(contact));
+    public void removeLastContact() {
+        contacts.remove(contacts.size() - 1);
     }
 
     /**
@@ -91,9 +94,4 @@ public class ContactList {
     private int findPosition(Contact contact) {
         return this.contacts.indexOf(contact);
     }
-
-    private int findLastPosition(Contact contact) {
-        return this.contacts.lastIndexOf(contact);
-    }
-
 }
