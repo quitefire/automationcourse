@@ -21,7 +21,7 @@ Use PageObject pattern
 
     #2
 
-Create a simple automation framework (Selenium-based) using key design patterns, in particular, Page Object. The scenario is to be automated as follows:
+Create a simple automation framework (Selenium-based) using key design patterns, in particular, Page Object. Automate the scenario as following:
 
 1)go to rozetka.com.ua website
 2)navigate to "Телефоны, ТВ и электроника" category
