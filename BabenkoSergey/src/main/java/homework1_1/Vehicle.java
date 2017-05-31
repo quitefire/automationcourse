@@ -27,4 +27,9 @@ public abstract class Vehicle {
     public void setPlateNumber(String plateNumber) {
         this.plateNumber = plateNumber;
     }
+
+    @Override
+    public String toString() {
+        return ("Model: " + model + "; \nPlate Number: " + plateNumber + ";");
+    }
 }

@@ -7,18 +7,18 @@ public class ParkingPlace {
 
     private int placeNumber;
     private Vehicle vehicle;
-    private boolean free;
+    private boolean isFree;
 
     /**
      *
      * @param placeNumber - place number
-     * @param free - is this place free
-     * @param vehicle - if free vehile default to null
+     * @param isFree - is this place isFree
+     * @param vehicle - if isFree vehile default to null
      */
-    public ParkingPlace(int placeNumber, boolean free, Vehicle vehicle){
+    public ParkingPlace(int placeNumber, boolean isFree, Vehicle vehicle){
         setVehicle(vehicle);
-        setPlaceNumber(placeNumber);
-        setFree(free);
+        this.placeNumber = placeNumber;
+        this.isFree = isFree;
     }
     public int getPlaceNumber() {
         return placeNumber;
@@ -29,11 +29,11 @@ public class ParkingPlace {
     }
 
     public boolean isFree() {
-        return free;
+        return isFree;
     }
 
-    public void setFree(boolean free) {
-        this.free = free;
+    public void setFree(boolean isFree) {
+        this.isFree = isFree;
     }
 
     public Vehicle getVehicle() {
@@ -42,17 +42,14 @@ public class ParkingPlace {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
-        this.setFree(false);
+        this.isFree = false;
     }
-
 
     public void setPlaceFree() {
         this.vehicle = null;
         this.setFree(true);
     }
-
-
-
+    
     @Override
     public String toString() {
         String status = isFree()? "empty": "busy";
