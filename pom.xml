@@ -10,11 +10,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>BuchkіvskyiSergiy</module>
         <module>ElenaPanina</module>
         <module>lamparius</module>
         <module>MarinaKapitonenko</module>
-        <module>MykhailoSolodky</module>
         <module>OlegPov</module>
         <module>OlgaKolesnichenko</module>
         <module>SerhiiNiemchenko</module>
