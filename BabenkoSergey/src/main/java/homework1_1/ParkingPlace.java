@@ -49,7 +49,7 @@ public class ParkingPlace {
         this.vehicle = null;
         this.setFree(true);
     }
-    
+
     @Override
     public String toString() {
         String status = isFree()? "empty": "busy";
