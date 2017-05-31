@@ -27,6 +27,7 @@ public class Parking {
     }
 
     public void printAllPlaces() {
+        if (isClosed) return;
         for (ParkingPlace place : parkingPlacesList) {
             System.out.println(place);
         }
@@ -45,6 +46,7 @@ public class Parking {
     }
 
     public void showAllBusyPlaces() {
+        if (isClosed) return;
         for (ParkingPlace place : parkingPlacesList) {
             if (!place.isFree()) {
                 System.out.println(place);
@@ -53,6 +55,7 @@ public class Parking {
     }
 
     public void showAllFreePlaces() {
+        if (isClosed) return;
         for (ParkingPlace place : parkingPlacesList) {
             if (place.isFree()) {
                 System.out.println(place);
