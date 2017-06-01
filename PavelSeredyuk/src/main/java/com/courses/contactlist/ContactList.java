@@ -16,36 +16,37 @@ public class ContactList {
     }
 
     void removeLast() {
-        int lastIndex = contacts.lastIndexOf(contacts);
-        contacts.remove(lastIndex);
+
+        contacts.remove(contacts.get(contacts.size()-1));
     }
 
     public Contact findContact(Contact person) {
 
-        for(int i =0; i < contacts.size();i++){
+        for(Contact item : contacts){
 
-            if(person.equals(contacts.get(i))){
+            if(person.equals(item)){
                 System.out.println("Contact found");
-                return contacts.get(i);
+                return item;
             }
         }
         return null;
     }
 
-    void removeContact(Contact person) {
-        for (int i = 0; i < contacts.size(); i++) {
-            if (person.equals(contacts.get(i))) {
-                contacts.remove(i);
+    public boolean removeContact(Contact person) {
+        for (Contact item : contacts) {
+            if (person.equals(item)) {
+                return contacts.remove(item);
             }
         }
+        return false;
     }
 
-    void updateContactInfo(Contact person, String name) throws Exception {
+    void updateContactInfo(Contact person, String name) {
 
-        for(int i =0; i < contacts.size();i++){
+        for(Contact item : contacts){
 
-            if(person.equals(contacts.get(i))){
-                contacts.get(i).setName(name);
+            if(person.equals(item)){
+                item.setName(name);
             }
         }
     }
@@ -55,32 +56,36 @@ public class ContactList {
 
     }
 
-    void showFirstFiveContacts() {
-
-        for (int i = 0; i < contacts.size(); i++) {
-            if (i < 5) {
-                System.out.println(contacts.get(i).getName());
-                System.out.println(contacts.get(i).getNumber());
-            }
+    public void showFirstFiveContacts() {
+        //check if contacts.size less than 5 set size to contacts.size
+        int size = contacts.size() < 5 ? contacts.size() : 5;
+        for (int i = 0; i < size; i++) {
+            System.out.println(contacts.get(i));
         }
     }
 
     void showLastFiveContacts() {
-        System.out.println(contacts.size());
-        int count = 0;
-        for (int i = contacts.size()-1; i > 0; i--) {
 
-            if (count < 5) {
-                System.out.println(contacts.get(i).getName());
-                System.out.println(contacts.get(i).getNumber());
-            }
-            count ++;
+        int size = contacts.size() < 5 ? contacts.size() : 5;
+        for (int i = size-1; i > 0; i--) {
+            System.out.println(contacts.get(i));
         }
     }
 
-    //was realised in setNumber
-    void numberValidation(){
+    public static boolean numberValidation(String phoneNumber){
+        if (phoneNumber.matches("\\d{10}")) {
+            return true;
+        }else {
+            throw new IllegalArgumentException("Phone is not valid");
+        }
+    }
 
+    public static boolean nameValidation (String name){
+        if(name.matches("^[a-zA-z ]*$")){
+            return true;
+        }else{
+            throw new IllegalArgumentException("Name is not valid");
+        }
     }
 
     void showLifeContacts() {
@@ -97,7 +102,7 @@ public class ContactList {
         String [] kievStarCode = {"067","097"};
         for(Contact item : contacts){
             if(item.getNumber().contains(kievStarCode[0])|| item.getNumber().contains(kievStarCode[1])){
-                System.out.println(item.getName()+" "+item.getNumber());
+                System.out.println(item.getName() + " " + item.getNumber());
             }
         }
     }

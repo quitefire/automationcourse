@@ -1,5 +1,8 @@
 package com.courses.contactlist;
 
+import static com.courses.contactlist.ContactList.nameValidation;
+import static com.courses.contactlist.ContactList.numberValidation;
+
 /**
  * Created by dtv on 29.05.2017.
  */
@@ -8,34 +11,29 @@ public class Contact {
     private String name;
 
     Contact(String number, String name){
-        this.number = number;
-        this.name = name;
+        setNumber(number);
+        setName(name);
     }
 
     public String getNumber() {
         return number;
     }
 
-    public void setNumber(String number) throws Exception {
+    public void setNumber(String number){
 
-      if(number.matches("\\d"))
+      if(numberValidation(number))
       {
             this.number = number;
-      }else {
-          throw new Exception("number invalid");
       }
-
 
     }
     public String getName() {
         return name;
     }
 
-    public void setName(String name) throws Exception {
-        if(name.matches("[a-zA-Z]")){
+    public void setName(String name){
+        if(nameValidation(name)){
             this.name = name;
-        }else{
-            throw new Exception("name invalid");
         }
 
     }
