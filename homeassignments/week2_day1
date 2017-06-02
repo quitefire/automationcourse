@@ -1,4 +1,6 @@
-1. Automate the following scenario:
+1. For those who don't have their own website they want to test:
+
+    Automate the following scenario:
   1) Search for "iphone" on http://hotline.ua
   2) Filter the found result by price ( filter by "Цена" attribute).
   3) Check that all the filtered results' prices are within the price range you selected (e.g  price range - between 3500 and 5000 uah ,    check that each result price are between 3500 and 5000 uah)
