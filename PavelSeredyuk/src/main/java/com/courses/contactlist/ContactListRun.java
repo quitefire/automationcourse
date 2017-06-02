@@ -24,12 +24,12 @@ public class ContactListRun {
         cList.addContact(four);
         cList.addContact(five);
         cList.addContact(six);
-        //cList.addContact(seven);
+        cList.addContact(seven);
+        cList.showFirstFiveContacts();
+        //cList.showLifeContacts();
+        //cList.showKiyvstarContacts();
 
-        cList.showLifeContacts();
-        cList.showKiyvstarContacts();
-
-        cList.findContact(one);
+        //cList.findContact(one);
 
 
         //cList.findContact(seven);
