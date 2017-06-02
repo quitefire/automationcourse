@@ -40,7 +40,7 @@ public class ContactList {
         return false;
     }
 
-    void updateContactInfo(Contact person, String name) {
+    public void updateContactInfo(Contact person, String name) {
 
         for (Contact item : contacts) {
 
@@ -50,7 +50,7 @@ public class ContactList {
         }
     }
 
-    void showAllContacts() {
+    public void showAllContacts() {
         System.out.println(contacts);
 
     }
@@ -63,10 +63,10 @@ public class ContactList {
         }
     }
 
-    void showLastFiveContacts() {
-
-        int size = contacts.size() < 5 ? contacts.size() : contacts.size()-5 ;
-        System.out.println(contacts.subList(contacts.size()-5,contacts.size()));
+    public void showLastFiveContacts() {
+        int size = Math.max(contacts.size() - 5, 0);
+        //int size = contacts.size() < 5 ? contacts.size() - contacts.size()  : contacts.size()-5 ;
+        System.out.println(contacts.subList(size,contacts.size()));
 
     }
 
@@ -86,7 +86,7 @@ public class ContactList {
         }
     }
 
-    void showLifeContacts() {
+    public void showLifeContacts() {
         String[] lifeCode = {"063", "073"};
         for (Contact item : contacts) {
             if (item.getNumber().contains(lifeCode[0]) || item.getNumber().contains(lifeCode[1])) {

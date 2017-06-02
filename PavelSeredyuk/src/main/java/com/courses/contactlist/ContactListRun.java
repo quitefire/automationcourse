@@ -21,7 +21,9 @@ public class ContactListRun {
         cList.addContact(two);
         cList.addContact(three);
         cList.addContact(four);
-
+        cList.addContact(five);
+        cList.addContact(six);
+//        cList.addContact(seven);
 //        System.out.println("Before Del");
 //        cList.showAllContacts();
 //
@@ -29,9 +31,8 @@ public class ContactListRun {
 //
 //        System.out.println("After Del");
         //cList.showAllContacts();
-        cList.addContact(five);
-        cList.addContact(six);
-        cList.addContact(seven);
+
+
         //cList.showFirstFiveContacts();
         cList.showLastFiveContacts();
         //cList.showLastFiveContacts();
