@@ -41,20 +41,19 @@ public class ParkingRun {
 
                 case 2:
                     //View all garage places
-                    myParking.showAllInGarage();
+                    myParking.showAllVehiclesInGarage();
                     break;
                 case 3:
                     //Search vehicle by place number
                     System.out.println("Enter place number:");
                     int searchNumber = scanner.nextInt();
                     scanner.nextLine();
-                    myParking.takeVehicleByPlaceNumber(searchNumber);
+                    System.out.println(myParking.takeVehicleByPlaceNumber(searchNumber));
                     break;
 
                 case 4:
                     //View last vehicle
-                    System.out.println("Last vehicle:");
-                    myParking.takeLastVehicle();
+                    System.out.println(myParking.takeLastVehicle());
                     break;
                 case 5:
                     //Clear place by number

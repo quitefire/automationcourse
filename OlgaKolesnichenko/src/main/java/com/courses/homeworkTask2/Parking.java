@@ -2,6 +2,7 @@ package com.courses.homeworkTask2;
 
 import com.courses.homeworkTask2.Exceptions.InvalidPalceNumberException;
 import com.courses.homeworkTask2.Exceptions.ParkingIsClosedException;
+import com.courses.homeworkTask2.Exceptions.PlaceIsFreeException;
 import com.courses.homeworkTask2.Exceptions.PlaceIsTakenException;
 
 import java.util.ArrayList;
@@ -56,19 +57,22 @@ public class Parking {
     public Vehicle takeVehicleByPlaceNumber(int placeNumber) {
         if (!isOpen) throw new ParkingIsClosedException("Parking is closed!");
         if (!isPlaceNumberValid(placeNumber)) throw new InvalidPalceNumberException("Only 0-10 places are available ");
+        if (parkingPlaces.get(placeNumber).isFree()) throw new PlaceIsFreeException("There is no vehicle..");
         return parkingPlaces.get(placeNumber).getVehicle();
     }
 
     public Vehicle takeLastVehicle() {
         if (!isOpen) throw new ParkingIsClosedException("Parking is closed!");
-        System.out.println("Last place:");
         for (int i = parkingSize - 1; i >= 0; i--) {
-            if (!(parkingPlaces.get(i).isFree())) return parkingPlaces.get(i).getVehicle();
+            if (!parkingPlaces.get(i).isFree()) {
+                System.out.println("Last vehicle on place: " + i);
+                return parkingPlaces.get(i).getVehicle();
+            }
         }
         return null;
     }
 
-    public void showAllInGarage() {
+    public void showAllVehiclesInGarage() {
         if (!isOpen) throw new ParkingIsClosedException("Parking is closed!");
         System.out.println("All Vehicles in garage::");
         for (ParkingSpace space : parkingPlaces) {
@@ -82,15 +86,14 @@ public class Parking {
         if (!isPlaceNumberValid(placeNumber)) throw new InvalidPalceNumberException("Only 0-10 places are available ");
         if (!parkingPlaces.get(placeNumber).isFree())
             return parkingPlaces.get(placeNumber).removeVehicle();
-        else System.out.println("Place is free!");
-        return false;
+        else throw new PlaceIsFreeException("Place is already free");
     }
 
     public void clearAllGaragePlaces() {
         if (!isOpen) throw new ParkingIsClosedException("Parking is closed!");
         for (ParkingSpace space : parkingPlaces)
             space.removeVehicle();
-        System.out.println("All places are free!");
+        System.out.println("All places have been cleaned!");
     }
 
     public void open() {
