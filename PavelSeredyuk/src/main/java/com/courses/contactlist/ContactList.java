@@ -15,16 +15,15 @@ public class ContactList {
         contacts.add(person);
     }
 
-    void removeLast() {
-
-        contacts.remove(contacts.get(contacts.size()-1));
+    boolean removeLast() {
+        return !contacts.isEmpty() && contacts.remove(contacts.get(contacts.size() - 1));
     }
 
     public Contact findContact(Contact person) {
 
-        for(Contact item : contacts){
+        for (Contact item : contacts) {
 
-            if(person.equals(item)){
+            if (person.equals(item)) {
                 System.out.println("Contact found");
                 return item;
             }
@@ -43,9 +42,9 @@ public class ContactList {
 
     void updateContactInfo(Contact person, String name) {
 
-        for(Contact item : contacts){
+        for (Contact item : contacts) {
 
-            if(person.equals(item)){
+            if (person.equals(item)) {
                 item.setName(name);
             }
         }
@@ -58,7 +57,7 @@ public class ContactList {
 
     public void showFirstFiveContacts() {
         //check if contacts.size less than 5 set size to contacts.size
-        int size = contacts.size() < 5 ? contacts.size() : 5;
+        int size = contacts.size() < 5 ? contacts.size() : 5 ;
         for (int i = 0; i < size; i++) {
             System.out.println(contacts.get(i));
         }
@@ -66,42 +65,41 @@ public class ContactList {
 
     void showLastFiveContacts() {
 
-        int size = contacts.size() < 5 ? contacts.size() : 5;
-        for (int i = size-1; i > 0; i--) {
-            System.out.println(contacts.get(i));
-        }
+        int size = contacts.size() < 5 ? contacts.size() : contacts.size()-5 ;
+        System.out.println(contacts.subList(contacts.size()-5,contacts.size()));
+
     }
 
-    public static boolean numberValidation(String phoneNumber){
+    public static boolean numberValidation(String phoneNumber) {
         if (phoneNumber.matches("\\d{10}")) {
             return true;
-        }else {
+        } else {
             throw new IllegalArgumentException("Phone is not valid");
         }
     }
 
-    public static boolean nameValidation (String name){
-        if(name.matches("^[a-zA-z ]*$")){
+    public static boolean nameValidation(String name) {
+        if (name.matches("^[a-zA-z ]*$")) {
             return true;
-        }else{
+        } else {
             throw new IllegalArgumentException("Name is not valid");
         }
     }
 
     void showLifeContacts() {
-        String [] lifeCode = {"063","073"};
-        for(Contact item : contacts){
-            if(item.getNumber().contains(lifeCode[0])|| item.getNumber().contains(lifeCode[1])){
-                System.out.println(item.getName()+" "+item.getNumber());
+        String[] lifeCode = {"063", "073"};
+        for (Contact item : contacts) {
+            if (item.getNumber().contains(lifeCode[0]) || item.getNumber().contains(lifeCode[1])) {
+                System.out.println(item.getName() + " " + item.getNumber());
             }
         }
 
     }
 
     void showKiyvstarContacts() {
-        String [] kievStarCode = {"067","097"};
-        for(Contact item : contacts){
-            if(item.getNumber().contains(kievStarCode[0])|| item.getNumber().contains(kievStarCode[1])){
+        String[] kievStarCode = {"067", "097"};
+        for (Contact item : contacts) {
+            if (item.getNumber().contains(kievStarCode[0]) || item.getNumber().contains(kievStarCode[1])) {
                 System.out.println(item.getName() + " " + item.getNumber());
             }
         }

@@ -10,7 +10,6 @@ public class ContactListRun {
         ContactList cList = new ContactList();
         ArrayList<Contact> contacts = new ArrayList<>();
         Contact one = new Contact("0636528565", "Petro Timoshenko");
-
         Contact two = new Contact("0632356554", "Mike Linder");
         Contact three = new Contact("0732356555", "Jhon Lunkaster");
         Contact four = new Contact("0672356558", "Kolya Serga");
@@ -22,12 +21,22 @@ public class ContactListRun {
         cList.addContact(two);
         cList.addContact(three);
         cList.addContact(four);
+
+//        System.out.println("Before Del");
+//        cList.showAllContacts();
+//
+//        System.out.println("Deleted = " + cList.removeLast());
+//
+//        System.out.println("After Del");
+        //cList.showAllContacts();
         cList.addContact(five);
         cList.addContact(six);
         cList.addContact(seven);
-        cList.showFirstFiveContacts();
-        //cList.showLifeContacts();
-        //cList.showKiyvstarContacts();
+        //cList.showFirstFiveContacts();
+        cList.showLastFiveContacts();
+        //cList.showLastFiveContacts();
+//        cList.showLifeContacts();
+//        cList.showKiyvstarContacts();
 
         //cList.findContact(one);
 
