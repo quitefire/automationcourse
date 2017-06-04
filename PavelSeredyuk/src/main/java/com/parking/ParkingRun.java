@@ -37,7 +37,7 @@ public class ParkingRun {
         testParking.addVehicle(m2);
         testParking.addVehicle(m3);
         testParking.addMotoByPlaceNumber(7,m4);
-        testParking.changeAddress(7,9,m4);
+        //testParking.changeAddress(7,9,m4);
         testParking.takeLastMoto();
         //testParking.clearGaragePlaces();
 

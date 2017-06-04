@@ -6,7 +6,8 @@ package com.parking;
 public class Moto extends Vehicle {
 
 
-    Moto(String model, String plateNumber) {
+    protected Moto(String model, String plateNumber)
+    {
         super(model, plateNumber);
     }
 }

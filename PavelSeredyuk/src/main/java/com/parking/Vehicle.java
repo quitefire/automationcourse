@@ -7,7 +7,7 @@ public abstract class Vehicle {
     private String model;
     private String plateNumber;
 
-    Vehicle(String model, String plateNumber){
+    protected Vehicle(String model, String plateNumber){
         this.model = model;
         this.plateNumber = plateNumber;
     }
@@ -32,6 +32,6 @@ public abstract class Vehicle {
 
     @Override
     public  String toString() {
-        return model!=null ? ("Model: " + model + ":Plate Number: " + plateNumber): "null";
+        return "Model: " + model + ":Plate Number: " + plateNumber;
     }
 }

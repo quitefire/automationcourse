@@ -5,7 +5,7 @@ package com.parking;
  */
 public class Car extends Vehicle {
 
-    Car(String model, String plateNumber) {
+    protected Car(String model, String plateNumber) {
         super(model, plateNumber);
     }
 }
