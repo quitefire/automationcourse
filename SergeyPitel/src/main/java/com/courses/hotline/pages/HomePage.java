@@ -27,11 +27,13 @@ public class HomePage extends PageObject {
 
     public HomePage open() {
         driver.get(HOME_PAGE_URL);
+        logger.info("Open Home Page");
         return this;
     }
 
     public SearchResultPage search(String query) {
         searchField.sendKeys(query);
+        logger.info("Search for " + query);
         firstSearchResultItem.click();
         return new SearchResultPage(driver);
     }
