@@ -17,12 +17,17 @@ public class HomePage extends PageObject {
 
     @FindBy(id = "searchbox")
     private WebElement searchField;
+
     @FindBy(css = "div#live-search ul li a")
     private WebElement firstSearchResultItem;
 
     public HomePage(WebDriver driver) {
         super(driver);
+    }
+
+    public HomePage open() {
         driver.get(HOME_PAGE_URL);
+        return this;
     }
 
     public SearchResultPage search(String query) {

@@ -1,67 +1,50 @@
 package com.courses.hotline.pages;
 
+import com.courses.hotline.elements.PriceFiltersPanel;
+import com.courses.hotline.elements.Product;
+import com.courses.hotline.elements.ProductsSearchResultPanel;
+import com.courses.hotline.utils.TextUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class represents Finance Home Page
+ * This class represents Search Result Page
  *
  * @see <a href="http://hotline.ua/mobile/mobilnye-telefony-i-smartfony/294245/"></a>
  */
 public class SearchResultPage extends PageObject {
 
-    @FindBy(css = "div.cell.group-gr-185.full-list div a")
-    private List<WebElement> priceFilters;
-
-    @FindBy(xpath = "//div[@class='cell pager p_t-10 p_b-20']//span//a")
-    private List<WebElement> nextResultsPageButtons;
-
-    private List<SearchResultCenterPanel> resultsPages = new ArrayList<>();
-
-    private List<Integer> allPrices = new ArrayList<>();
+    public PriceFiltersPanel priceFiltersPanel;
+    private List<Product> products = new ArrayList<>();
 
     public SearchResultPage(WebDriver driver) {
         super(driver);
+        priceFiltersPanel = new PriceFiltersPanel(driver);
     }
 
-    public SearchResultPage selectPriceFilter(int priceFilterPosition) {
-        scrollPage(3150);
-//        selectedPriceRange = TextUtils.parsePriceRange(priceFilters.get(priceFilterPosition).getText());
-        if (priceFilterPosition <= priceFilters.size()) {
-            priceFilters.get(priceFilterPosition).click();
+    public List<Product> fetchAllProducts() {
+        ProductsSearchResultPanel searchResultPanel = new ProductsSearchResultPanel(driver);
+        products.addAll(searchResultPanel.getProducts());
+        for (int i = 0; i < searchResultPanel.getSearchResultPagesAmount(); i++) {
+            searchResultPanel.getNextSearchResultPage(i);
+            products.addAll(searchResultPanel.getProducts());
         }
-        return this;
+        return products;
     }
 
-    public void getAllPrices() {
-        SearchResultCenterPanel searchResultPanel = new SearchResultCenterPanel(driver);
-        resultsPages.add(searchResultPanel);
-        allPrices.addAll(searchResultPanel.getCurrentPageProductPrices());
-
-        for (int i = 0; i < nextResultsPageButtons.size(); i++) {
-            Actions actions = new Actions(driver);
-            actions.moveToElement(nextResultsPageButtons.get(i)).build().perform();
-//            scrollPage(4250);
-            nextResultsPageButtons.get(i).click();
-            searchResultPanel = new SearchResultCenterPanel(driver);
-            resultsPages.add(searchResultPanel);
-
-            allPrices.addAll(searchResultPanel.getCurrentPageProductPrices());
+    public List<Integer> getAllProductsPrices() {
+        List<Integer> prices = new ArrayList<>();
+        for (Product product : products) {
+            prices.add(product.getPrice());
         }
+        return prices;
     }
 
-    public SearchResultCenterPanel getPanel(int num) {
-        return resultsPages.get(num);
-    }
-
-    public void print() {
-        for (Integer e : allPrices) {
-            System.out.println(e);
-        }
+    public int getSearchResultAmount() {
+        return products.size();
     }
 }
