@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class TestLoginButtonTitle {
     private WebDriver driver;
-    private static Wait<WebDriver> wait;
+//    private static Wait<WebDriver> wait;
 
     @BeforeClass
     public void setUp() throws Exception {

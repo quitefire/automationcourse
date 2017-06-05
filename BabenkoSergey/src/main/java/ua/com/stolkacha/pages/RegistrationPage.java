@@ -3,7 +3,12 @@ package ua.com.stolkacha.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ua.com.stolkacha.utils.DataUtils;
+import ua.com.stolkacha.utils.MyProperties;
+
+import java.util.Properties;
 
 /**
  * Created by Serhii Babenko on 6/2/2017.
@@ -16,6 +21,7 @@ public class RegistrationPage extends BasePage {
     private WebElement inputPasswordConfirmation;
     private WebElement submitRegistrationButton;
     private WebElement registrationForm;
+    private WebElement errorMessageField;
 //    inputFirstName = getDriver().findElement(By.id("firstname"));
 //    inputLastName = getDriver().findElement(By.id("lastname"));
 //    inputPassword = getDriver().findElement(By.id("password"));
@@ -53,10 +59,14 @@ public class RegistrationPage extends BasePage {
     public UserControlPanelPage submitRegistration(){
         registrationForm = getDriver().findElement(By.id("form-validate"));
         registrationForm.submit();
-        getWait().until(ExpectedConditions.urlMatches("https://stolkacha.com.ua/index.php/customer/account/index/"));
-        //submitRegistrationButton = getDriver().findElement(By.cssSelector(".buttons-set .button"));
-       // submitRegistrationButton.click();
+        getWait().until(ExpectedConditions.or((ExpectedConditions.urlMatches(MyProperties.getProperty("user_control_panel_url"))),
+                ExpectedConditions.visibilityOf(getDriver().findElement(By.cssSelector(".messages .error-msg")))));
         return new UserControlPanelPage(getDriver());
+    }
+
+    public String getRegistrationErrorMessage(){
+        errorMessageField = getDriver().findElement(By.cssSelector(".messages .error-msg"));
+        return errorMessageField.getText();
     }
 
     /**

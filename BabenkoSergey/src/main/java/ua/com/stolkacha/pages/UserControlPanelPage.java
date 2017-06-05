@@ -18,16 +18,12 @@ public class UserControlPanelPage extends BasePage {
     }
 
     public String getSuccessfulRegistrationText(){
-//        getWait().until(ExpectedConditions.urlMatches("https://stolkacha.com.ua/index.php/customer/account/index/"));
-//        registrationMessageField = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".messages .success-msg")));
-        registrationMessageField = getDriver().findElement(By.cssSelector(".messages .success-msg"));
+        registrationMessageField = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".messages .success-msg")));
         return registrationMessageField.getText();
     }
 
     public String getWelcomeMessage(){
-//        getWait().until(ExpectedConditions.urlMatches("https://stolkacha.com.ua/index.php/customer/account/index/"));
-//        welcomeMessageField = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".welcome-msg")));
-        welcomeMessageField = getDriver().findElement(By.cssSelector("welcome-msg"));
+        welcomeMessageField = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".welcome-msg")));
         return welcomeMessageField.getText();
     }
 }
