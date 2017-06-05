@@ -23,7 +23,7 @@ d) Install Maven. ( tutorial for windows users --> https://www.mkyong.com/maven/
         - showLifeContacts
         - showKiyvstarContacts
 
-        - add a phone number validation
+        - add a phoneNumber number validation
  - Create a ContactListRun class with the main method containing examples of working code or create JUnit  tests ( for those who are familiar with JUnit)
 
 2. Create a simple parking application:
