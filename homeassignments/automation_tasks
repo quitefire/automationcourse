@@ -5,7 +5,10 @@ OPTIONAL 1)SQL: given two tables persons and friends,  persons table has id and 
 Give a person, return the list of friends' names
 Give a person, return the list of the friend’s friend, but exclude any direct friends
 
-2) Give a csv file of company stock symbols and the revenue number in $.  Write a Selenium script that checks the company finance information in Yahoo Finance (https://finance.yahoo.com/quote/MMM/profile?p=MMM ).  Verify that the current revenue number is within 20% of the Yahoo’s reported number.  The test case passes if the current stock symbol’s revenue number is within 20% of Yahoo’s number, otherwise the test case fails.
+2) Give a csv file of company stock symbols and the revenue number in $.  Write a Selenium script that checks the company
+finance information in Yahoo Finance (https://finance.yahoo.com/quote/MMM/profile?p=MMM ).
+Verify that the current revenue number is within 20% of the Yahoo’s reported number.
+The test case passes if the current stock symbol’s revenue number is within 20% of Yahoo’s number, otherwise the test case fails.
 
 The input CSV file should be:
 
