@@ -1,12 +1,27 @@
 package com.courses.contactList;
 
 /**
- * Created by Kate on 31.05.2017.
+ * Created by Kate on 31.05.2017
  */
 public class Contact {
     private String name;
     private String lastName;
     private String phoneNum;
+
+    public Contact(String name, String lastName, String phoneNum){
+        if (name == null){
+            throw new IllegalArgumentException("The name is null");
+        }
+        if (lastName == null){
+            throw new IllegalArgumentException("The lastname is null");
+        }
+        if (!phoneNum.matches("^\\+?[0-9]{12}$")){
+            throw new IllegalArgumentException("Incorrect phone number");
+        }
+        this.name = name;
+        this.lastName = lastName;
+        this.phoneNum = phoneNum;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -56,9 +71,5 @@ public class Contact {
         this.phoneNum = phoneNum;
     }
 
-    public Contact(String name, String lastName, String phoneNum){
-        this.name = name;
-        this.lastName = lastName;
-        this.phoneNum = phoneNum;
-    }
+
 }

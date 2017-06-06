@@ -7,13 +7,20 @@ public abstract class Vehicle {
     private Integer time;
     private String carPlate;
 
-
-    public abstract Double getPrice(double basePrice);
-
     public Vehicle(Integer time, String carPlate) {
+        if (time <= 0) {
+            throw new IllegalArgumentException("Time less than zero");
+        }
+        if (carPlate == null){
+            throw new IllegalArgumentException("Car plate is null");
+        }
+
         this.time = time;
         this.carPlate = carPlate;
+
     }
+
+    public abstract Double getPrice(double basePrice);
 
     public String getCarPlate() {
         return carPlate;

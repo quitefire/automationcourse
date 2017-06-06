@@ -11,12 +11,16 @@ public class ContactList {
 
     private List<Contact> contacts = new ArrayList<>();
 
-    public void addContact(Contact contact) {
+    public boolean addContact(Contact contact) {
+        if (contact == null) {
+            return false;
+        }
         contacts.add(contact);
+        return true;
     }
 
-    public void deleteContact(Contact contact) {
-        contacts.remove(contact);
+    public boolean deleteContact(Contact contact) {
+        return contacts.remove(contact);
     }
 
     public Contact findByNumber(String phoneNum) {
@@ -26,7 +30,7 @@ public class ContactList {
                 if (phoneNum.equals(contact.getPhoneNum())) {
                     return contact;
                 } else {
-                    System.out.println(("Контакт з таким номер відутній"));
+                    System.out.println(("Контакт з таким номер відутній: " + phoneNum));
                 }
 
             }
@@ -40,21 +44,5 @@ public class ContactList {
     public List<Contact> getAllContacts() {
         return Collections.unmodifiableList(contacts);
     }
-
-    public static void main(String[] args) {
-        ContactList contactList = new ContactList();
-        Contact c1 = new Contact("Petya", "Qw", "12345");
-        Contact c2 = new Contact("Vasya", "Er", "1236");
-        contactList.addContact(c1);
-        contactList.addContact(c2);
-
-        List<Contact> allContacts = contactList.getAllContacts();
-        System.out.println(allContacts);
-        String number = "12345";
-        contactList.deleteContact(contactList.findByNumber(number));
-        System.out.println(allContacts);
-    }
-
-
 }
 
