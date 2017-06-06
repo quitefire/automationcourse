@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by Катюша on 06.06.2017
  */
 public class TestLoginPage extends BasePage {
-    private static WebDriver browser;
     private String usernameTrue = "380633699425";
     private String passwordTrue = "12345679";
     private String passwordFail = "12345679";
@@ -33,7 +32,7 @@ public class TestLoginPage extends BasePage {
     @Test
 
     public void testSuccsessEnter() {
-        LoginPage loginPage = new LoginPage(browser);
+        LoginPage loginPage = new LoginPage(getBrowser());
         loginPage.login(usernameTrue, passwordTrue);
 
     }
@@ -41,7 +40,7 @@ public class TestLoginPage extends BasePage {
     @AfterClass
 
     public static void tearDown() {
-        browser.quit();
+        getBrowser().quit();
     }
 
 }
