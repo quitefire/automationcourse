@@ -25,9 +25,8 @@
         <module>SergeyPitel</module>
         <module>Bogdan</module>
         <module>YuraQwerty</module>
-
+        <module>OlegKuchma</module>
     </modules>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
