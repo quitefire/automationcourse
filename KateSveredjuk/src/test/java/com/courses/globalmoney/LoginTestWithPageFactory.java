@@ -2,16 +2,16 @@ package com.courses.globalmoney;
 
 
 import com.courses.globalmoney.data.UserData;
-import com.courses.globalmoney.pages.CabinetPage;
-import com.courses.globalmoney.pages.GMMainPage;
-import com.courses.globalmoney.utils.SiteConstants;
 import com.courses.globalmoney.fixtures.BaseTest;
+import com.courses.globalmoney.pagefactory.pages.CabinetPage;
+import com.courses.globalmoney.pagefactory.pages.GMMainPage;
+import com.courses.globalmoney.utils.SiteConstants;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class LoginTest extends BaseTest {
+public class LoginTestWithPageFactory extends BaseTest {
 
     private GMMainPage mainPage;
 

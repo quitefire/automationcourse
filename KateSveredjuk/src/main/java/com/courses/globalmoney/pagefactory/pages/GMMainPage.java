@@ -1,7 +1,7 @@
-package com.courses.globalmoney.pages;
+package com.courses.globalmoney.pagefactory.pages;
 
+import com.courses.globalmoney.pagefactory.widgets.LoginForm;
 import com.courses.globalmoney.utils.SiteConstants;
-import com.courses.globalmoney.widgets.LoginForm;
 import org.openqa.selenium.WebDriver;
 
 public class GMMainPage extends BasePage {

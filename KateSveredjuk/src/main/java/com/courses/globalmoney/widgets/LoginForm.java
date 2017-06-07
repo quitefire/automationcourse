@@ -1,5 +1,6 @@
-package com.courses.globalmoney.pages;
+package com.courses.globalmoney.widgets;
 
+import com.courses.globalmoney.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
