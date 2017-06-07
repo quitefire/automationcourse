@@ -15,6 +15,6 @@ https://kreisfahrer.gitbooks.io/selenium-webdriver/content/page_object_pattern_a
 https://www.youtube.com/watch?v=FUOeH4680SU  - video  from the previous group - PageObject,PageFactor
 
 Assignment:
-1. For those who don't have their own website they want to test:
- Create negative/positive (already registered,new user,wrong email format) tests for a registration of a new user on hotline.ua website.
+1. Refactor the previous assignment using PageObject/PageFactory
+2. Create negative/positive (already registered,new user,wrong email format) tests for a registration of a new user on hotline.ua website.
  Use PageObject/PageFactory.
