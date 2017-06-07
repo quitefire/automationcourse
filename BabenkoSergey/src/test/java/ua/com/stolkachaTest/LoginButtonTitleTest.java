@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Serhii Babenko on 6/2/2017.
  */
-public class TestLoginButtonTitle {
+public class LoginButtonTitleTest {
     private WebDriver driver;
 //    private static Wait<WebDriver> wait;
 
