@@ -10,11 +10,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>BuchkіvskyiSergiy</module>
         <module>ElenaPanina</module>
         <module>lamparius</module>
         <module>MarinaKapitonenko</module>
-        <module>MykhailoSolodky</module>
         <module>OlegPov</module>
         <module>OlgaKolesnichenko</module>
         <module>SerhiiNiemchenko</module>
@@ -43,6 +41,16 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>1.6.2</version>
         </dependency>
     </dependencies>
 

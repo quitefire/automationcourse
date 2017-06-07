@@ -1,0 +1,14 @@
+1. For those who don't have their own website they want to test:
+
+    Automate the following scenario:
+  1) Search for "iphone" on http://hotline.ua
+  2) Filter the found result by price ( filter by "Цена" attribute).
+  3) Check that all the filtered results' prices are within the price range you selected (e.g  price range - between 3500 and 5000 uah ,    check that each result price are between 3500 and 5000 uah)
+  4) OPTIONAL: check that number of results are the same as numbers shown next to price range  ( e.g.   3500 - 5000 uah (4)) ->  you need to check that number of the filtered results is 4)
+
+  Requirements:
+  1)Test should be written as a Junit method annotated with @Test annotation ( the same as we did in class)
+  2)OPTIONAL: use PageObject pattern to encapsulate/hide technical details about web pages
+
+  https://kreisfahrer.gitbooks.io/selenium-webdriver/content/page_object_pattern_arhitektura_testovogo_proekta/ispolzovanie_patterna_page_object.html
+
