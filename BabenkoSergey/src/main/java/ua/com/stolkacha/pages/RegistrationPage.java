@@ -15,7 +15,7 @@ import java.util.Properties;
 /**
  * Created by Serhii Babenko on 6/2/2017.
  */
-public class RegistrationPage extends BasePage {
+public class RegistrationPage extends BasePage implements RegistrationResult {
     private WebElement inputFirstName;
     private WebElement inputLastName;
     private WebElement inputEmail;
@@ -60,18 +60,16 @@ public class RegistrationPage extends BasePage {
         return this;
     }
 
-    public UserControlPanelPage submitRegistrationSuccess() {
+    public RegistrationResult submitRegistration(boolean success) {
         registrationForm = getDriver().findElement(By.id("form-validate"));
         registrationForm.submit();
-        getWait().until(ExpectedConditions.urlMatches(MyProperties.getProperty("user_control_panel_url")));
-        return new UserControlPanelPage(getDriver());
-    }
-
-    public RegistrationPage submitRegistrationFail() {
-        registrationForm = getDriver().findElement(By.id("form-validate"));
-        registrationForm.submit();
-        getWait().until(ExpectedConditions.visibilityOf(getDriver().findElement(By.cssSelector(".messages .error-msg"))));
-        return this;
+        if (success){
+            getWait().until(ExpectedConditions.urlMatches(MyProperties.getProperty("user_control_panel_url")));
+            return new UserControlPanelPage(getDriver());
+        }else{
+            getWait().until(ExpectedConditions.visibilityOf(getDriver().findElement(By.cssSelector(".messages .error-msg"))));
+            return this;
+        }
     }
 
     public String getRegistrationErrorMessage() {
@@ -88,4 +86,10 @@ public class RegistrationPage extends BasePage {
         return this;
     }
 
+    @Override
+    public List<String> getActualMessages() {
+        List<String> actualMessages = new ArrayList<>();
+        actualMessages.add(getRegistrationErrorMessage());
+        return actualMessages;
+    }
 }

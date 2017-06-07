@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Serhii Babenko on 6/2/2017.
  */
-public class UserControlPanelPage extends BasePage {
+public class UserControlPanelPage extends BasePage implements RegistrationResult {
     private WebElement registrationMessageField;
     private WebElement welcomeMessageField;
 
@@ -31,9 +31,9 @@ public class UserControlPanelPage extends BasePage {
     }
 
     public List<String> getActualMessages() {
-        List<String> expected = new ArrayList<>();
-        expected.add(getSuccessfulRegistrationText());
-        expected.add(getWelcomeMessage());
-        return expected;
+        List<String> actualMessages = new ArrayList<>();
+        actualMessages.add(getSuccessfulRegistrationText());
+        actualMessages.add(getWelcomeMessage());
+        return actualMessages;
     }
 }

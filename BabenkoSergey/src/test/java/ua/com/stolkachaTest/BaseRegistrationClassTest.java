@@ -23,6 +23,7 @@ public class BaseRegistrationClassTest {
 
     @AfterClass
     public void tearDown() throws Exception {
+        System.out.println("Base test called");
         driver.close();
     }
 }
