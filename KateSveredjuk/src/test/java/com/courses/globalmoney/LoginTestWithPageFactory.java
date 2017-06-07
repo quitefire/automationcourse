@@ -26,7 +26,7 @@ public class LoginTestWithPageFactory extends BaseTest {
 
         UserData loginData = UserData.validData;
 
-        mainPage.loginAs(loginData.getUserName(), loginData.getPassword());
+        mainPage.loginForm.loginAs(loginData.getUserName(), loginData.getPassword());
 
         CabinetPage cabinetPage = new CabinetPage(driver);
         String actualUserId = cabinetPage.getUserId();
@@ -47,8 +47,8 @@ public class LoginTestWithPageFactory extends BaseTest {
 
         String expectedMessage = "Ошибка авторизации: Server error";
 
-        mainPage.loginAs(loginData.getUserName(), loginData.getPassword());
-        String actualValidationMessage = mainPage.getValidationMessage();
+        mainPage.loginForm.loginAs(loginData.getUserName(), loginData.getPassword());
+        String actualValidationMessage = mainPage.loginForm.getValidationMessage();
 
 
         System.out.println(actualValidationMessage);

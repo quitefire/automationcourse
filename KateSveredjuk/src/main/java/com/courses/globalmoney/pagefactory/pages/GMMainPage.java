@@ -6,21 +6,16 @@ import org.openqa.selenium.WebDriver;
 
 public class GMMainPage extends BasePage {
 
-    private LoginForm loginForm;
+
+    /* breaks encapsulation but quite handy in tests itself , we don't have to duplicate methods
+     another option would be to make login form private but create a getter and use it as follows in test :
+     mainPage.getLoginForm().loginAs()
+    */
+    public final LoginForm loginForm;
 
     public GMMainPage(WebDriver driver) {
         super(driver);
         this.loginForm = new LoginForm(driver);
-    }
-
-    public void loginAs(String userName, String password) {
-        loginForm.setUsername(userName).
-                setPassword(password).
-                submit();
-    }
-
-    public String getValidationMessage() {
-        return loginForm.getValidationMessage();
     }
 
     public GMMainPage open() {

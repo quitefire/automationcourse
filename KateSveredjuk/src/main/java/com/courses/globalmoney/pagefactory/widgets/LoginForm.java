@@ -24,22 +24,29 @@ public class LoginForm extends BasePage {
         super(driver);
     }
 
-    public LoginForm setUsername(String username) {
+    private LoginForm setUsername(String username) {
         userNameInput.sendKeys(username);
         return this;
     }
 
-    public LoginForm setPassword(String password) {
+    private LoginForm setPassword(String password) {
         passwordInput.sendKeys(password);
         return this;
     }
 
-    public void submit() {
+    private void submit() {
         submitButton.submit();
     }
 
     public String getValidationMessage() {
         return validationMessage.getText();
+    }
+
+
+    public void loginAs(String userName, String password) {
+        setUsername(userName).
+                setPassword(password).
+                submit();
     }
 }
 
