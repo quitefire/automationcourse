@@ -1,4 +1,4 @@
-package com.courses.site;
+package com.courses.hotline.pages;
 
 
 import org.openqa.selenium.WebDriver;
@@ -10,26 +10,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by Катюша on 06.06.2017
  */
 public abstract class BasePage {
-    private static WebDriver browser;
+
+    private static WebDriver driver;
     private static Wait<WebDriver> wait;
-    String url = "http://62.149.16.47:8080/";
+
+    protected static final String URL = "http://62.149.16.47:8080/";
 
     public BasePage() {
+
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Катюша.Кот\\automationcourse\\KateSveredjuk\\drivers\\chromedriver.exe");
-        browser = new ChromeDriver();
-        wait = new WebDriverWait(browser, 10);
-        browser.manage().window().maximize();
-        browser.manage().deleteAllCookies();
-        browser.get(url);
+        driver = new ChromeDriver();
+
+        wait = new WebDriverWait(driver, 10);
+
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+
 
     }
 
-    public String getUrl() {
-        return url;
+    public static WebDriver getDriver() {
+        return driver;
     }
 
-    public static WebDriver getBrowser() {
-        return browser;
-
-    }
 }
