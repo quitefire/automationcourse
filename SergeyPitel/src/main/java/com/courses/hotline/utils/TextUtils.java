@@ -9,7 +9,7 @@ public class TextUtils {
         return str.replaceAll("[^0-9-]", "");
     }
 
-    public static int parseInt(String str) {
+    public static int parseInt(String str) throws NumberFormatException {
         return Integer.parseInt(removeNonNumericCharacters(str));
     }
 
@@ -26,8 +26,9 @@ public class TextUtils {
             numRange[0] = Integer.parseInt(range[0]);
             numRange[1] = Integer.parseInt(range[1]);
         } else {
-            numRange = new int[1];
+            numRange = new int[2];
             numRange[0] = Integer.parseInt(numbers);
+            numRange[1] = Integer.MAX_VALUE;
         }
         return numRange;
     }
