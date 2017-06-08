@@ -3,7 +3,7 @@ package com.courses.hotline;
 import com.courses.hotline.fixtures.BaseTest;
 import com.courses.week3.hotlinev1.enums.PriceRange;
 import com.courses.week3.hotlinev1.pages.HotlineMainPage;
-import com.courses.week3.utils.ScreenshotUtils;
+import com.courses.week3.conciseapi.utils.ScreenshotUtils;
 import org.junit.After;
 import org.junit.Test;
 
