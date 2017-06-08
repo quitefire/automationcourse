@@ -6,10 +6,8 @@ import com.courses.globalmoney.pages.CabinetPage;
 import com.courses.globalmoney.pages.GMMainPage;
 import com.courses.globalmoney.utils.SiteConstants;
 import com.courses.globalmoney.fixtures.BaseTest;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class LoginTest extends BaseTest {
 
@@ -32,11 +30,11 @@ public class LoginTest extends BaseTest {
         String actualUserId = cabinetPage.getUserId();
         String cabinetPageUrl = cabinetPage.getUrl();
 
-        cabinetPage.logOut();
+        // cabinetPage.logOut();
 
 
         Assert.assertEquals(loginData.getUserId(), actualUserId);
-        //  Assert.assertEquals(SiteConstants.CABINET_PAGE_URL, cabinetPageUrl);
+        Assert.assertEquals(SiteConstants.CABINET_PAGE_URL, cabinetPageUrl);
     }
 
 
@@ -69,4 +67,8 @@ public class LoginTest extends BaseTest {
 //        Assert.assertEquals(SiteConstants.SITE_URL, mainPage.getUrl());
     }
 
+    @After
+    public void cleanUp() throws Exception {
+        ((JavascriptExecutor) driver).executeScript("window.sessionStorage.removeItem('user')");
+    }
 }

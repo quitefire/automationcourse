@@ -32,7 +32,7 @@ public class LoginTestWithPageFactory extends BaseTest {
         String actualUserId = cabinetPage.getUserId();
         String cabinetPageUrl = cabinetPage.getUrl();
 
-        cabinetPage.logOut();
+      //  cabinetPage.logOut();
 
 
         Assert.assertEquals(loginData.getUserId(), actualUserId);

@@ -46,8 +46,7 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 publish.properties
-### Java template
-*.class
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -63,7 +62,6 @@ hs_err_pid*
 ### Example user template
 
 # IntelliJ project files
-.idea
 out
 gen
 # Created by .ignore support plugin (hsz.mobi)
@@ -71,10 +69,7 @@ gen
 #JavaScript
 /bo-web/src/main/webapp/bower_components
 
-**/*.*~
 **/*.swp
-**/.idea
-**/*.iml
 **/lib
 **/*.log
 **/*.err

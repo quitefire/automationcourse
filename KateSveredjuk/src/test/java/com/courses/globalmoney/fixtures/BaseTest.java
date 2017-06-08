@@ -15,7 +15,6 @@ public class BaseTest {
         ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
     }
 
 
