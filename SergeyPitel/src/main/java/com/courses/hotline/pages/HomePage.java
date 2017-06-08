@@ -46,7 +46,7 @@ public class HomePage extends BasePage {
     }
 
     public RegistrationPage register() {
-        register.click();
+        wait.until(ExpectedConditions.elementToBeClickable(register)).click();
         return new RegistrationPage(driver);
     }
 }
