@@ -8,104 +8,132 @@ import static com.courses.hotline.utils.RegistrationUtil.*;
 
 public class DataProviderUtil {
 
-//
-//    // Try to register existing user
-//    {
-//        existingUser.getEmail(),                // email
-//                existingUser.getNickname(),             // nickname
-//                existingUser.getPassword(),             // password
-//                expectedEmailAlreadyTakenMessage,       // email field error message
-//                expectedNicknameAlreadyTakenMessage,    // nickname field error message
-//                ""                                      // password field error message
-//    }
+    public static Object[][] getInvalidUserData() {
 
-    public static Object[][] getInvalidUserParameters() {
+
+        String expectedEmptyFieldErrorMessage = getProperty(REG_EMPTY_FIELD_ERROR_MESSAGE_KEY.getKey(),
+                TEST_DATA_PROPERTIES_PATH);
+
+        String expectedInvalidFormatErrorMessage = getProperty(REG_INVALID_FORMAT_ERROR_MESSAGE_KEY.getKey(),
+                TEST_DATA_PROPERTIES_PATH);
+
+        String expectedShortPasswordErrorMessage = getProperty(REG_SHORT_PASSWORD_ERROR_MESSAGE_KEY.getKey(),
+                TEST_DATA_PROPERTIES_PATH);
+
+        String expectedEmailAlreadyTakenErrorMessage = getProperty(REG_ALREADY_TAKEN_EMAIL_ERROR_MESSAGE_KEY.getKey(),
+                TEST_DATA_PROPERTIES_PATH);
+
+        String expectedNicknameAlreadyTakenErrorMessage = getProperty(REG_ALREADY_TAKEN_NICKNAME_ERROR_MESSAGE_KEY.getKey(),
+                TEST_DATA_PROPERTIES_PATH);
 
         User existingUser = getExistingUser();
-
-        String expectedEmptyFieldMessage = getProperty(REGISTRATION_EMPTY_FIELD_MESSAGE_KEY.getKey(),
-                TEST_DATA_PROPERTIES_PATH);
-
-        String expectedInvalidFormatMessage = getProperty(REGISTRATION_INVALID_FORMAT_MESSAGE_KEY.getKey(),
-                TEST_DATA_PROPERTIES_PATH);
-
-        String expectedEmailAlreadyTakenMessage = getProperty(REGISTRATION_ALREADY_TAKEN_EMAIL_MESSAGE_KEY.getKey(),
-                TEST_DATA_PROPERTIES_PATH);
-
-        String expectedNicknameAlreadyTakenMessage = getProperty(REGISTRATION_ALREADY_TAKEN_NICKNAME_MESSAGE_KEY.getKey(),
-                TEST_DATA_PROPERTIES_PATH);
-
+        String empty = "";
+        String noErrorMessage = "";
         String validPassword = "1234567";
+        String invalidEmail = "sample$gmail.com";
+        String invalidPassword = "pass^%^";
+        String invalidNickname="#43";
+        String shortPassword = "123";
 
         return new Object[][]{
-                // Try to register with empty email, nickname, password fields
+                //#001 Try to register user with empty email, nickname, password fields
                 {
-                        "",                          // email
-                        "",                          // nickname
-                        "",                          // password
-                        expectedEmptyFieldMessage,   // email field error message
-                        expectedEmptyFieldMessage,   // nickname field error message
-                        expectedEmptyFieldMessage    // password field error message
+                        empty,                            // email
+                        empty,                            // nickname
+                        empty,                            // password
+                        expectedEmptyFieldErrorMessage,   // email field error message
+                        expectedEmptyFieldErrorMessage,   // nickname field error message
+                        expectedEmptyFieldErrorMessage    // password field error message
                 },
 
-                // Try to register with valid email but empty nickname, password fields
+                //#002 Try to register user with valid email but empty nickname, password fields
                 {
-                        generateEmail(),            // email
-                        "",                         // nickname
-                        "",                         // password
-                        "",                         // email field error message
-                        expectedEmptyFieldMessage,  // nickname field error message
-                        expectedEmptyFieldMessage   // password field error message
+                        generateEmail(),                // email
+                        empty,                          // nickname
+                        empty,                          // password
+                        noErrorMessage,                 // email field error message
+                        expectedEmptyFieldErrorMessage, // nickname field error message
+                        expectedEmptyFieldErrorMessage  // password field error message
                 },
 
-                // Try to register with valid nickname but empty email, password fields
+                //#003 Try to register user with valid nickname but empty email, password fields
                 {
-                        "",                         // email
-                        generateNickname(),         // nickname
-                        "",                         // password
-                        expectedEmptyFieldMessage,  // email field error message
-                        "",                         // nickname field error message
-                        expectedEmptyFieldMessage   // password field error message
+                        empty,                          // email
+                        generateNickname(),             // nickname
+                        empty,                          // password
+                        expectedEmptyFieldErrorMessage, // email field error message
+                        noErrorMessage,                 // nickname field error message
+                        expectedEmptyFieldErrorMessage  // password field error message
                 },
 
-                // Try to register with valid password  but empty nickname, email fields
+                //#004 Try to register user with valid password  but empty nickname, email fields
                 {
-                        "",                         // email
-                        "",                         // nickname
-                        validPassword,              // password
-                        expectedEmptyFieldMessage,  // email field error message
-                        expectedEmptyFieldMessage,  // nickname field error message
-                        ""                          // password field error message
+                        empty,                          // email
+                        empty,                          // nickname
+                        validPassword,                  // password
+                        expectedEmptyFieldErrorMessage, // email field error message
+                        expectedEmptyFieldErrorMessage, // nickname field error message
+                        noErrorMessage                  // password field error message
                 },
 
-                // Try to register with valid email and nickname but with empty password
+                //#005 Try to register user with valid email and nickname but with empty password
                 {
-                        generateEmail(),            // email
-                        generateNickname(),         // nickname
-                        "",                         // password
-                        "",                         // email field error message
-                        "",                         // nickname field error message
-                        expectedEmptyFieldMessage   // password field error message
+                        generateEmail(),                // email
+                        generateNickname(),             // nickname
+                        empty,                          // password
+                        noErrorMessage,                 // email field error message
+                        noErrorMessage,                 // nickname field error message
+                        expectedEmptyFieldErrorMessage  // password field error message
                 },
 
-                // Try to register with valid nickname and password but with empty email
+                //#006 Try to register user with valid nickname and password but with empty email
                 {
-                        "",                         // email
-                        generateNickname(),         // nickname
-                        validPassword,              // password
-                        expectedEmptyFieldMessage,  // email field error message
-                        "",                         // nickname field error message
-                        ""                          // password field error message
+                        empty,                          // email
+                        generateNickname(),             // nickname
+                        validPassword,                  // password
+                        expectedEmptyFieldErrorMessage, // email field error message
+                        noErrorMessage,                 // nickname field error message
+                        noErrorMessage                  // password field error message
                 },
 
-                // Try to register with valid email and password but with empty nickname
+                //#007 Try to register user with valid email and password but with empty nickname
                 {
-                        generateEmail(),             // email
-                        "",                          // nickname
-                        validPassword,               // password
-                        "",                          // email field error message
-                        expectedEmptyFieldMessage,   // nickname field error message
-                        ""                           // password field error message
+                        generateEmail(),                // email
+                        empty,                          // nickname
+                        validPassword,                  // password
+                        noErrorMessage,                 // email field error message
+                        expectedEmptyFieldErrorMessage, // nickname field error message
+                        noErrorMessage                  // password field error message
+                },
+
+                //#008 Try to register user with invalid format email,nickname and password
+                {
+                        invalidEmail,                     // email
+                        invalidNickname,                  // nickname
+                        invalidPassword,                  // password
+                        expectedInvalidFormatErrorMessage,// email field error message
+                        expectedInvalidFormatErrorMessage,// nickname field error message
+                        expectedInvalidFormatErrorMessage // password field error message
+                },
+
+                //#009 Try to register user with short password
+                {
+                        generateEmail(),                  // email
+                        generateNickname(),               // nickname
+                        shortPassword,                    // password
+                        noErrorMessage,                   // email field error message
+                        noErrorMessage,                   // nickname field error message
+                        expectedShortPasswordErrorMessage // password field error message
+                },
+
+                //#010 Try to register existing user
+                {
+                        existingUser.getEmail(),                 // email
+                        existingUser.getNickname(),              // nickname
+                        existingUser.getPassword(),              // password
+                        expectedEmailAlreadyTakenErrorMessage,   // email field error message
+                        expectedNicknameAlreadyTakenErrorMessage,// nickname field error message
+                        noErrorMessage                           // password field error message
                 }
 
         };

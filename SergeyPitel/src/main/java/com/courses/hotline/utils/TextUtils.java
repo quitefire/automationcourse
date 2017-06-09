@@ -17,6 +17,11 @@ public class TextUtils {
         return Integer.parseInt(str.replaceAll(".*\\(|\\).*", ""));
     }
 
+    public static String removeAllAfterCharacter(String text) {
+        return text.split(":")[0];
+    }
+
+
     public static int[] parsePriceRange(String str) throws NumberFormatException {
         int[] numRange;
         String numbers = removeNonNumericCharacters(str);

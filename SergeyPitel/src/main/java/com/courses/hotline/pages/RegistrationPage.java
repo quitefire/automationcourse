@@ -1,12 +1,12 @@
 package com.courses.hotline.pages;
 
 
+import com.courses.hotline.utils.TextUtils;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,27 +63,22 @@ public class RegistrationPage extends BasePage {
 
     public List<String> getInputErrorMessages() {
         List<String> errorMessages = new ArrayList<>();
-        WebDriverWait shortWait = new WebDriverWait(driver, 3);
         try {
-            shortWait.until(ExpectedConditions.visibilityOf(emailFieldError));
-            errorMessages.add(emailFieldError.getText());
+            errorMessages.add(wait.until(ExpectedConditions.visibilityOf(emailFieldError)).getText());
         } catch (TimeoutException e) {
-            e.printStackTrace();
             errorMessages.add("");
         }
 
         try {
-            errorMessages.add(shortWait.until(ExpectedConditions.visibilityOf(nicknameFieldError)).getText());
+            wait.until(ExpectedConditions.visibilityOf(nicknameFieldError));
+            errorMessages.add(TextUtils.removeAllAfterCharacter(nicknameFieldError.getText()));
         } catch (TimeoutException e) {
-            e.printStackTrace();
             errorMessages.add("");
         }
 
         try {
-            shortWait.until(ExpectedConditions.visibilityOf(passwordFieldError));
-            errorMessages.add(passwordFieldError.getText());
+            errorMessages.add(wait.until(ExpectedConditions.visibilityOf(passwordFieldError)).getText());
         } catch (TimeoutException e) {
-            e.printStackTrace();
             errorMessages.add("");
         }
         return errorMessages;

@@ -22,9 +22,7 @@ public class RegistrationTest extends BaseTest {
     @Test
     public void testUserRegistrationIsSuccessful() {
         String expected = ReadPropertiesUtil.getProperty(
-                REGISTRATION_SUCCESSFUL_MESSAGE_KEY.getKey(),
-                TEST_DATA_PROPERTIES_PATH
-        );
+                REG_SUCCESSFUL_MESSAGE_KEY.getKey(), TEST_DATA_PROPERTIES_PATH);
 
         HomePage homePage = new HomePage(driver);
         homePage.open();
@@ -39,11 +37,11 @@ public class RegistrationTest extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] getInvalidUserParameters() {
-        return DataProviderUtil.getInvalidUserParameters();
+    public Object[][] getInvalidUserData() {
+        return DataProviderUtil.getInvalidUserData();
     }
 
-    @Test(dataProvider = "getInvalidUserParameters")
+    @Test(dataProvider = "getInvalidUserData")
     public void testUserRegistrationWithInvalidParameters(
             String email, String nickname, String password, String emailErrorMsg, String nicknameErrorMsg,
             String passwordErrorMsg) {
