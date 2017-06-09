@@ -26,7 +26,7 @@ https://www.youtube.com/watch?v=a1kWLc3lE6E
 
 Assignment:
 1. Review the classes in automationcourse\Bogdan\src\main\java\com\courses\week3\conciseapi package and test src\test\java\com\courses\week3\HotLineTestWithWrapper.java.
-Try to create your
+Try to create your simple ConsiceAPI with handy methods
 2. https://www.youtube.com/watch?v=zCjNOIp7p3c&list=PLjn7BYhf3mWz223lnSNMbUd9QisRpWg9e - watch video if you have time
 https://github.com/yashaka/better-selenium-demo   - analyze code in packages "classic","simpler", "smarter"
  "Smarter" uses java dynamic proxy to wrap an original webelement and wait until it's visible before doing anything
