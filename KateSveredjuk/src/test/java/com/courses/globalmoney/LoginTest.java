@@ -2,12 +2,12 @@ package com.courses.globalmoney;
 
 
 import com.courses.globalmoney.data.UserData;
+import com.courses.globalmoney.fixtures.BaseTest;
 import com.courses.globalmoney.pages.CabinetPage;
 import com.courses.globalmoney.pages.GMMainPage;
 import com.courses.globalmoney.utils.SiteConstants;
-import com.courses.globalmoney.fixtures.BaseTest;
 import org.junit.*;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginTest extends BaseTest {
 
@@ -69,6 +69,7 @@ public class LoginTest extends BaseTest {
 
     @After
     public void cleanUp() throws Exception {
-        ((JavascriptExecutor) driver).executeScript("window.sessionStorage.removeItem('user')");
+        ((ChromeDriver) driver).getSessionStorage().clear();
+        // ((JavascriptExecutor) driver).executeScript("window.sessionStorage.removeItem('user')");
     }
 }
