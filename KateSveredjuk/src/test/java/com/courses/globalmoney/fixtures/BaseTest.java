@@ -3,6 +3,7 @@ package com.courses.globalmoney.fixtures;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -19,7 +20,8 @@ public class BaseTest {
 
 
     @AfterClass
+
     public static void tearDown() {
-       driver.quit();
+        driver.quit();
     }
 }

@@ -2,12 +2,16 @@ package com.courses.globalmoney;
 
 
 import com.courses.globalmoney.data.UserData;
-import com.courses.globalmoney.fixtures.BaseTest;
 import com.courses.globalmoney.pages.CabinetPage;
 import com.courses.globalmoney.pages.GMMainPage;
 import com.courses.globalmoney.utils.SiteConstants;
-import org.junit.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.courses.globalmoney.fixtures.BaseTest;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class LoginTest extends BaseTest {
 
@@ -24,17 +28,19 @@ public class LoginTest extends BaseTest {
 
         UserData loginData = UserData.validData;
 
-        mainPage.loginAs(loginData.getUserName(), loginData.getPassword());
+        mainPage.loginForm.logIn(loginData.getUserName(), loginData.getPassword());
+
 
         CabinetPage cabinetPage = new CabinetPage(driver);
         String actualUserId = cabinetPage.getUserId();
         String cabinetPageUrl = cabinetPage.getUrl();
 
-        // cabinetPage.logOut();
+        cabinetPage.logOut();
 
 
         Assert.assertEquals(loginData.getUserId(), actualUserId);
         Assert.assertEquals(SiteConstants.CABINET_PAGE_URL, cabinetPageUrl);
+
     }
 
 
@@ -45,8 +51,8 @@ public class LoginTest extends BaseTest {
 
         String expectedMessage = "Ошибка авторизации: Server error";
 
-        mainPage.loginAs(loginData.getUserName(), loginData.getPassword());
-        String actualValidationMessage = mainPage.getValidationMessage();
+        mainPage.loginForm.logIn(loginData.getUserName(), loginData.getPassword());
+        String actualValidationMessage = mainPage.loginForm.erorMassege.getText();
 
 
         System.out.println(actualValidationMessage);
@@ -56,20 +62,12 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    @Ignore
     public void testLoginWithEmptyCredentials() {
-//
-//        UserData loginData = new UserData("", "", "");
-//
-//        mainPage.loginAs(loginData.getUserName(), loginData.getPassword());
-//        String actualValidationMessage = mainPage.getValidationMessage();
-//
-//        Assert.assertEquals(SiteConstants.SITE_URL, mainPage.getUrl());
+
+        UserData loginData = UserData.invalidWithoutData;
+
+        mainPage.loginForm.logIn(loginData.getUserName(), loginData.getPassword());
+        Assert.assertFalse(mainPage.loginForm.submitButton.isEnabled());
     }
 
-    @After
-    public void cleanUp() throws Exception {
-        ((ChromeDriver) driver).getSessionStorage().clear();
-        // ((JavascriptExecutor) driver).executeScript("window.sessionStorage.removeItem('user')");
-    }
 }

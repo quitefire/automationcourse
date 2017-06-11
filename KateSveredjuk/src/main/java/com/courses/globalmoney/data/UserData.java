@@ -4,6 +4,10 @@ public class UserData {
 
     public static final UserData validData = new UserData("380633699425", "12345679", "91687567485143");
     public static final UserData invalidData = new UserData("380633699425", "xxxx", "91687567485143");
+    public static final UserData invalidDataWithoutLogin = new UserData(" ","12345679", "91687567485143");
+    public static final UserData invalidDataWithoutPassword =new UserData("380633699425", "", "91687567485143");
+    public static final UserData invalidWithoutData =new UserData("380633699425", "", "91687567485143");
+
 
     private String userName;
     private String password;

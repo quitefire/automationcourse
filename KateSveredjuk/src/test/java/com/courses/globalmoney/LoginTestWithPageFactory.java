@@ -10,6 +10,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class LoginTestWithPageFactory extends BaseTest {
 
@@ -58,15 +60,11 @@ public class LoginTestWithPageFactory extends BaseTest {
     }
 
     @Test
-    @Ignore
     public void testLoginWithEmptyCredentials() {
-//
-//        UserData loginData = new UserData("", "", "");
-//
-//        mainPage.loginAs(loginData.getUserName(), loginData.getPassword());
-//        String actualValidationMessage = mainPage.getValidationMessage();
-//
-//        Assert.assertEquals(SiteConstants.SITE_URL, mainPage.getUrl());
+        UserData loginData = UserData.invalidWithoutData;
+        mainPage.loginForm.loginAs(loginData.getUserName(), loginData.getPassword());
+        WebElement submitButton = driver.findElement(By.cssSelector(".hh_input.disabled"));
+        Assert.assertFalse(submitButton.isEnabled());
     }
 
 }
