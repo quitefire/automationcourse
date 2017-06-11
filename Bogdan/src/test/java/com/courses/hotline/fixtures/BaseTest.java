@@ -1,8 +1,8 @@
 package com.courses.hotline.fixtures;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,8 +16,8 @@ public class BaseTest {
     protected static WebDriver driver;
     protected static Wait<WebDriver> wait;
 
-    @BeforeClass
-    public static void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         ChromeDriverManager.getInstance().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-fullscreen");
@@ -26,8 +26,8 @@ public class BaseTest {
     }
 
 
-    @AfterClass
-    public static void tearDownAll() throws Exception {
+    @After
+    public void tearDownAll() throws Exception {
         driver.quit();
     }
 

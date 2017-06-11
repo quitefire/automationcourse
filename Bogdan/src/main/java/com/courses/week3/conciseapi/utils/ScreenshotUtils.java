@@ -1,4 +1,4 @@
-package com.courses.week3.utils;
+package com.courses.week3.conciseapi.utils;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
