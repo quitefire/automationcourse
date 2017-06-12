@@ -19,7 +19,6 @@ public abstract class BasePage {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
-        //driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 10);
     }
 
@@ -31,7 +30,4 @@ public abstract class BasePage {
         return wait;
     }
 
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
 }

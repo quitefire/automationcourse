@@ -1,6 +1,7 @@
 package ua.com.stolkacha.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -11,70 +12,96 @@ import ua.com.stolkacha.utils.MyProperties;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Serhii Babenko on 6/2/2017.
  */
 public class RegistrationPage extends BasePage implements RegistrationResult {
-    private WebElement inputFirstName;
-    private WebElement inputLastName;
-    private WebElement inputEmail;
-    private WebElement inputPassword;
-    private WebElement inputPasswordConfirmation;
-    private WebElement submitRegistrationButton;
-    private WebElement registrationForm;
-    private WebElement errorMessageField;
-    private ExpectedCondition condition;
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
     }
 
     public RegistrationPage setFirtName(String firtName) {
-        inputFirstName = getDriver().findElement(By.id("firstname"));
-        inputFirstName.sendKeys(firtName);
+        getDriver().findElement(By.id("firstname")).sendKeys(firtName);
         return this;
     }
 
     public RegistrationPage setLastName(String lastname) {
-        inputLastName = getDriver().findElement(By.id("lastname"));
-        inputLastName.sendKeys(lastname);
+        getDriver().findElement(By.id("lastname")).sendKeys(lastname);
         return this;
     }
 
     public RegistrationPage setEmail(String email) {
-        inputEmail = getDriver().findElement(By.id("email_address"));
-        inputEmail.sendKeys(email);
+        getDriver().findElement(By.id("email_address")).sendKeys(email);
         return this;
     }
 
     public RegistrationPage setPassword(String password) {
-        inputPassword = getDriver().findElement(By.id("password"));
-        inputPassword.sendKeys(password);
+        getDriver().findElement(By.id("password")).sendKeys(password);
         return this;
     }
 
     public RegistrationPage setConfirmationPassword(String confirmation) {
-        inputPasswordConfirmation = getDriver().findElement(By.id("confirmation"));
-        inputPasswordConfirmation.sendKeys(confirmation);
+        getDriver().findElement(By.id("confirmation")).sendKeys(confirmation);
         return this;
     }
 
-    public RegistrationResult submitRegistration(boolean success) {
-        registrationForm = getDriver().findElement(By.id("form-validate"));
-        registrationForm.submit();
-        if (success){
-            getWait().until(ExpectedConditions.urlMatches(MyProperties.getProperty("user_control_panel_url")));
-            return new UserControlPanelPage(getDriver());
-        }else{
-            getWait().until(ExpectedConditions.visibilityOf(getDriver().findElement(By.cssSelector(".messages .error-msg"))));
-            return this;
-        }
+    public UserControlPanelPage waitForUserControlPage(){
+        getWait().until(ExpectedConditions.urlMatches(MyProperties.getProperty("user_control_panel_url")));
+        return new UserControlPanelPage(getDriver());
+    }
+
+    public RegistrationPage waitForErrorMessage(){
+        getWait().until(ExpectedConditions.visibilityOf(getDriver().findElement(By.cssSelector(".messages .error-msg"))));
+        return this;
+    }
+
+    public void submitRegistration() {
+        getDriver().findElement(By.id("form-validate")).submit();
     }
 
     public String getRegistrationErrorMessage() {
-        errorMessageField = getDriver().findElement(By.cssSelector(".messages .error-msg"));
-        return errorMessageField.getText();
+       return getDriver().findElement(By.cssSelector(".messages .error-msg")).getText();
+    }
+
+    public List<String> getErrorValidationMessages(){
+        List<String> validationMessages = new ArrayList<>();
+        getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+        try {
+            validationMessages.add(getDriver().findElement(By.id("advice-required-entry-firstname")).getText());
+        }catch (NoSuchElementException e){
+            validationMessages.add("");
+        }
+        try {
+            validationMessages.add(getDriver().findElement(By.id("advice-required-entry-lastname")).getText());
+        }catch (NoSuchElementException e){
+            validationMessages.add("");
+        }
+        try {
+            validationMessages.add(getDriver().findElement(By.id("advice-required-entry-email_address")).getText());
+        }catch (NoSuchElementException e){
+            validationMessages.add("");
+        }
+        try {
+            validationMessages.add(getDriver().findElement(By.id("advice-required-entry-password")).getText());
+        }catch (NoSuchElementException e){
+            validationMessages.add("");
+        }
+        try {
+            validationMessages.add(getDriver().findElement(By.id("advice-validate-cpassword-confirmation")).getText());
+        }catch (NoSuchElementException e){
+            validationMessages.add("");
+        }
+        try {
+            validationMessages.add(getDriver().findElement(By.id("advice-required-entry-confirmation")).getText());
+        }catch (NoSuchElementException e){
+            validationMessages.add("");
+        }
+
+        return validationMessages;
     }
 
     public RegistrationPage setRegistrationCredentials(String firstName, String lastName, String email, String password, String passwordConfirmation) {

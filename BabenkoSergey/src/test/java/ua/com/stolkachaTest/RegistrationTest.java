@@ -1,14 +1,12 @@
 package ua.com.stolkachaTest;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ua.com.stolkacha.domain.Credential;
 import ua.com.stolkacha.pages.*;
 import ua.com.stolkacha.utils.DataUtils;
+import ua.com.stolkacha.utils.MyProperties;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,7 +20,7 @@ public class RegistrationTest extends BaseRegistrationClassTest {
     private static List<String> expected;
     private String email;
 
-    @Test(dataProvider = "testData", priority = 1, groups = "registration_db_cleanup")
+    @Test(dataProvider = "validTestData", priority = 1)
     public void testRegistrationSuccessful(Credential credential) throws Exception {
         email = credential.getEmail();
         expected = new ArrayList<>();
@@ -30,17 +28,17 @@ public class RegistrationTest extends BaseRegistrationClassTest {
         expected.add(DataUtils.getMessage("msg02") + credential.getFirstName() + DataUtils.getMessage("msg03") +
                 credential.getLastName() + DataUtils.getMessage("msg04"));
 
-        UserControlPanelPage userControlPanelPage = (UserControlPanelPage) new HomePage(driver)
+        RegistrationPage registrationPage = (RegistrationPage) new HomePage(driver)
                 .clickOnLogin()
                 .clickRegisterButton()
                 .setRegistrationCredentials(credential.getFirstName(), credential.getLastName(), credential.getEmail(),
-                        credential.getPassword(), credential.getPasswordConfirmation())
-                .submitRegistration(true);
-
+                        credential.getPassword(), credential.getPasswordConfirmation());
+                registrationPage.submitRegistration();
+                UserControlPanelPage userControlPanelPage = registrationPage.waitForUserControlPage();
         Assert.assertEquals(userControlPanelPage.getActualMessages(), expected);
     }
 
-    @Test(dataProvider = "testData", priority = 2, groups = "registration_db_cleanup")
+    @Test(dataProvider = "validTestData", priority = 2, groups = "registration_db_cleanup")
     public void testRegistrationExistingUser(Credential credential) throws Exception {
         expected = new ArrayList<>();
         expected.add(DataUtils.getMessage("msg05"));
@@ -48,17 +46,39 @@ public class RegistrationTest extends BaseRegistrationClassTest {
                 .clickOnLogin()
                 .clickRegisterButton()
                 .setRegistrationCredentials(credential.getFirstName(), credential.getLastName(), credential.getEmail(),
-                        credential.getPassword(), credential.getPasswordConfirmation())
-                .submitRegistration(false);
+                        credential.getPassword(), credential.getPasswordConfirmation());
+        registrationPage.submitRegistration();
+        Assert.assertEquals(registrationPage.waitForErrorMessage().getActualMessages(), expected);
+    }
 
-        Assert.assertEquals(registrationPage.getActualMessages(), expected);
+    @Test(dataProvider = "testDataNotValid", priority = 3)
+    public void testRegistrationWithNotValidData(Credential credential) throws Exception {
+
+        expected = DataUtils.generateExpectedResult(credential);
+        HomePage homePage = new HomePage(driver);
+
+        RegistrationPage registrationPage = (RegistrationPage) new HomePage(driver)
+                .clickOnLogin()
+                .clickRegisterButton()
+                .setRegistrationCredentials(credential.getFirstName(), credential.getLastName(), credential.getEmail(),
+                        credential.getPassword(), credential.getPasswordConfirmation());
+                registrationPage.submitRegistration();
+
+        Assert.assertEquals(registrationPage.getErrorValidationMessages(), expected);
 
     }
 
-    @DataProvider(name = "testData")
+    @DataProvider(name = "validTestData")
     public Iterator<Object[]> getCredentials() {
-        return DataUtils.getRegistrationCredentials();
+        return DataUtils.getRegistrationCredentials(MyProperties.getProperty("login_data_file_path"));
     }
+
+    @DataProvider(name = "testDataNotValid")
+    public Iterator<Object[]> getInvalidCredentials() {
+        return DataUtils.getRegistrationCredentials(MyProperties.getProperty("invalid_registration_data"));
+    }
+
+
 
     @AfterGroups("registration_db_cleanup")
     public void deleteTestUserFromDb(){

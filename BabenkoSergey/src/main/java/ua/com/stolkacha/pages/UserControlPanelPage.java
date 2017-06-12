@@ -13,21 +13,17 @@ import java.util.List;
  * Created by Serhii Babenko on 6/2/2017.
  */
 public class UserControlPanelPage extends BasePage implements RegistrationResult {
-    private WebElement registrationMessageField;
-    private WebElement welcomeMessageField;
 
     public UserControlPanelPage(WebDriver driver) {
         super(driver);
     }
 
     public String getSuccessfulRegistrationText() {
-        registrationMessageField = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".messages .success-msg")));
-        return registrationMessageField.getText();
+       return getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".messages .success-msg"))).getText();
     }
 
     public String getWelcomeMessage() {
-        welcomeMessageField = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".welcome-msg")));
-        return welcomeMessageField.getText();
+       return getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".welcome-msg"))).getText();
     }
 
     public List<String> getActualMessages() {
