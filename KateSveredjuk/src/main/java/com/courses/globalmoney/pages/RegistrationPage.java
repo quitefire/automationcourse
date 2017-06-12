@@ -29,48 +29,57 @@ public class RegistrationPage extends BasePage {
     @FindBy(className = "m_input_accept disabled")
     public WebElement submitButton;
 
-    public void chooseRadioButtonEmail() {
-        radioButtonEmail.click();
-    }
-
-    public void chooseRadioButtonPhone() {
-        radioButtonPhone.click();
-    }
-
-    public void setEmail(String email) {
-        inputEmailorPhone.sendKeys(email);
-    }
-
-    public void setPhone(int phone) {
-        inputEmailorPhone.sendKeys(String.valueOf(phone));
-    }
-
-    public void setFirstPassword(String firstPassword) {
-        inputFirstPassword.sendKeys(firstPassword);
-    }
-
-    public void setSecondPassword(String secondPassword) {
-        inputSecondPassword.sendKeys(secondPassword);
-    }
-
-    public void registrationByEmail(String email, String firstPassword, String secondPassword) {
-        chooseRadioButtonEmail();
-        setEmail(email);
-        setFirstPassword(firstPassword);
-        setSecondPassword(secondPassword);
-        submitButton.submit();
-    }
-
-    public void registrationByPhone(Integer phone,String firstPassword, String secondPassword){
-        chooseRadioButtonPhone();
-        setPhone(phone);
-        setFirstPassword(firstPassword);
-        setSecondPassword(secondPassword);
-        submitButton.submit();
-    }
-
     public RegistrationPage(WebDriver driver) {
         super(driver);
     }
 
+    public RegistrationPage chooseRadioButtonEmail() {
+        if (!radioButtonEmail.isSelected()) radioButtonEmail.click();
+        return this;
+    }
+
+    private RegistrationPage chooseRadioButtonPhone() {
+        radioButtonPhone.click();
+        return this;
+    }
+
+    private RegistrationPage setEmail(String email) {
+        inputEmailorPhone.sendKeys(email);
+        return this;
+    }
+
+    private RegistrationPage setPhoneNumber(String phoneNumber) {
+        inputEmailorPhone.sendKeys(String.valueOf(phoneNumber));
+        return this;
+    }
+
+    private RegistrationPage setFirstPassword(String password) {
+        inputFirstPassword.sendKeys(password);
+        return this;
+    }
+
+    private RegistrationPage setSecondPassword(String confirmPassword) {
+        inputSecondPassword.sendKeys(confirmPassword);
+        return this;
+    }
+
+    public void registrationByEmail(String email, String password, String confirmPassword) {
+        chooseRadioButtonEmail().
+                setEmail(email).
+                setFirstPassword(password).
+                setSecondPassword(confirmPassword).
+                submit();
+    }
+
+    public void registrationByPhone(String phone, String password, String confirmPassword) {
+        chooseRadioButtonPhone().
+                setPhoneNumber(phone).
+                setFirstPassword(password).
+                setSecondPassword(confirmPassword).
+                submit();
+    }
+
+    private void submit() {
+        submitButton.submit();
+    }
 }

@@ -2,6 +2,7 @@ package com.courses.globalmoney.pages;
 
 import com.courses.globalmoney.utils.SiteConstants;
 import com.courses.globalmoney.widgets.LoginForm;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class GMMainPage extends BasePage {
@@ -20,4 +21,8 @@ public class GMMainPage extends BasePage {
         return this;
     }
 
+    public RegistrationPage openRegistrationForm() {
+        driver.findElement(By.cssSelector(".hh_register")).click();
+        return new RegistrationPage(driver);
+    }
 }

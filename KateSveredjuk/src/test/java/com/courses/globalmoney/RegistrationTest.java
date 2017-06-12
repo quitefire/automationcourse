@@ -2,30 +2,31 @@ package com.courses.globalmoney;
 
 import com.courses.globalmoney.data.RegistrationData;
 import com.courses.globalmoney.fixtures.BaseTest;
-import com.courses.globalmoney.pagefactory.pages.GMMainPage;
-import org.junit.BeforeClass;
+import com.courses.globalmoney.pages.GMMainPage;
+import com.courses.globalmoney.pages.RegistrationPage;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-/**
- * Created by Катюша on 11.06.2017
- */
 public class RegistrationTest extends BaseTest {
 
-    private GMMainPage mainPage;
-
-    @BeforeClass
-
-    public void SetUp(){
-    mainPage = new GMMainPage(driver);
-    mainPage.open();
-    driver.findElement(By.cssSelector(".hh_register")).click();
-    }
-
     @Test
-    RegistrationData registrationData = RegistrationData.validEmail;
-    mainPage.registrationPage.registrationByEmail(registrationData.getEmail(), registrationData.getFirstPassword(), registrationData.getSecondPassword()
+    public void testSuccessfulRegistrationWithEmail() throws Exception {
+        RegistrationData registrationData = RegistrationData.validEmail;
+
+        // 1) 1st version
+        new GMMainPage(driver)
+                .open()
+                .openRegistrationForm().
+                registrationByEmail(registrationData.getEmail(), registrationData.getFirstPassword(), registrationData.getSecondPassword());
 
 
+/*       2) more verbose style without methods chaining;
+        GMMainPage gmMainPage = new GMMainPage(driver);
+        RegistrationPage registrationPage = gmMainPage
+                .open()
+                .openRegistrationForm();
+        registrationPage.
+                registrationByEmail(registrationData.getEmail(), registrationData.getFirstPassword(), registrationData.getSecondPassword());*/
+
+        //TODO: add assertion that verifying that the user has been successfully registered
+    }
+}

@@ -5,7 +5,7 @@ public class RegistrationData {
     public static final RegistrationData validEmail = new RegistrationData("k.sverediuk@globalmoney.ua", "12345", "12345");
 
     private String email;
-    private int Phone;
+    private String phoneNumber;
     private String firstPassword;
     private String secondPassword;
 
@@ -19,8 +19,8 @@ public class RegistrationData {
         return email;
     }
 
-    public int getPhone() {
-        return Phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getFirstPassword() {
