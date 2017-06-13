@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
@@ -42,6 +44,7 @@ public class _5JUnit5ParametrizedTest {
     @ParameterizedTest
     @MethodSource(names = "createWordsWithLength")
     void withMethodSource(String word, int length) {
+        // System.out.println(list);
         Assertions.assertEquals(length, word.length());
     }
 
@@ -50,4 +53,6 @@ public class _5JUnit5ParametrizedTest {
                 ObjectArrayArguments.create("word", 4),
                 ObjectArrayArguments.create("new", 3));
     }
+
+
 }
