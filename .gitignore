@@ -89,3 +89,4 @@ gen
 **/*.versionsBackup
 
 **/bower_components
+!/Bogdan/src/test/java/com/courses/junit/_7ExecutionOrderTest.java

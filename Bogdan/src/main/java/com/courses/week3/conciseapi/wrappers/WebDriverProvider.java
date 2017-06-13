@@ -20,7 +20,7 @@ public abstract class WebDriverProvider {
 
     public static void cleanUp() {
         if (getDriver() != null) {
-            takeScreenshot(getDriver());
+         //   takeScreenshot(getDriver());
             getDriver().quit();
             DRIVER_CONTAINER.remove();
         }
