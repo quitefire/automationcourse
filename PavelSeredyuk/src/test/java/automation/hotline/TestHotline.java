@@ -21,7 +21,7 @@ public class TestHotline {
 
     @BeforeClass
     public void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "D:\\automationcourse\\PavelSeredyuk\\Drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "G:\\automationcourse\\PavelSeredyuk\\Drivers\\chromedriver.exe");
         driver = new ChromeDriver();
     }
 
