@@ -28,3 +28,5 @@ http://www.thinkplexx.com/learn/howto/java/system/java-resource-loading-explaine
  - Create categories like "regression","sanity" and mark some of test/classes with this categories.  For those who're using TestNG ( use groups).
  - Configure your suite to run only tests put into the "sanity category"
 5. Try to use hamcrest matchers where it's convenient
+6. Make you registration/login tests parameterized using @Parameters /@DataProvider functionality JUnit4/TestNG provides.
+Example : https://gist.github.com/anonymous/87d86bfff6995658dda0611a926c4709
