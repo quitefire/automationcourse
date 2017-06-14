@@ -1,0 +1,28 @@
+Study materials:
+https://www.youtube.com/playlist?list=PLoij6udfBncg1Gpny9K_Q1P_2xONR5c2R   - Ivan Golovach OpenLecture.JUnitAndHamcrest.15june2013
+http://barancev.github.io/junit-catch-throwable/  - как в JUnit проверять ожидаемые исключения? - Алексей Баранцев
+https://www.youtube.com/watch?v=5QJvpS9pG_E&t=1348s - Testing Unit Integrational Hamcrest Mockito - Сергей Белобров ( ArtCode)
+https://github.com/yandex-qatools/matchers-java/tree/master/webdriver-matchers  - Hamcrest matchers for webdriver from Yandex
+https://habrahabr.ru/company/yandex/blog/184634/  - Тестирование в Яндексе. Матчеры: когда они полезны и как легко их использовать
+http://internetka.in.ua/remote-file-upload/  - RemoteWebDriver: загрузка файла на удаленной машине
+http://internetka.in.ua/autoit-file-upload/ - Выгрузка файла Selenium WebDriver + AutoIt
+http://automated-testing.info/t/upload-file-ili-vechnye-problemy-s-zagruzkoj-fajla-na-servis/4459/19
+
+Assignment:
+1. Review JUnit/Hamcrest/Mockito examples in my module \Bogdan\src\test\java\com\courses\week4
+2. Create negative/positive tests for logging in using
+- standard "login" form
+- OR OAuth ( login with facebook, google) - includes switching between different tabs
+on hotline.ua website.
+3. Create negative/positive tests for feedback page on hotline.ua website.
+- http://hotline.ua/feedback/ - you can open this page directly or navigate to the page following the next path :
+- Главная страница - Наши сервисы --> Обратная связь
+- place screenshot to be uploaded into the "resources" folder and load it like this:
+https://gist.github.com/anonymous/769eb4511cff1f92529de05a3cdec39e
+http://internetka.in.ua/selenium-input-file/
+http://www.thinkplexx.com/learn/howto/java/system/java-resource-loading-explained-absolute-and-relative-names-difference-between-classloader-and-class-resource-loading
+4. Your hotline tests for searching products, registration, login, feedback should be in separate classes.
+ - Group them into suite.
+ - Create categories like "regression","sanity" and mark some of test/classes with this categories.  For those who're using TestNG ( use groups).
+ - Configure your suite to run only tests put into the "sanity category"
+5. Try to use hamcrest matchers where it's convenient
