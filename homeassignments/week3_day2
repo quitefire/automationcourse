@@ -1,4 +1,6 @@
 Study materials:
+https://github.com/junit-team/junit4/wiki#junit-usage-and-idioms - official JUNIT4 wiki
+http://jasonleaster.github.io/2016/09/11/2016-09-11-the-brief-introduction-to-the-archtecture-of-junit4/ - The brief introduction to the architecture of JUnit4
 https://www.youtube.com/playlist?list=PLoij6udfBncg1Gpny9K_Q1P_2xONR5c2R   - Ivan Golovach OpenLecture.JUnitAndHamcrest.15june2013
 http://barancev.github.io/junit-catch-throwable/  - как в JUnit проверять ожидаемые исключения? - Алексей Баранцев
 https://www.youtube.com/watch?v=5QJvpS9pG_E&t=1348s - Testing Unit Integrational Hamcrest Mockito - Сергей Белобров ( ArtCode)
