@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="parallelRun" parallel="methods" thread-count="8">
+    <test name="selenium">
+        <packages>
+            <package name="com.courses.week4.testng.parallel.*"/>
+        </packages>
+    </test>
+</suite>
