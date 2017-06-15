@@ -26,8 +26,17 @@ public class RegistrationPage extends BasePage {
     @FindBy(name = "public_offer")
     public WebElement checkBoxPublicOffer;
 
-    @FindBy(className = "m_input_accept disabled")
+    @FindBy(className = "m_input_accept")
     public WebElement submitButton;
+
+
+
+    @FindBy(css = ".alert alert-danger")
+    public WebElement massage;
+
+    public String getMassage() {
+        return massage.getText();
+    }
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
@@ -62,12 +71,17 @@ public class RegistrationPage extends BasePage {
         inputSecondPassword.sendKeys(confirmPassword);
         return this;
     }
+    private RegistrationPage agreeWithOffer(){
+        checkBoxPublicOffer.click();
+        return this;
+    }
 
     public void registrationByEmail(String email, String password, String confirmPassword) {
         chooseRadioButtonEmail().
                 setEmail(email).
                 setFirstPassword(password).
                 setSecondPassword(confirmPassword).
+                agreeWithOffer().
                 submit();
     }
 
@@ -76,6 +90,7 @@ public class RegistrationPage extends BasePage {
                 setPhoneNumber(phone).
                 setFirstPassword(password).
                 setSecondPassword(confirmPassword).
+                agreeWithOffer().
                 submit();
     }
 
