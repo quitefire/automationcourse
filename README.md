@@ -6,7 +6,7 @@
    in your working directory to fetch and merge remote changes.
  - Create a new branch based on the latest master branch. Use "name_surname_homework_number" naming template for the branch.
  - Complete assignments in the branch you've created.
- - Push the "homework" branch to the remote repository
+ - Push the "homework1" branch to the remote repository
  - Create a pull request to merge your "homework" branch into the master. Assign the pull request to me.
  
 3. Don't commit non-working code.

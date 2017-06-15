@@ -1,0 +1,20 @@
+Study materials:
+https://www.youtube.com/watch?v=KCPI5JJNQTI&t=224s - PageObject ( Python and Java)
+https://www.youtube.com/watch?v=zCjNOIp7p3c&t=5102s
+https://www.youtube.com/watch?v=Hi6EYEkSvrk    -Ликвидируем Безграмотность: Implicit & Explicit Waits, PageFactory - cоветую
+
+https://martinfowler.com/bliki/PageObject.html
+https://github.com/SeleniumHQ/selenium/wiki/PageObjects
+http://internetka.in.ua/selenium-page-object/
+http://internetka.in.ua/ajaxelementlocatorfactory/
+http://internetka.in.ua/selenium-fielddecorator/
+http://internetka.in.ua/selenium-fielddecorator-2/
+
+https://kreisfahrer.gitbooks.io/selenium-webdriver/content/page_object_pattern_arhitektura_testovogo_proekta/index.html
+
+https://www.youtube.com/watch?v=FUOeH4680SU  - video  from the previous group - PageObject,PageFactor
+
+Assignment:
+1. Refactor the previous assignment using PageObject/PageFactory
+2. Create negative/positive (already registered,new user,wrong email format) tests for a registration of a new user on hotline.ua website.
+ Use PageObject/PageFactory.
