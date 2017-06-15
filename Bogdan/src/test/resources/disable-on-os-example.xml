@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="disableonos">
+
+    <listeners>
+        <listener class-name="com.courses.week4.testng.listeners.DisableTransformer"/>
+    </listeners>
+
+    <test name="selenium">
+        <classes>
+            <class name="com.courses.week4.testng.listeners.DisableOnOsTest"/>
+        </classes>
+    </test>
+</suite>

@@ -1,11 +1,7 @@
 package com.courses.week4.testng.parallel;
 
 import com.courses.week3.conciseapi.pages.HotlineMainPage;
-import com.courses.week3.conciseapi.wrappers.WebDriverProvider;
 import com.courses.week3.hotlinev1.enums.PriceRange;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
@@ -15,10 +11,10 @@ import static org.junit.Assert.assertTrue;
 
 public class FirstTest {
 
-    @BeforeMethod
+  /*  @BeforeMethod
     public void setUp() {
         WebDriverProvider.setupDriver();
-    }
+    }*/
 
     @Test
     public void test1(Method method) throws Exception {
@@ -55,8 +51,8 @@ public class FirstTest {
         prices.forEach(price -> assertTrue("Price is out of the range", price >= range.getMinPrice() && price <= 10_000));
     }
 
-    @AfterMethod
+/*    @AfterMethod
     public void tearDown() throws Exception {
         WebDriverProvider.cleanUp();
-    }
+    }*/
 }

@@ -24,7 +24,7 @@ public class ConditionalDataProviderTest {
         Object[][] result = null;
         String methodName = method.getName();
 
-        if (methodName.equals("test1")) {
+        if (methodName.equals("shouldBeDisabledOnWindows")) {
             result = new Object[][]{
                     {1, 1}, {200, 200}
             };
