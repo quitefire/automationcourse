@@ -23,7 +23,7 @@ public class ThreadLocalBaseTest {
 
     @After
     public void tearDownAll() throws Exception {
-        getDriver().quit();
+      //  getDriver().quit();
     }
 
 }

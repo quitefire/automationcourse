@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class StaticWebDriverRunner {
+public class StaticWebDriverBase {
 
     private static WebDriver driver;
 
@@ -18,10 +18,10 @@ public class StaticWebDriverRunner {
 
     @After
     public void tearDown() {
-        driver.quit();
+        // driver.quit();
     }
 
-    public static WebDriver getDriver() {
+    static WebDriver getDriver() {
         return driver;
     }
 }
