@@ -4,7 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
-import static automation.hotline.utils.Configuration.HOME_PAGE_URL;
+import static automation.hotline.constants.CoreConstants.SITE_URL;
+
 
 /**
  * Created by dtv on 05.06.2017.
@@ -16,7 +17,7 @@ public class HomePage extends BasePage {
     }
 
     public void openPage() {
-        driver.get(HOME_PAGE_URL);
+        driver.get(SITE_URL);
     }
 
     public SearchResultPage searchFor(String text) {

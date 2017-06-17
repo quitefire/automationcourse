@@ -4,7 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static automation.hotline.utils.Configuration.WAIT_TIMEOUT;
+import java.util.concurrent.TimeUnit;
+
+import static automation.hotline.constants.CoreConstants.WAIT_TIMEOUT;
+
 
 /**
  * Created by dtv on 05.06.2017.
@@ -22,6 +25,10 @@ public abstract class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, WAIT_TIMEOUT);
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        driver.manage().window().maximize();
+//        driver.manage().deleteAllCookies();
+//        wait = new WebDriverWait(driver, 10);
     }
 }
 
