@@ -9,10 +9,19 @@
 
     <artifactId>PavelSeredyuk</artifactId>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.4.0</version>
+<<<<<<< HEAD
+=======
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>1.6.2</version>
+>>>>>>> 4c5daead97160beed4c4b8e7bc38762f26f97f77
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
