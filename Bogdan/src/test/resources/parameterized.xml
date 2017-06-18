@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="testParameterized">
+    <test name="pass-parameters">
+
+        <parameter name="browser" value="chrome"/>
+        <parameter name="url" value="http://site.com"/>
+        <parameter name="timeout" value="6"/>
+
+        <classes>
+            <class name="com.courses.week4.testng.parameterized.XMLParametersTest"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,26 @@
+TestNG study materials:
+http://testng.org/doc/documentation-main.html - official TestNG wiki
+https://www.youtube.com/watch?v=vRmVZV0fjK8&t=1381s  - TestNG vs JUnit 5 battle (Sergey Pirogov)
+http://www.mkyong.com/tutorials/testng-tutorials/ - TestNG Tutorial
+https://www.youtube.com/playlist?list=PLp18Zf576nRJMlHo_BEscqlNzRGosQnQo  - TestNG Tutorials ( QA-Automan)
+
+https://www.youtube.com/watch?v=H80gMTErsQQ -  Основные аннотации TestNG: @Test - Barancev  - желательно посмотреть! есть моменты, которые я не рассказал
+https://www.youtube.com/watch?v=7CeaD1TZZj8 Как задать порядок выполнения тестов в TestNG - https://www.youtube.com/watch?v=7CeaD1TZZj8 Как задать порядок выполнения тестов в TestNG -
+
+[MANDATORY] Preparation materials for the next class:
+1. https://www.youtube.com/watch?v=2UBbmEUoBeI&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B&index=8  -  1st part - Maven installation + system variables
+2. https://www.youtube.com/watch?v=3H90NVnPaeY&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B&index=9 - 2nd part- Maven - general overview
+3. https://www.youtube.com/watch?v=JJs9HYq-jJw&index=10&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B - 3rd part - Lifecycle, Goals, Plugins, Dependencies. Watch first 30 mins
+4.https://www.youtube.com/watch?v=98wjEK3em_s&index=11&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B  - first 30mins
+5. Install maven and set M2_HOME system variable and add it to PATH variable
+http://www.apache-maven.ru/install.html
+
+Assignment:
+1. Refactor or just create a separate registration/login tests using TestNG framework with @DataProvider.
+2. Create an xml suite for your test classes.
+[OPTIONAL] 3. Move logic of setting up/cleaning driver to listener.
+If you want to start/stop browser before/after each test -> implement IInvokedMethodListener
+                                  before/after each class-> implement IClassListener
+4.Configure your xml suite to make use of the above listener
+5.Create and register in the suite a listener taking screenshots on test failure. Implement ITestListener interface or extend adapter class TestListenerAdapter  and override the corresponding method
+[OPTIONAL]: 6.Create a xml suite with a two <test> tests containing the same test class , set TestNG to parallel "classes" and add browser parameter to the suite so that you can run the same test classes in parallel using different browsers.
