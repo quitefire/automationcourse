@@ -10,8 +10,13 @@ import ru.stqa.selenium.factory.WebDriverPool;
 
 public class DriverFactory {
 
-	public static WebDriver getDriver(){
-		String browserName = PropertyManager.getProperty("BROWSER");
+	public static WebDriver getDriver(String browserName){
+		if (browserName == null){
+			browserName = PropertyManager.getProperty("BROWSER");
+		}
+
+		browserName = browserName.toLowerCase();
+
 		WebDriver driver = null;
 		switch (browserName){
 			case "firefox":

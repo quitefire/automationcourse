@@ -16,7 +16,7 @@ public abstract class BaseTest extends ConciseAPI{
 
 	@Before
 	public void setUp(){
-		driver = DriverFactory.getDriver();
+		driver = DriverFactory.getDriver(null);
 		faker = new Faker();
 	}
 
