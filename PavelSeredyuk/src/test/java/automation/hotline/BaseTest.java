@@ -22,6 +22,7 @@ public class BaseTest {
 
     @BeforeTest
     public void setUp() throws Exception {
+        //System.setProperty("webdriver.chrome.driver", "G:\\automationcourse\\PavelSeredyuk\\src\\Drivers\\chromedriver.exe");
         ChromeDriverManager.getInstance().setup();
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--start-fullscreen");
