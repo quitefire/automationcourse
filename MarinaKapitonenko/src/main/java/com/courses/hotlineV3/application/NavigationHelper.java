@@ -1,6 +1,8 @@
 package com.courses.hotlineV3.application;
 
+
 import com.courses.hotlineV3.pages.AnyPage;
+import com.courses.hotlineV3.pages.HomePage;
 import com.courses.hotlineV3.pages.SearchResultsPage;
 import com.courses.hotlineV3.pages.SignUpPage;
 import junitx.util.PropertyManager;
@@ -16,8 +18,11 @@ public class NavigationHelper {
 	}
 
 	public AnyPage openHomePage() {
-		AnyPage home = new AnyPage(baseUrl, app.getDriver(), this);
-		return home.open();
+		return getHomePage().open();
+	}
+
+	public HomePage getHomePage() {
+		return new HomePage(baseUrl, app.getDriver(),this);
 	}
 
 	public SearchResultsPage getSearchResultsPage() {

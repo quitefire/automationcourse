@@ -1,6 +1,7 @@
 package com.courses.hotlineV3;
 
-import org.testng.annotations.Test;
+
+import org.junit.Test;
 
 public class SignUpTest extends BaseTest {
 

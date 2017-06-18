@@ -4,12 +4,12 @@ import com.courses.hotlineV3.application.Base;
 import com.courses.hotlineV3.application.NavigationHelper;
 import org.openqa.selenium.WebDriver;
 
-public abstract class BasePage extends Base {
+public abstract class BasePageObject extends Base {
 
 	protected WebDriver driver;
 	protected NavigationHelper navigationHelper;
 
-	public BasePage(WebDriver driver, NavigationHelper helper) {
+	public BasePageObject(WebDriver driver, NavigationHelper helper) {
 		this.driver = driver;
 		this.navigationHelper = helper;
 	}

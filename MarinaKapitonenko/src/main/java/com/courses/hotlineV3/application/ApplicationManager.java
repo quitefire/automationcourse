@@ -27,7 +27,7 @@ public class ApplicationManager {
 		return driver;
 	}
 
-	public void close() {
+	public static void close() {
 		WebDriverPool.DEFAULT.dismissAll();
 	}
 }

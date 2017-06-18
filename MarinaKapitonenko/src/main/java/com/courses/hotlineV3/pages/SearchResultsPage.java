@@ -10,7 +10,6 @@ public class SearchResultsPage extends AnyPage {
 
 	private Filter filter;
 
-
 	private By products = By.cssSelector(".cell.gd .cell.gd-item");
 
 	public SearchResultsPage(String url, WebDriver driver, NavigationHelper helper) {

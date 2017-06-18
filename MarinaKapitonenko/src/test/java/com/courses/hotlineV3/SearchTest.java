@@ -2,7 +2,8 @@ package com.courses.hotlineV3;
 
 import com.courses.hotlineV3.pages.filters.Filter;
 import com.courses.hotlineV3.pages.filters.PriceFilter;
-import org.testng.annotations.Test;
+import org.junit.Test;
+
 
 public class SearchTest extends BaseTest {
 

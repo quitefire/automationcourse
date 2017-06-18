@@ -1,9 +1,12 @@
 package com.courses.hotlineV3.pages;
 
 import com.courses.hotlineV3.application.NavigationHelper;
+import com.courses.hotlineV3.pages.pageElements.LoginForm;
+import com.courses.hotlineV3.pages.pageElements.LoginLinksBox;
+import com.courses.hotlineV3.pages.pageElements.SearchBox;
 import org.openqa.selenium.WebDriver;
 
-public class AnyPage extends BasePage {
+public abstract class AnyPage extends BasePageObject {
 
 	private String url;
 
@@ -23,7 +26,18 @@ public class AnyPage extends BasePage {
 	}
 
 	public SignUpPage signUpWith(String email, String username, String password) {
-		LoginBox loginBox = new LoginBox(driver, navigationHelper);
+		LoginLinksBox loginBox = new LoginLinksBox(driver, navigationHelper);
 		return loginBox.signUp(email, username, password);
+	}
+
+
+	public LoginForm openLoginForm() {
+		LoginLinksBox loginBox = new LoginLinksBox(driver, navigationHelper);
+		return loginBox.openLoginForm();
+	}
+
+	public AnyPage seeUserIsLoggedIn(String username) {
+		LoginLinksBox loginBox = new LoginLinksBox(driver, navigationHelper);
+		return loginBox.seeUserIsLoggedIn(username, this);
 	}
 }
