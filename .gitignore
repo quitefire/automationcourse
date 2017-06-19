@@ -91,3 +91,4 @@ gen
 **/bower_components
 !/Bogdan/src/test/java/com/courses/junit/_7ExecutionOrderTest.java
 !/Bogdan/src/test/java/com/courses/week4/testng/ExpectedExceptionsTest.java
+!/Bogdan/src/main/java/com/courses/week5/yaml/YamlReader.java

@@ -1,0 +1,35 @@
+# Employee records
+#more compact form
+users:
+  invalid:
+    - {name: Martin, job: aqa, skills: [java,selenium]}
+    - {name: Alex, job: manager, skills: [communication skills]}
+  valid:
+    - {name: Ivan, job: developer, skills: [python,php,c++]}
+
+#users:
+#  INVALID:
+#    - job: Developer
+#      name: Ivan
+#      skills:
+#        - python
+#        - perl
+#        - pascal
+#  VALID:
+#    - name: Martin
+#      job: AQA
+#      skills:
+#        - java
+#        - php
+#        - c++
+#    - name: James
+#      job: QA
+#      skills:
+#        - functional testing
+#        - sql
+#    - name: Alex
+#      job: QA
+#      skills:
+#        - java
+#        - php
+#        - c++
