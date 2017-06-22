@@ -24,7 +24,8 @@ public class WeatherApi {
                 .setBaseUri(config.getRestEndpoint())
                 .setBasePath("weather")
                 .setContentType(ContentType.JSON)
-                .log(LogDetail.ALL).build();
+                // .log(LogDetail.ALL)
+                .build();
     }
 
 

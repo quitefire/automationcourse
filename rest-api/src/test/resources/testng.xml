@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="weather api suite">
+
+    <listeners>
+        <listener class-name="com.demo.listeners.LogListener"/>
+    </listeners>
+
+    <test name="weather api test">
+        <classes>
+            <class name="com.demo.WeatherTest"/>
+        </classes>
+    </test>
+</suite>

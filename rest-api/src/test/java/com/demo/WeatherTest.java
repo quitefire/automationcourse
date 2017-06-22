@@ -1,14 +1,17 @@
 package com.demo;
 
+import com.demo.listeners.LogListener;
 import com.demo.responses.ErrorResponse;
 import com.demo.responses.WeatherResponse;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
 import static com.demo.enums.City.LDN;
 import static com.demo.matchers.ErrorResponseAssert.assertThat;
 import static com.demo.matchers.WeatherResponseAssert.assertThat;
 
+@Listeners(LogListener.class)
 public class WeatherTest {
 
     private WeatherApi api = new WeatherApi();
