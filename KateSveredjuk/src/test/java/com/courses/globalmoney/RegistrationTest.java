@@ -6,12 +6,15 @@ import com.courses.globalmoney.pages.GMMainPage;
 import com.courses.globalmoney.pages.RegistrationPage;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.By;
+
+import java.util.Set;
 
 public class RegistrationTest extends BaseTest {
 
     private GMMainPage mainPage;
 
-//    @BeforeClass
+    //    @BeforeClass
 //    public void SetUp(){
 //    mainPage = new GMMainPage(driver);
 //    mainPage.open().openRegistrationForm();}
@@ -19,21 +22,30 @@ public class RegistrationTest extends BaseTest {
     public void testSuccessfulRegistrationWithEmail() throws Exception {
         RegistrationData registrationData = RegistrationData.validEmail;
 //         1) 1st version
+        String originalWindow = driver.getWindowHandle();
+
         new GMMainPage(driver)
-             .open()
+                .open()
                 .openRegistrationForm().
                 registrationByEmail(registrationData.getEmail(), registrationData.getFirstPassword(), registrationData.getSecondPassword());
-        String expected = "Такой кошелек уже создан";
-        String actual = mainPage.registrationPage.getMassage();
-        Assert.assertEquals(expected,actual);
+
+        for (String childHandle : driver.getWindowHandles()) {
+            if (!childHandle.equals(originalWindow)) {
+                driver.switchTo().window(childHandle);
+            }
+        }
+
+        String expected = "Код подтверждения отправленный";
+        String actual = driver.findElement(By.cssSelector(".modal-dialog")).getText();
+        Assert.assertEquals(expected, actual);
 
 //      2) more verbose style without methods chaining;
- //       GMMainPage gmMainPage = new GMMainPage(driver);
-  //      RegistrationPage registrationPage = gmMainPage
-  //              .open()
- //               .openRegistrationForm();
-  //      registrationPage.
-  //              registrationByEmail(registrationData.getEmail(), registrationData.getFirstPassword(), registrationData.getSecondPassword());
+        //       GMMainPage gmMainPage = new GMMainPage(driver);
+        //      RegistrationPage registrationPage = gmMainPage
+        //              .open()
+        //               .openRegistrationForm();
+        //      registrationPage.
+        //              registrationByEmail(registrationData.getEmail(), registrationData.getFirstPassword(), registrationData.getSecondPassword());
 
         //TODO: add assertion that verifying that the user has been successfully registered
     }

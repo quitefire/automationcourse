@@ -25,11 +25,13 @@ public class LoginForm extends BasePage {
     }
 
     private LoginForm setUsername(String username) {
+        loginInput.clear();
         loginInput.sendKeys(username);
         return this;
     }
 
     private LoginForm setPassword(String password) {
+        passwordInput.clear();
         passwordInput.sendKeys(password);
         return this;
     }

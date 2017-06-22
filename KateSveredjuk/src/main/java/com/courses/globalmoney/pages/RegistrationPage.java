@@ -29,8 +29,6 @@ public class RegistrationPage extends BasePage {
     @FindBy(className = "m_input_accept")
     public WebElement submitButton;
 
-
-
     @FindBy(css = ".alert alert-danger")
     public WebElement massage;
 

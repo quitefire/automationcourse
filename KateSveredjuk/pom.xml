@@ -19,5 +19,14 @@
             <artifactId>webdrivermanager</artifactId>
             <version>1.6.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.java</groupId>
+            <artifactId>junit-dataprovider</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>

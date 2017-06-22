@@ -2,7 +2,7 @@ package com.courses.globalmoney.data;
 
 public class RegistrationData {
 
-    public static final RegistrationData validEmail = new RegistrationData("shabbyheart@mailinator.com", "12345", "12345");
+    public static final RegistrationData validEmail = new RegistrationData("xivo@p33.org", "12345", "12345");
 
     private String email;
     private String phoneNumber;
