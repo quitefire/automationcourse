@@ -26,6 +26,7 @@
         <module>Bogdan</module>
         <module>YuraQwerty</module>
         <module>OlegKuchma</module>
+        <module>rest-api</module>
     </modules>
 
     <properties>
