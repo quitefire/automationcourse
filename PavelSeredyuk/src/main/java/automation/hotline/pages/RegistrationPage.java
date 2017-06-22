@@ -2,13 +2,13 @@ package automation.hotline.pages;
 
 
 import com.sun.javafx.css.StyleCache;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static automation.hotline.constants.CoreConstants.errorText;
 
 public class RegistrationPage extends BasePage {
 
@@ -37,17 +37,26 @@ public class RegistrationPage extends BasePage {
         return false;
     }
 
-    public String[] errorArray() {
-        String[] errorArray = new String[3];
-
-        WebElement errorEmail = driver.findElement(By.id("error_email"));
-        errorArray[0] = errorEmail == null ? "" : errorEmail.getText();
-
-        WebElement errorNick = driver.findElement(By.id("error_nick"));
-        errorArray[1] = errorNick == null ? "" : errorNick.getText();
-
-        WebElement errorPassword = driver.findElement(By.id("error_password"));
-        errorArray[2] = errorPassword == null ? "" : errorPassword.getText();
+    public List<String> errorArray() {
+        List<String> errorArray = new ArrayList<>();
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("error_email")));
+            errorArray.add(errorText);
+        } catch (TimeoutException e) {
+            errorArray.add("");
+        }
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("error_nick")));
+            errorArray.add(errorText);
+        } catch (TimeoutException e) {
+            errorArray.add("");
+        }
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("error_password")));
+            errorArray.add(errorText);
+        } catch (TimeoutException e) {
+            errorArray.add("");
+        }
 
         return errorArray;
     }

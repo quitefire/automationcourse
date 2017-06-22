@@ -7,6 +7,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Array;
+
 import static automation.hotline.constants.CoreConstants.errorText;
 
 /**
@@ -18,25 +20,25 @@ public class RegistrationPageTest extends BaseTest {
 
     public static Object[][] getData() {
 
-        return new Object[][]{{"", "Test123","asddasd",errorText,"",""},
-                              {"", "","adasdad",errorText,errorText,""},
-                                {"","","",errorText,errorText,errorText},
-                {"adasd@i.ua","","","",errorText,errorText},
-                {"sasdas@i.ua","dasdasd","","","",errorText}};
+        return new Object[][]{{"", "Test231", "asddasd", errorText, "", ""},
+                {"", "", "adasdad", errorText, errorText, ""},
+                {"", "", "", errorText, errorText, errorText},
+                {"adasd@i.ua", "", "", "", errorText, errorText},
+                {"sasdas@i.ua", "dasdasd", "", "", "", errorText}};
 
     }
 
-    @Test (dataProvider = "getData")
+    @Test(dataProvider = "getData")
     public void testUnsuccessRegistration(String email, String nick,
                                           String password, String errorMail,
                                           String errorNick, String errorPassword) {
-        String[] errorTextArray = {errorMail,errorNick,errorPassword};
+        String[] errorTextArray = {errorMail, errorNick, errorPassword};
         HomePage hp = new HomePage(driver);
         hp.openPage();
         hp.searchRegistrationPage();
         RegistrationPage registrationPage = new RegistrationPage(driver);
-        registrationPage.fillUserEmailField(email,nick,password);
-        Assert.assertEquals(errorTextArray,registrationPage.errorArray());
+        registrationPage.fillUserEmailField(email, nick, password);
+        Assert.assertEquals(errorTextArray, registrationPage.errorArray().toArray());
 
     }
 

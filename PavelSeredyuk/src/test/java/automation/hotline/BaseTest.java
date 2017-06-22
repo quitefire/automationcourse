@@ -25,11 +25,11 @@ public class BaseTest {
     @BeforeTest
     public void setUp() throws Exception {
         //System.setProperty("webdriver.chrome.driver", "G:\\automationcourse\\PavelSeredyuk\\src\\Drivers\\chromedriver.exe");
-        FirefoxDriverManager.getInstance().setup();
+        ChromeDriverManager.getInstance().setup();
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--start-fullscreen");
 //        driver = new ChromeDriver(options);
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, WAIT_TIMEOUT);
     }
