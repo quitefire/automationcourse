@@ -1,14 +1,13 @@
 package com.demo;
 
-import com.demo.matchers.ErrorResponseAssert;
 import com.demo.responses.ErrorResponse;
 import com.demo.responses.WeatherResponse;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import static com.demo.enums.City.LDN;
+import static com.demo.matchers.ErrorResponseAssert.assertThat;
 import static com.demo.matchers.WeatherResponseAssert.assertThat;
-
 
 public class WeatherTest {
 
@@ -48,7 +47,7 @@ public class WeatherTest {
     @Test
     public void shouldNotGetNonExistingCity() {
         ErrorResponse errorResponse = api.getWeatherByCity("/", ErrorResponse.class);
-        ErrorResponseAssert.assertThat(errorResponse).hasMessage("city not found")
+        assertThat(errorResponse).hasMessage("city not found")
                 .hasCod(404);
     }
 }

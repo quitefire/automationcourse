@@ -28,29 +28,6 @@ public class ErrorResponseAssert extends AbstractAssert<ErrorResponseAssert, Err
   }
 
   /**
-   * Verifies that the actual ErrorResponse's additionalProperties is equal to the given one.
-   * @param additionalProperties the given additionalProperties to compare the actual ErrorResponse's additionalProperties to.
-   * @return this assertion object.
-   * @throws AssertionError - if the actual ErrorResponse's additionalProperties is not equal to the given one.
-   */
-  public ErrorResponseAssert hasAdditionalProperties(java.util.Map additionalProperties) {
-    // check that actual ErrorResponse we want to make assertions on is not null.
-    isNotNull();
-
-    // overrides the default error message with a more explicit one
-    String assertjErrorMessage = "\nExpecting additionalProperties of:\n  <%s>\nto be:\n  <%s>\nbut was:\n  <%s>";
-    
-    // null safe check
-    java.util.Map actualAdditionalProperties = actual.getAdditionalProperties();
-    if (!Objects.areEqual(actualAdditionalProperties, additionalProperties)) {
-      failWithMessage(assertjErrorMessage, actual, additionalProperties, actualAdditionalProperties);
-    }
-
-    // return the current assertion for method chaining
-    return this;
-  }
-
-  /**
    * Verifies that the actual ErrorResponse's cod is equal to the given one.
    * @param cod the given cod to compare the actual ErrorResponse's cod to.
    * @return this assertion object.

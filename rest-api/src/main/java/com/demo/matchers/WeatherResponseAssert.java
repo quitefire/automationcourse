@@ -29,29 +29,6 @@ public class WeatherResponseAssert extends AbstractAssert<WeatherResponseAssert,
   }
 
   /**
-   * Verifies that the actual WeatherResponse's additionalProperties is equal to the given one.
-   * @param additionalProperties the given additionalProperties to compare the actual WeatherResponse's additionalProperties to.
-   * @return this assertion object.
-   * @throws AssertionError - if the actual WeatherResponse's additionalProperties is not equal to the given one.
-   */
-  public WeatherResponseAssert hasAdditionalProperties(java.util.Map additionalProperties) {
-    // check that actual WeatherResponse we want to make assertions on is not null.
-    isNotNull();
-
-    // overrides the default error message with a more explicit one
-    String assertjErrorMessage = "\nExpecting additionalProperties of:\n  <%s>\nto be:\n  <%s>\nbut was:\n  <%s>";
-    
-    // null safe check
-    java.util.Map actualAdditionalProperties = actual.getAdditionalProperties();
-    if (!Objects.areEqual(actualAdditionalProperties, additionalProperties)) {
-      failWithMessage(assertjErrorMessage, actual, additionalProperties, actualAdditionalProperties);
-    }
-
-    // return the current assertion for method chaining
-    return this;
-  }
-
-  /**
    * Verifies that the actual WeatherResponse's base is equal to the given one.
    * @param base the given base to compare the actual WeatherResponse's base to.
    * @return this assertion object.
