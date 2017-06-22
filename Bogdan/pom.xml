@@ -39,19 +39,30 @@
             <artifactId>jackson-dataformat-yaml</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <properties>
         <jackson.version>2.9.0.pr4</jackson.version>
+        <my.property>default</my.property>
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -65,13 +76,75 @@
                     </dependency>
                 </dependencies>-->
                 <configuration>
-                    <!--<suiteXmlFiles>-->
-                    <!--<suiteXmlFile>src/test/resources/parent-suite.xml</suiteXmlFile>-->
-                    <!--</suiteXmlFiles>-->
-                    <parallel>methods</parallel>
-                    <threadCount>4</threadCount>
+                    <testFailureIgnore>true</testFailureIgnore>
+
+                    <systemPropertyVariables>
+                        <my.property>${my.property}</my.property>
+                        <ci.property>${ci.property}</ci.property>
+                    </systemPropertyVariables>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${basedir}/src/qa/resources/disable-on-os-example.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <!--<groups>functional</groups>-->
+                    <!--<properties>-->
+                    <!--<property>-->
+                    <!--<name>testnames</name>-->
+                    <!--<value>testcase2</value>-->
+                    <!--</property>-->
+                    <!--</properties>-->
+                    <!--<parallel>methods</parallel>-->
+                    <!--<threadCount>4</threadCount>-->
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+
+    <!--how to handle different properties with profiles -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <my.property>dev-property</my.property>
+            </properties>
+            <!--<activation>-->
+            <!--<activeByDefault>true</activeByDefault>-->
+            <!--</activation>-->
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/dev</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+
+        <profile>
+            <id>qa</id>
+            <properties>
+                <my.property>qa-property</my.property>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/qa</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <my.property>prod-property</my.property>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/prod</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
 </project>

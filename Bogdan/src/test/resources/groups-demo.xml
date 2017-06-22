@@ -2,12 +2,12 @@
 
 <suite name="TestAll">
 
-    <!--<test name="final">-->
+    <qatest name="final">-->
     <!--<classes>-->
     <!--<class name="com.courses.week4.testng.groups.SeleniumGroupTest"/>-->
     <!--<class name="com.courses.week4.testng.groups.GroupTest"/>-->
     <!--</classes>-->
-    <!--</test>-->
+    <!qatest>-->
 
     <test name="final-specifying-package">
         <packages>
@@ -15,11 +15,11 @@
         </packages>
     </test>
 
-    <!-- Run test method on group "selenium" only -->
+    <!-- qatest method on group "selenium" only -->
     <test name="selenium">
         <groups>
             <run>
-                <include name="selenium-test"/>
+                <include name="selenium-qa"/>
             </run>
         </groups>
 

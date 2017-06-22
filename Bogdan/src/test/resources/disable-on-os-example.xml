@@ -7,7 +7,7 @@
 
     <test name="selenium">
         <classes>
-            <class name="com.courses.week4.testng.listeners.DisableOnOsTest"/>
+            <class name="com.courses.week4.testng.listeners.DisableOnOsTests"/>
         </classes>
     </test>
 </suite>

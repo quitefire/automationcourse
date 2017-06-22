@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="test dependencies">
-    <test name="test">
+<suite name="qa dependencies">
+    <test name="qa">
         <packages>
             <package name="com.courses.week4.testng.dependencies.*"/>
         </packages>
