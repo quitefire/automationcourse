@@ -1,0 +1,24 @@
+= *Autotests for OpenWeatherAPI*
+Doc Writer <bogdan@email.com>
+:WeatherTest: ../../src/test/java/com/demo/WeatherTest.java
+
+== *Tests*
+=== Get weather by city test
+- Get weather by city name
+- Check response contains correct city name and status code is 200
+
+[source,java]
+.WeatherTest.java
+----
+include::{WeatherTest}[tags=shouldGetWeatherByCity]
+----
+
+=== Get weather by zip code
+- Get weather by city name
+- Check response contains correct city name and status code is 200
+
+[source,java]
+.WeatherTest.java
+----
+include::{WeatherTest}[tags=shouldGetWeatherByZipCode]
+----

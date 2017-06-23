@@ -17,6 +17,7 @@ public class WeatherTest {
 
     private WeatherApi api = new WeatherApi();
 
+    // tag::shouldGetWeatherByCity[]
     @Test
     public void shouldGetWeatherByCity() {
         String cityName = LDN.getCity();
@@ -24,8 +25,11 @@ public class WeatherTest {
         assertThat(weatherResponse).hasName(cityName).hasCod(200);
         Assertions.assertThat(weatherResponse.getSys().getCountry()).isEqualTo(LDN.getCoutryCode());
     }
+    // end::shouldGetWeatherByCity[]
+
 
     @Test
+    // tag::shouldGetWeatherByCityAndCountryCode[]
     public void shouldGetWeatherByCityAndCountryCode() {
         String cityName = LDN.getCity();
         String code = LDN.getCoutryCode();
@@ -33,13 +37,16 @@ public class WeatherTest {
         assertThat(weatherResponse).hasName(cityName).hasCod(200);
         Assertions.assertThat(weatherResponse.getSys().getCountry()).isEqualTo(code);
     }
+    // end::shouldGetWeatherByCityAndCountryCode[]
 
+    // tag::shouldGetWeatherByZipCode[]
     @Test
     public void shouldGetWeatherByZipCode() {
         WeatherResponse weatherResponse = api.getWeatherByZip(94040, WeatherResponse.class);
         assertThat(weatherResponse).hasName("Mountain View")
                 .hasCod(200);
     }
+    // end::shouldGetWeatherByZipCode[]
 
     @Test
     public void shouldGetWeatherByCoordinates() {
