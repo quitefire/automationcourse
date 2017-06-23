@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rest-api</artifactId>
-
     <properties>
         <allure.version>1.4.23.HOTFIX1</allure.version>
         <aspectj.version>1.8.9</aspectj.version>
@@ -66,6 +65,7 @@
 
     <build>
         <plugins>
+            <!--Generate java pojos based on json/schema files provided in source directory-->
             <plugin>
                 <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
@@ -73,7 +73,7 @@
                 <configuration>
                     <sourceDirectory>${basedir}/src/main/resources/responses</sourceDirectory>
                     <outputDirectory>${basedir}/src//main/java/</outputDirectory>
-                    <targetPackage>com.demo.responses</targetPackage>
+                    <targetPackage>com.demo.model</targetPackage>
                     <sourceType>json</sourceType>
                 </configuration>
                 <!--<executions>-->
@@ -98,8 +98,8 @@
                 <configuration>
                     <!--TODO:use regext to filter classes-->
                     <classes>
-                        <class>com.demo.responses.ErrorResponse</class>
-                        <class>com.demo.responses.WeatherResponse</class>
+                        <class>com.demo.model.ErrorResponse</class>
+                        <class>com.demo.model.WeatherResponse</class>
                     </classes>
                     <targetDir>src/main/java</targetDir>
                     <generateAssertions>false</generateAssertions>
@@ -149,6 +149,4 @@
             </plugin>
         </plugins>
     </reporting>
-
-
 </project>

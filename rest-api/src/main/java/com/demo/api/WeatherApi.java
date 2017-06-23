@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.api;
 
 import com.demo.utils.Configuration;
 import com.demo.utils.PropertiesLoader;
@@ -22,9 +22,8 @@ public class WeatherApi {
     public WeatherApi() {
         spec = new RequestSpecBuilder()
                 .setBaseUri(config.getRestEndpoint())
-                .setBasePath("weather")
+                .setBasePath(BASE_PATH)
                 .setContentType(ContentType.JSON)
-                // .log(LogDetail.ALL)
                 .build();
     }
 

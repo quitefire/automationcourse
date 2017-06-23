@@ -1,6 +1,6 @@
 package com.demo.matchers;
 
-import com.demo.responses.ErrorResponse;
+import com.demo.model.ErrorResponse;
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.util.Objects;
 
@@ -9,68 +9,31 @@ import org.assertj.core.util.Objects;
  */
 public class ErrorResponseAssert extends AbstractAssert<ErrorResponseAssert, ErrorResponse> {
 
-  /**
-   * Creates a new <code>{@link ErrorResponseAssert}</code> to make assertions on actual ErrorResponse.
-   * @param actual the ErrorResponse we want to make assertions on.
-   */
-  public ErrorResponseAssert(ErrorResponse actual) {
-    super(actual, ErrorResponseAssert.class);
-  }
-
-  /**
-   * An entry point for ErrorResponseAssert to follow AssertJ standard <code>assertThat()</code> statements.<br>
-   * With a static import, one can write directly: <code>assertThat(myErrorResponse)</code> and get specific assertion with code completion.
-   * @param actual the ErrorResponse we want to make assertions on.
-   * @return a new <code>{@link ErrorResponseAssert}</code>
-   */
-  public static ErrorResponseAssert assertThat(ErrorResponse actual) {
-    return new ErrorResponseAssert(actual);
-  }
-
-  /**
-   * Verifies that the actual ErrorResponse's cod is equal to the given one.
-   * @param cod the given cod to compare the actual ErrorResponse's cod to.
-   * @return this assertion object.
-   * @throws AssertionError - if the actual ErrorResponse's cod is not equal to the given one.
-   */
-  public ErrorResponseAssert hasCod(Integer cod) {
-    // check that actual ErrorResponse we want to make assertions on is not null.
-    isNotNull();
-
-    // overrides the default error message with a more explicit one
-    String assertjErrorMessage = "\nExpecting cod of:\n  <%s>\nto be:\n  <%s>\nbut was:\n  <%s>";
-    
-    // null safe check
-    Integer actualCod = actual.getCod();
-    if (!Objects.areEqual(actualCod, cod)) {
-      failWithMessage(assertjErrorMessage, actual, cod, actualCod);
+    public ErrorResponseAssert(ErrorResponse actual) {
+        super(actual, ErrorResponseAssert.class);
     }
 
-    // return the current assertion for method chaining
-    return this;
-  }
-
-  /**
-   * Verifies that the actual ErrorResponse's message is equal to the given one.
-   * @param message the given message to compare the actual ErrorResponse's message to.
-   * @return this assertion object.
-   * @throws AssertionError - if the actual ErrorResponse's message is not equal to the given one.
-   */
-  public ErrorResponseAssert hasMessage(String message) {
-    // check that actual ErrorResponse we want to make assertions on is not null.
-    isNotNull();
-
-    // overrides the default error message with a more explicit one
-    String assertjErrorMessage = "\nExpecting message of:\n  <%s>\nto be:\n  <%s>\nbut was:\n  <%s>";
-    
-    // null safe check
-    String actualMessage = actual.getMessage();
-    if (!Objects.areEqual(actualMessage, message)) {
-      failWithMessage(assertjErrorMessage, actual, message, actualMessage);
+    public static ErrorResponseAssert assertThat(ErrorResponse actual) {
+        return new ErrorResponseAssert(actual);
     }
 
-    // return the current assertion for method chaining
-    return this;
-  }
+    public ErrorResponseAssert hasCod(Integer cod) {
+        isNotNull();
+        String assertjErrorMessage = "\nExpecting cod of:\n  <%s>\nto be:\n  <%s>\nbut was:\n  <%s>";
+        Integer actualCod = actual.getCod();
+        if (!Objects.areEqual(actualCod, cod)) {
+            failWithMessage(assertjErrorMessage, actual, cod, actualCod);
+        }
+        return this;
+    }
 
+    public ErrorResponseAssert hasMessage(String message) {
+        isNotNull();
+        String assertjErrorMessage = "\nExpecting message of:\n  <%s>\nto be:\n  <%s>\nbut was:\n  <%s>";
+        String actualMessage = actual.getMessage();
+        if (!Objects.areEqual(actualMessage, message)) {
+            failWithMessage(assertjErrorMessage, actual, message, actualMessage);
+        }
+        return this;
+    }
 }

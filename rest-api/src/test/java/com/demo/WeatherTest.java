@@ -1,8 +1,9 @@
 package com.demo;
 
+import com.demo.api.WeatherApi;
 import com.demo.listeners.LogListener;
-import com.demo.responses.ErrorResponse;
-import com.demo.responses.WeatherResponse;
+import com.demo.model.ErrorResponse;
+import com.demo.model.WeatherResponse;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
