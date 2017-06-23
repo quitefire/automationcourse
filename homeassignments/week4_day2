@@ -1,0 +1,55 @@
+Maven study materials:
+http://www.apache-maven.ru/
+http://www.apache-maven.ru/plugins/maven-surefire-plugin.html
+http://maven.apache.org/surefire/maven-surefire-plugin/examples/testng.html
+http://maven.apache.org/surefire/maven-surefire-plugin/examples/junit.html
+https://www.youtube.com/playlist?list=PLAGMh2LzEgtCrWhaMTfuK9Bdbm6SiVubl - testng/maven tutorials
+
+[MANDATORY] Preparation materials for the next class:
+1. Install MySQL server https://dev.mysql.com/downloads/installer/
+2. Install MySQL Workbench client https://dev.mysql.com/downloads/workbench/
+3. Watch and follow the tutorial http://www.newthinktank.com/2014/08/mysql-video-tutorial/
+If you have problem understanding this tutorial , google for more simple sql tutorials
+4. More simple tutorial on sql - https://www.youtube.com/watch?v=9poLJZqitnc&index=20&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B - skip first 30mins
+https://www.youtube.com/watch?v=fmCrtNAxIOo&index=21&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B
+5. https://www.w3schools.com/SQL/deFault.asp     - quick reference to sql syntax examples
+
+Assignment:
+1. Add maven surefire plugin ( see study materials) to your pom.xml
+2. Configure the plugin to run test with a testing framework you're using (TestNG/Junit)
+3. If your tests are grouped into "groups/categories", then configure the plugin to run only a specific group (e.g. "registration" tests).
+4. Try to run only chosen test classes - using "-Dtest" property or <test> configuration in the surefire pluginhttp://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html
+5. Create your own webdriver factory that returns a concrete webdriver implementation based on "browser" system property.
+Create profiles for chrome , firefox, ie which specify which corresponding value of "browser" property
+Run your test using this webdriver factory with different profiles.
+"mvn test -Pfirefox"
+
+http://maven.apache.org/surefire/maven-surefire-plugin/examples/system-properties.html
+https://github.com/quitefire/automationcourse/blob/master/Bogdan/src/main/java/com/courses/week3/conciseapi/wrappers/WebDriverFactory.java
+
+as an example
+
+
+
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-plugin</artifactId>
+	<version>2.20</version>
+	<configuration>
+		<systemPropertyVariables>
+			<browser>${browser}</browser>
+		</systemPropertyVariables>
+		<suiteXmlFiles>
+			<suiteXmlFile>${basedir}/src/qa/resources/disable-on-os-example.xml</suiteXmlFile>
+		</suiteXmlFiles>
+	</configuration>
+</plugin>
+
+<profiles>
+	<profile>
+		<id>firefox</id>
+		<properties>
+			<browser>firefox</browser>
+		</properties>
+	</profile>
+</profiles>
