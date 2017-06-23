@@ -8,14 +8,14 @@ users:
     - {name: Ivan, job: developer, skills: [python,php,c++]}
 
 #users:
-#  INVALID:
+#  invalid:
 #    - job: Developer
 #      name: Ivan
 #      skills:
 #        - python
 #        - perl
 #        - pascal
-#  VALID:
+#  valid:
 #    - name: Martin
 #      job: AQA
 #      skills:
