@@ -5,16 +5,24 @@ http://maven.apache.org/surefire/maven-surefire-plugin/examples/testng.html
 http://maven.apache.org/surefire/maven-surefire-plugin/examples/junit.html
 https://www.youtube.com/playlist?list=PLAGMh2LzEgtCrWhaMTfuK9Bdbm6SiVubl - testng/maven tutorials
 
+
+
 [MANDATORY] Preparation materials for the next class:
 1. Install MySQL server https://dev.mysql.com/downloads/installer/
 2. Install MySQL Workbench client https://dev.mysql.com/downloads/workbench/
-3. Watch and follow the tutorial http://www.newthinktank.com/2014/08/mysql-video-tutorial/
-If you have problem understanding this tutorial , google for more simple sql tutorials
-4. More simple tutorial on sql - https://www.youtube.com/watch?v=9poLJZqitnc&index=20&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B - skip first 30mins
-https://www.youtube.com/watch?v=fmCrtNAxIOo&index=21&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B
-5. https://www.w3schools.com/SQL/deFault.asp     - quick reference to sql syntax examples
+3. Watch first 4 tutorials - https://www.youtube.com/playlist?list=PLIU76b8Cjem5qdMQLXiIwGLTLyUHkTqi2
 
-Assignment:
+[OPTIONAL]
+1. Watch and follow the tutorial http://www.newthinktank.com/2014/08/mysql-video-tutorial/
+If you have problem understanding this tutorial , google for more simple sql tutorials
+2.  More simple tutorial on sql - https://www.youtube.com/watch?v=9poLJZqitnc&index=20&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B - skip first 30mins
+https://www.youtube.com/watch?v=fmCrtNAxIOo&index=21&list=PLvmHg49t5OCRQAWSXCl-4XQ-5blr0CH6B
+3. https://www.w3schools.com/SQL/deFault.asp     - quick reference to sql syntax examples
+4.https://www.youtube.com/playlist?list=PLAGMh2LzEgtCz8fG2VfxWZWhkBVIvEpaB
+https://www.youtube.com/watch?v=Ah4gCtZ2njo&t=1768s&list=PLwHtGaAw1mb5mQZPp5i_smwwukEAL-o2w&index=2
+
+
+ASSIGNMENT
 1. Add maven surefire plugin ( see study materials) to your pom.xml
 2. Configure the plugin to run test with a testing framework you're using (TestNG/Junit)
 3. If your tests are grouped into "groups/categories", then configure the plugin to run only a specific group (e.g. "registration" tests).
