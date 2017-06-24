@@ -1,64 +1,50 @@
 package automation.hotline.pages;
 
 
-import com.sun.javafx.css.StyleCache;
+import automation.hotline.model.RegistrationData;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static automation.hotline.constants.CoreConstants.errorText;
+import static org.openqa.selenium.By.*;
 
 public class RegistrationPage extends BasePage {
 
-    private By userEmail = By.name("email");
-    private By userNick = By.name("nick");
-    private By userPassword = By.name("password");
+    private By userEmail = name("email");
+    private By userNick = name("nick");
+    private By userPassword = name("password");
+    private By emailError = id("error_email");
+    private By nickError = id("error_nick");
+    private By passwordError = id("error_password");
+
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
     }
 
-
-    public RegistrationPage fillUserEmailField(String email, String nick, String password) {
-
-        driver.findElement(userEmail).sendKeys(email, Keys.ENTER);
-        driver.findElement(userNick).sendKeys(nick, Keys.ENTER);
-        driver.findElement(userPassword).sendKeys(password);
-        driver.findElement(By.id("submit-button")).click();
+    public RegistrationPage registerAs(RegistrationData registrationData) {
+        driver.findElement(userEmail).sendKeys(registrationData.getEmail());
+        driver.findElement(userNick).sendKeys(registrationData.getNick());
+        driver.findElement(userPassword).sendKeys(registrationData.getPassword());
+        driver.findElement(id("submit-button")).submit();
         return this;
     }
 
-    public boolean isRegistrationSuccess() {
+    public List<String> getInputErrorMessages() {
+        List<String> errorMessages = new ArrayList<>();
 
-        WebElement successRegistration = driver.findElement(By.cssSelector("div.cell7.cell-768.cell6-980 > h1"));
-        if (successRegistration != null) return true;
-        return false;
+        for (By errorLocator : Arrays.asList(emailError, nickError, passwordError)) {
+            try {
+                String text = wait.until(ExpectedConditions.visibilityOfElementLocated(errorLocator)).getText();
+                errorMessages.add(text);
+            } catch (TimeoutException e) {
+                errorMessages.add(StringUtils.EMPTY);
+            }
+        }
+        return errorMessages;
     }
-
-    public List<String> errorArray() {
-        List<String> errorArray = new ArrayList<>();
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("error_email")));
-            errorArray.add(errorText);
-        } catch (TimeoutException e) {
-            errorArray.add("");
-        }
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("error_nick")));
-            errorArray.add(errorText);
-        } catch (TimeoutException e) {
-            errorArray.add("");
-        }
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("error_password")));
-            errorArray.add(errorText);
-        } catch (TimeoutException e) {
-            errorArray.add("");
-        }
-
-        return errorArray;
-    }
-
 }

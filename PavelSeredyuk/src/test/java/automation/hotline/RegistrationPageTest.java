@@ -1,5 +1,6 @@
 package automation.hotline;
 
+import automation.hotline.model.RegistrationData;
 import automation.hotline.pages.HomePage;
 import automation.hotline.pages.RegistrationPage;
 import org.testng.Assert;
@@ -7,7 +8,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 
 import static automation.hotline.constants.CoreConstants.errorText;
 
@@ -16,41 +18,46 @@ import static automation.hotline.constants.CoreConstants.errorText;
  */
 public class RegistrationPageTest extends BaseTest {
 
+    /**
+     * todo: create a model RegistrationData store email, nick, password and pass it instead of those variables where it's needed
+     * Use a list to pass errors
+     */
     @DataProvider
-
     public static Object[][] getData() {
+        return new Object[][]{
 
-        return new Object[][]{{"", "Test231", "asddasd", errorText, "", ""},
-                {"", "", "adasdad", errorText, errorText, ""},
-                {"", "", "", errorText, errorText, errorText},
-                {"adasd@i.ua", "", "", "", errorText, errorText},
-                {"sasdas@i.ua", "dasdasd", "", "", "", errorText}};
-
+                {new RegistrationData("", "Test324234323", "asddasd"), Arrays.asList(errorText, "", "")},
+                {new RegistrationData("", "", "adasdad"), Arrays.asList(errorText, errorText, "")},
+                {new RegistrationData("", "", ""), Arrays.asList(errorText, errorText, errorText)},
+                {new RegistrationData("adasd@i.ua", "", ""), Arrays.asList("", errorText, errorText)},
+                {new RegistrationData("sasdas@i.ua", "dasdasd", ""), Arrays.asList("", "", errorText)}
+        };
     }
 
     @Test(dataProvider = "getData")
-    public void testUnsuccessRegistration(String email, String nick,
-                                          String password, String errorMail,
-                                          String errorNick, String errorPassword) {
-        String[] errorTextArray = {errorMail, errorNick, errorPassword};
-        HomePage hp = new HomePage(driver);
-        hp.openPage();
-        hp.searchRegistrationPage();
-        RegistrationPage registrationPage = new RegistrationPage(driver);
-        registrationPage.fillUserEmailField(email, nick, password);
-        Assert.assertEquals(errorTextArray, registrationPage.errorArray().toArray());
+    public void testRegistrationWithInvalidData(RegistrationData registrationData, List<String> expectedMessages) {
+        HomePage homePage = new HomePage(driver);
+        homePage.openPage();
+        RegistrationPage registrationPage = homePage.openRegistrationPage();
+        registrationPage.registerAs(registrationData);
+        List<String> actualMessages = registrationPage.getInputErrorMessages();
+        Assert.assertEquals(expectedMessages, actualMessages);
 
     }
 
 
     @Test
-    public void testSuccessRegistration() {
+    public void testSuccessfulRegistration() {
+        RegistrationData validData = new RegistrationData("dadwwds@i.ua", "ddwwdasd", "ddddddds");
         HomePage hp = new HomePage(driver);
         hp.openPage();
-        hp.searchRegistrationPage();
+        hp.openRegistrationPage();
         RegistrationPage registrationPage = new RegistrationPage(driver);
-        registrationPage.fillUserEmailField("dadwwds@i.ua", "ddwwdasd", "ddddddds");
-        Assert.assertEquals(true, registrationPage.isRegistrationSuccess());
+        registrationPage.registerAs(validData);
+
+        //User will be redirected to another page in case of success , so create a page and check somethings at this page that identifies successful registration
+
+      //  Assert.assertEquals(true, registrationPage.isRegistrationSuccess());
 
     }
 
