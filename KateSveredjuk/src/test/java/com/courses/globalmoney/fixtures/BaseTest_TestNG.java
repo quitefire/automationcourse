@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 
@@ -22,7 +23,7 @@ public class BaseTest_TestNG {
     protected static WebDriver driver;
 
 
-    @BeforeMethod
+    @BeforeClass(alwaysRun = true)
     public static void setAll() {
         ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
@@ -40,12 +41,13 @@ public class BaseTest_TestNG {
                             + result.getName()
                             + Arrays.toString(result.getParameters()) + ".png"));
         }
-        driver.quit();
+
     }
 
-//    @AfterClass
-//    public static void tearDown() {
-//      driver.quit();
-//    }
+    @AfterClass
+    public static void tearDown() {
+        if (driver!=null)
+            driver.quit();
+    }
 
 }

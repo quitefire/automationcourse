@@ -14,7 +14,7 @@ public class LoginTest_TestNG extends BaseTest_TestNG {
 
     private GMMainPage mainPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         mainPage = new GMMainPage(driver);
         mainPage.open();
@@ -47,7 +47,7 @@ public class LoginTest_TestNG extends BaseTest_TestNG {
                 {""," "}
         };
     }
-    @Test (dataProvider = "validData")
+    @Test (dataProvider = "validData",groups = "validData")
     public void testLoginWithValidCredentials(String login,String password, String id) {
 
         mainPage.loginForm.logIn(login, password);
@@ -66,7 +66,7 @@ public class LoginTest_TestNG extends BaseTest_TestNG {
     }
 
 
-    @Test (dataProvider = "invalidData")
+    @Test (dataProvider = "invalidData",groups = "invalidData")
     public void testLoginWithInvalidCredentials(String login, String password) {
 
         String expectedMessage = "Ошибка авторизации: Server error";
@@ -81,7 +81,7 @@ public class LoginTest_TestNG extends BaseTest_TestNG {
         Assert.assertEquals(SiteConstants.SITE_URL, mainPage.getUrl());
     }
 
-    @Test(dataProvider = "emptyData")
+    @Test(dataProvider = "emptyData",groups ="emptyData" )
     public void testLoginWithEmptyCredentials(String login, String password) {
 
         mainPage.loginForm.logIn(login, password);

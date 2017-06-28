@@ -1,18 +1,36 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="parallelRun" >
-    <groups>
-        <run>
-            <include name="validData"></include>
-        </run>
-    </groups>
-    <test name="test1" >
-<classes>
-    <class name="com.courses.globalmoney.LoginTest_TestNG"/>
-</classes>
+<suite name="parallelRun" verbose="2" parallel="methods" thread-count="5">
+    <test name="Login with valid credentials">
+        <groups>
+            <run>
+                <include name="validData"> </include>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.courses.globalmoney.LoginTest_TestNG"/>
+        </classes>
     </test>
 
-    <test name="test2">
+    <test name="Login with invalid credentials">
+        <groups>
+            <run>
+                <include name="invalidData"> </include>
+            </run>
+                    </groups>
+        <classes>
+            <class name="com.courses.globalmoney.LoginTest_TestNG"/>
+        </classes>
+            </test>
 
+    <test name="Login without some data ">
+        <groups>
+            <run>
+                <include name="emptyData"> </include>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.courses.globalmoney.LoginTest_TestNG"/>
+        </classes>
     </test>
 </suite>
