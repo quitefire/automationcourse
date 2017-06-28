@@ -1,6 +1,7 @@
 package com.demo;
 
 import com.demo.api.WeatherApi;
+import com.demo.fixtures.BaseTest;
 import com.demo.listeners.LogListener;
 import com.demo.model.ErrorResponse;
 import com.demo.model.WeatherResponse;
@@ -13,7 +14,7 @@ import static com.demo.matchers.ErrorResponseAssert.assertThat;
 import static com.demo.matchers.WeatherResponseAssert.assertThat;
 
 @Listeners(LogListener.class)
-public class WeatherTest {
+public class WeatherTest extends BaseTest{
 
     private WeatherApi api = new WeatherApi();
 
@@ -26,7 +27,6 @@ public class WeatherTest {
         Assertions.assertThat(weatherResponse.getSys().getCountry()).isEqualTo(LDN.getCoutryCode());
     }
     // end::shouldGetWeatherByCity[]
-
 
     @Test
     // tag::shouldGetWeatherByCityAndCountryCode[]

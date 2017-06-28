@@ -1,40 +1,21 @@
 package com.demo.api;
 
-import com.demo.utils.Configuration;
-import com.demo.utils.PropertiesLoader;
 import com.google.common.collect.ImmutableMap;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.filter.log.LogDetail;
-import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
 
 import java.util.Map;
 
 import static com.demo.utils.WeatherAPIConstants.*;
 import static io.restassured.RestAssured.given;
-import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 public class WeatherApi {
 
-    private static final Configuration config = PropertiesLoader.getConfig();
-    private RequestSpecification spec;
-
-    public WeatherApi() {
-        spec = new RequestSpecBuilder()
-                .setBaseUri(config.getRestEndpoint())
-                .setBasePath(BASE_PATH)
-                .setContentType(ContentType.JSON)
-                .build();
-    }
-
-
     private <T> T getWeatherBy(Class<T> type, Map<String, Object> params) {
-        return given(spec).
+        return given().
                 params(params).
-                param(APPID, config.getApiKey()).
                 when().
-                get(EMPTY).
+                get().
                 then().
+                log().all().
                 extract().
                 response().
                 as(type);
