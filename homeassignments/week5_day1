@@ -1,0 +1,13 @@
+
+Preparation materials for the next class:
+https://www.youtube.com/watch?v=JwLhR9RI3ew  -Behavior Driven Development vs. Traditional Development
+https://www.youtube.com/watch?v=9PoXpvKChAw&t=191s   -Breaking Down Behavior Driven Development “BDD” PT 2
+https://www.youtube.com/watch?v=KQ_hwCg7HPE  - Живая документация продукта на примере Cucumber JVM и WebDriver
+http://33testers.blogspot.com/2015/07/api.html - коротко о API и его тестировании
+
+
+ASSIGNMENT
+1. Create a table in the mysql database representing registration data with columns like nick , password, email.
+2. Create UserDao that fetches the data from the table in the db.
+3. Use this your data in your dataprovider to parametrize a test.
+4. Create ProductDao and save iphones from "search iphone test" to the corresponding table in the db.
