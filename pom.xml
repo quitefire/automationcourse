@@ -27,6 +27,7 @@
         <module>YuraQwerty</module>
         <module>OlegKuchma</module>
         <module>rest-api</module>
+        <module>cucumber-bdd</module>
     </modules>
 
     <properties>
