@@ -1,7 +1,7 @@
 package com.courses.week5.jdbi_example.dao;
 
-import com.courses.week5.jdbi_example.entity.Movie;
 import com.courses.week5.jdbi_example.mappers.MovieMapper;
+import com.courses.week5.jdbi_example.entity.Movie;
 import org.skife.jdbi.v2.sqlobject.*;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
