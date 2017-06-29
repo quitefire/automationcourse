@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Configuration.*;
 @CucumberOptions(
         features = "classpath:features",
         glue = "com.example.cucumber.steps",
-        tags = {"@regression"},
+        tags = {"@registration"},
         monochrome = true,
         plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json", "ru.yandex.qatools.allure.cucumberjvm.AllureReporter",
         }

@@ -12,4 +12,8 @@ public class HotLineMainPage {
     public static void searchFor(String word) {
         $("#searchbox").setValue(word).pressEnter();
     }
+
+    public static void openRegistrationForm() {
+        $("#mm-0 div.login> a").click();
+    }
 }
