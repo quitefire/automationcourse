@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Parallel test suite" verbose="2" parallel="methods" thread-count="3">
+    <!--<test name="ChromeTest">-->
+    <!--<parameter name="browser" value="Chrome"> </parameter>-->
+    <!--<classes>-->
+    <!--<class name="com.courses.globalmoney.LoginTest_TestNG"/>-->
+    <!--</classes>-->
+    <!--</test>-->
+    <test name="FirefoxTest">
+        <parameter name="browser" value="Firefox"> </parameter>
+        <classes>
+            <class name="com.courses.globalmoney.LoginTest_TestNG"/>
+        </classes>
+    </test>
+    <test name="IETest">
+        <parameter name="browser" value="IE"> </parameter>
+        <classes>
+            <class name="com.courses.globalmoney.LoginTest_TestNG"/>
+        </classes>
+    </test>
+</suite>
