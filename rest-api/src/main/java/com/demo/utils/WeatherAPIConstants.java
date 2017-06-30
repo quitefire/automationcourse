@@ -8,5 +8,5 @@ public class WeatherAPIConstants {
     public static final String LAT = "lat";
     public static final String LON = "lon";
     public static final String APPID = "APPID";
-    public static final String BASE_PATH = "weather";
+    public static final String CURRENT_WEATHER_BASE_PATH = "weather";
 }

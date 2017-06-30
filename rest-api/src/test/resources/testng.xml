@@ -2,7 +2,7 @@
 <suite name="suite">
     <test name="weather-api-test">
         <classes>
-            <class name="com.demo.WeatherTest"/>
+            <class name="com.demo.CurrentWeatherTest"/>
         </classes>
     </test>
 </suite>

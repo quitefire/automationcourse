@@ -7,7 +7,7 @@ import java.util.Map;
 import static com.demo.utils.WeatherAPIConstants.*;
 import static io.restassured.RestAssured.given;
 
-public class WeatherApi {
+public class CurrentWeatherApi {
 
     private <T> T getWeatherBy(Class<T> type, Map<String, Object> params) {
         return given().
