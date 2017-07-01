@@ -3,6 +3,7 @@ package automation.hotline;
 import automation.hotline.model.RegistrationData;
 import automation.hotline.pages.HomePage;
 import automation.hotline.pages.RegistrationPage;
+import automation.hotline.pages.RegistrationSuccess;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.DataProvider;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static automation.hotline.constants.CoreConstants.errorText;
+import static automation.hotline.constants.CoreConstants.successReg;
 
 /**
  * Created by inspiron on 21.06.2017.
@@ -48,16 +50,17 @@ public class RegistrationPageTest extends BaseTest {
 
     @Test
     public void testSuccessfulRegistration() {
-        RegistrationData validData = new RegistrationData("dadwwds@i.ua", "ddwwdasd", "ddddddds");
+        RegistrationData validData = new RegistrationData("da55wwds@i.ua", "ddwwdasd", "ddddddds");
         HomePage hp = new HomePage(driver);
         hp.openPage();
         hp.openRegistrationPage();
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.registerAs(validData);
-
+        RegistrationSuccess rs = new RegistrationSuccess(driver);
+        
         //User will be redirected to another page in case of success , so create a page and check somethings at this page that identifies successful registration
 
-      //  Assert.assertEquals(true, registrationPage.isRegistrationSuccess());
+        Assert.assertEquals(successReg,rs.checkSaccessRegitration());
 
     }
 
