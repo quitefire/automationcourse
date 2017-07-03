@@ -1,4 +1,4 @@
-package com.courses.promUa.pages;
+package com.courses.promUa.pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
 
@@ -10,7 +10,6 @@ public class Menu {
 	private SelenideElement menuElement = $("[data-qaid=\"categories_menu\"]"),
 			categoryElement = menuElement.find(".x-categories-menu__wrapper"),
 			selectedCategory;
-
 
 	public Menu category(String category) {
 		menuElement.hover();
@@ -24,7 +23,7 @@ public class Menu {
 		return this;
 	}
 
-	public SelenideElement select() {
-		return selectedCategory;
+	public void select() {
+		selectedCategory.click();
 	}
 }

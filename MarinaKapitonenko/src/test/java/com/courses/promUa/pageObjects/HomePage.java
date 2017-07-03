@@ -1,7 +1,6 @@
-package com.courses.promUa.pages;
+package com.courses.promUa.pageObjects;
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -12,5 +11,4 @@ public class HomePage {
 		Selenide.open("/");
 		return this;
 	}
-
 }
