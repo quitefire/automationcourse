@@ -2,6 +2,7 @@ package com.courses.globalmoney.fixtures;
 
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
+import io.github.bonigarcia.wdm.OperaDriverManager;
 import org.openqa.selenium.TakesScreenshot;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.apache.commons.io.FileUtils;
@@ -11,6 +12,9 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariDriverService;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -35,10 +39,14 @@ public class BaseTest_TestNG {
             } else if (browser.equalsIgnoreCase("Firefox")) {
                 FirefoxDriverManager.getInstance().setup();
                 driver = new FirefoxDriver();
-            } else if (browser.equalsIgnoreCase("IE")) {
-                InternetExplorerDriverManager.getInstance().setup();
-                driver = new InternetExplorerDriver();
+            } else if (browser.equalsIgnoreCase("Opera")) {
+                OperaDriverManager.getInstance().setup();
+                 driver = new OperaDriver();
             }
+//            else if(browser.equalsIgnoreCase("Safary")){
+//                System.setProperty()
+//            }
+
         } catch (WebDriverException e) {
             System.out.println(e.getMessage());
         }

@@ -7,14 +7,14 @@
     <!--<class name="com.courses.globalmoney.LoginTest_TestNG"/>-->
     <!--</classes>-->
     <!--</test>-->
-    <test name="FirefoxTest">
-        <parameter name="browser" value="Firefox"> </parameter>
-        <classes>
-            <class name="com.courses.globalmoney.LoginTest_TestNG"/>
-        </classes>
-    </test>
-    <test name="IETest">
-        <parameter name="browser" value="IE"> </parameter>
+    <!--<test name="FirefoxTest">-->
+        <!--<parameter name="browser" value="Firefox"> </parameter>-->
+        <!--<classes>-->
+            <!--<class name="com.courses.globalmoney.LoginTest_TestNG"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+    <test name="Opera">
+        <parameter name="browser" value="Opera"> </parameter>
         <classes>
             <class name="com.courses.globalmoney.LoginTest_TestNG"/>
         </classes>

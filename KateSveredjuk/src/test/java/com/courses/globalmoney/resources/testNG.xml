@@ -1,11 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="parallelRun" verbose="2" parallel="methods" thread-count="5">
-    <parameter name="browser" value="Chrome"></parameter>
+    <parameter name="browser" value="Chrome"> </parameter>
     <test name="Login with valid credentials">
         <groups>
             <run>
-                <include name="validData"></include>
+                <include name="validData"> </include>
             </run>
         </groups>
         <classes>
