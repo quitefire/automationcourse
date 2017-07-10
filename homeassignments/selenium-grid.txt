@@ -1,4 +1,6 @@
-Study 
+Study materials:
+
+{MANDATORY}https://www.youtube.com/watch?v=vNyRP3haC6k&t=1343s  - tutorial on what to change in your tests to be able to run tests remotely.
 http://www.seleniumeasy.com/selenium-tutorials/how-to-configure-selenium-grid
 http://www.seleniumeasy.com/selenium-tutorials/configure-selenium-grid-using-json-config-file
 https://habrahabr.ru/company/alfa/blog/331434/
