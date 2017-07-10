@@ -1,0 +1,21 @@
+Підготовка до наступного заняття по jenkins 
+https://www.youtube.com/watch?v=f8_fBuxhqE8&t=1371s    -  тут покривається і процес створення jobs , але якщо часу обмаль, то подивіться хоча б перші 13хв
+ось тут згенеруєте secret text для гітхаба https://github.com/settings/tokens
+хто матиме час до заняття , прочитайте , будь ласка  http://bugscatcher.net/archives/2810
+
+лекції Сергія Пирогова по build tools ( ant , maven , gradle)  + CI (Jenkins)
+https://www.youtube.com/watch?v=XpVNDRRjtsw
+https://www.youtube.com/watch?v=dacqCkdFbP8
+https://www.youtube.com/watch?v=CVItdJV_cqM&t=495s
+
+Школа автоматизации процессов разработки 2014 Яндекс
+https://www.youtube.com/watch?v=QKKbi6dWHZE&t=1358s&list=PLJMRN_6MT0JYItlUeor7YRa0r6-lI8MMR&index=6  . Инструменты непрерывной интеграции 
+https://www.youtube.com/watch?v=PcnTkChojys&t=2193s CI/CD: избавляемся от понятий «релиз» и «деплоймент» 
+
+Introduction to API course 
+https://zapier.com/learn/apis/
+
+List of free API to play with
+https://www.reddit.com/r/webdev/comments/3wrswc/what_are_some_fun_apis_to_play_with/
+
+Jenkins 2 pipeline -https://www.youtube.com/watch?v=-Dxm3jhk-W0
