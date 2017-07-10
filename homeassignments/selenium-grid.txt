@@ -1,0 +1,14 @@
+Study 
+http://www.seleniumeasy.com/selenium-tutorials/how-to-configure-selenium-grid
+http://www.seleniumeasy.com/selenium-tutorials/configure-selenium-grid-using-json-config-file
+https://habrahabr.ru/company/alfa/blog/331434/
+http://automation-remarks.com/nastraivaiem-selenium-grid-za-5-minut/
+
+Archive with selenium grid settings: https://drive.google.com/file/d/0B3qWU9WyKuh8clVtU3hXOGdPcGc/view?usp=sharing
+Scripts to start up a grid infrastructure are (.bat file) are windows specific. For Unix machines use sh scripts.
+1) To start up grid with two nodes - execute start-grid.bat ( from cmd or just double-click on .bat file).
+ - this .bat file can be open and edited via any text editor and .bat itself simplifies start of grid infrastracture ( instread of starting hub and nodes separately)
+2) Node configurations are stored in .json files.
+3)kill_all.bat run script to kill all java.exe processes.
+4)paths to chrome,ie,firefox and other drivers need to be specified.
+5)since chromedriver.exe and selenium-server-standalone-3.4.0.jar are placed in the folder with start-grid.bat all the paths are relative.
