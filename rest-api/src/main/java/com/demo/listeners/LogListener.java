@@ -1,5 +1,6 @@
 package com.demo.listeners;
 
+import io.qameta.allure.Attachment;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -7,7 +8,6 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-import ru.yandex.qatools.allure.annotations.Attachment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -31,17 +31,17 @@ public class LogListener extends TestListenerAdapter {
         logResponse(response);
     }
 
-    @Attachment(value = "request")
-    public byte[] logRequest(ByteArrayOutputStream stream) {
+    @Attachment("request")
+    private byte[] logRequest(ByteArrayOutputStream stream) {
         return attach(stream);
     }
 
-    @Attachment(value = "response")
-    public byte[] logResponse(ByteArrayOutputStream stream) {
+    @Attachment("response")
+    private byte[] logResponse(ByteArrayOutputStream stream) {
         return attach(stream);
     }
 
-    public byte[] attach(ByteArrayOutputStream log) {
+    private byte[] attach(ByteArrayOutputStream log) {
         byte[] array = log.toByteArray();
         log.reset();
         return array;

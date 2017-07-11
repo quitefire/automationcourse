@@ -5,20 +5,20 @@ import com.demo.fixtures.BaseTest;
 import com.demo.listeners.LogListener;
 import com.demo.model.ErrorResponse;
 import com.demo.model.WeatherResponse;
-import org.apache.http.HttpStatus;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Stories;
 
 import static com.demo.enums.City.LDN;
 import static com.demo.matchers.ErrorResponseAssert.assertThat;
 import static com.demo.matchers.WeatherResponseAssert.assertThat;
-import static org.apache.http.HttpStatus.*;
+import static org.apache.http.HttpStatus.SC_NOT_FOUND;
+import static org.apache.http.HttpStatus.SC_OK;
 
-@Features("Get current weather")
-@Stories("story-1")
+@Feature("Get current weather")
+@Story("story-1")
 @Listeners(LogListener.class)
 public class CurrentWeatherTest extends BaseTest {
 

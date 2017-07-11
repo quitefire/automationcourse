@@ -1,7 +1,7 @@
 package com.demo.api;
 
 import com.google.common.collect.ImmutableMap;
-import ru.yandex.qatools.allure.annotations.Step;
+import io.qameta.allure.Step;
 
 import java.util.Map;
 
@@ -27,11 +27,13 @@ public class CurrentWeatherApi {
         Map<String, Object> params = ImmutableMap.of(CITY, city);
         return getWeatherBy(type, params);
     }
+
     @Step("Get weather by zip code : {0}")
     public <T> T getWeatherByZip(int code, Class<T> type) {
         Map<String, Object> params = ImmutableMap.of(ZIP_CODE, code);
         return getWeatherBy(type, params);
     }
+
     @Step("Get weather by latitude:{0} and longitude:{1}")
     public <T> T getWeatherByCoordinates(int lat, int lon, Class<T> type) {
         Map<String, Object> params = ImmutableMap.of(LAT, lat, LON, lon);
