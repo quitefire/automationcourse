@@ -1,6 +1,6 @@
 = *Autotests for OpenWeatherAPI*
 Doc Writer <bogdan@email.com>
-:WeatherTest: ../../src/test/java/com/demo/WeatherTest.java
+:WeatherTest: ../../src/test/java/com/demo/CurrentWeatherTest.java
 
 == *Tests*
 === Get weather by city test
