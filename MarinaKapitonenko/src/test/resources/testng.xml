@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="PromUaTest">
+    <test name="orderTelnyashkaScenario">
+
+        <!--<parameter name="username" value=""/>-->
+        <!--<parameter name="email" value=""/>-->
+        <!--<parameter name="password" value=""/>-->
+        <classes>
+            <class name="com.courses.promUa.PromUaTest" />
+        </classes>
+    </test>
+</suite>
