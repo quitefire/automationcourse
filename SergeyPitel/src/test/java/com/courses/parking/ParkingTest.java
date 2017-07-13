@@ -1,4 +1,4 @@
-package com.courses;
+package com.courses.parking;
 
 import com.courses.parking.exceptions.InvalidPlaceNumberException;
 import com.courses.parking.exceptions.ParkingClosedException;

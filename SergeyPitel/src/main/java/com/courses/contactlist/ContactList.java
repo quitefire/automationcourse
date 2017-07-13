@@ -37,10 +37,10 @@ public class ContactList {
 
 
     /**
-     * Search contacts that equals to search contact
+     * Search contacts that equals to searchFor contact
      *
-     * @param contact is contact to search
-     * @return Contact object that equals to search object
+     * @param contact is contact to searchFor
+     * @return Contact object that equals to searchFor object
      */
     public Contact findContact(Contact contact) {
         for (Contact c : contacts) {
@@ -54,8 +54,8 @@ public class ContactList {
     /**
      * Search contacts that contains specified numbers
      *
-     * @param phoneNumber is search number
-     * @return List of contacts that matched search query
+     * @param phoneNumber is searchFor number
+     * @return List of contacts that matched searchFor query
      */
     public List<Contact> findContactsByPhoneNumber(String phoneNumber) {
         List<Contact> result = new ArrayList<>();
@@ -70,8 +70,8 @@ public class ContactList {
     /**
      * Search contacts that starts with specified name
      *
-     * @param name is contact name to search
-     * @return List of contacts that matched search query
+     * @param name is contact name to searchFor
+     * @return List of contacts that matched searchFor query
      */
     public List<Contact> findContactsByName(String name) {
         List<Contact> result = new ArrayList<>();
